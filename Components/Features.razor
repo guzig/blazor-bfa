@@ -4,7 +4,7 @@
 @inject FeaturesViewModel ViewModel
 @inject NavigationManager NavigationManager
 
-<section id="features" class="features-section">
+<section id="features" class="features-section full-page-section">
     <div class="features-container">
         <RadzenRow AlignItems="AlignItems.Center" Gap="4rem" JustifyContent="JustifyContent.Center">
             @* Left content *@
@@ -73,4 +73,6 @@
             </RadzenColumn>
         </RadzenRow>
     </div>
+    
+    <ScrollIndicator TargetSection="projects" Text="I Nostri Progetti" />
 </section>

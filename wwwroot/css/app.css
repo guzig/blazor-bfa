@@ -66,12 +66,12 @@ h1, h2, h3, h4, h5, h6 {
     --gradient-section-light: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(197 30% 95%) 100%);
     --gradient-section-muted: linear-gradient(180deg, hsl(197 25% 95%) 0%, hsl(160 20% 96%) 100%);
     
-    /* Section backgrounds */
-    --bg-about: linear-gradient(180deg, #ffffff 0%, hsl(197 30% 97%) 100%);
-    --bg-services: linear-gradient(180deg, hsl(197 25% 95%) 0%, hsl(160 20% 94%) 100%);
-    --bg-projects: linear-gradient(180deg, #ffffff 0%, hsl(210 25% 97%) 100%);
-    --bg-testimonials: linear-gradient(180deg, hsl(160 20% 95%) 0%, hsl(197 25% 96%) 100%);
-    --bg-contact: linear-gradient(180deg, #ffffff 0%, hsl(197 20% 97%) 100%);
+    /* Section backgrounds - Light & Modern palette */
+    --bg-about: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 100%);           /* Blu ghiaccio */
+    --bg-services: linear-gradient(180deg, #ecfeff 0%, #e0f7fa 100%);        /* Light cyan/sky */
+    --bg-projects: linear-gradient(180deg, #c8e6e8 0%, #A8DADC 100%);        /* Tiffany blue */
+    --bg-testimonials: linear-gradient(180deg, #c8d6e8 0%, #B0C4DE 100%);    /* Light Steel Blue */
+    --bg-contact: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);         /* Warm cream/amber */
     
     /* Decorative patterns */
     --pattern-dots: radial-gradient(circle, hsl(197 100% 31% / 0.05) 1px, transparent 1px);
@@ -567,9 +567,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* About Section with integrated Stats */
 .about-section {
-    padding: 4rem 2rem;
     background: var(--bg-about);
-    position: relative;
+}
+
+.about-section.full-page-section {
+    padding: 4rem 2rem 120px 2rem;
 }
 
 .about-container {
@@ -580,8 +582,10 @@ h1, h2, h3, h4, h5, h6 {
 .about-stats-container {
     margin-top: 3rem;
     padding: 2rem;
-    background: linear-gradient(180deg, rgba(0, 112, 160, 0.03) 0%, rgba(16, 185, 129, 0.03) 100%);
+    background: white;
     border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 .about-stat-card {
@@ -590,15 +594,16 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     text-align: center;
     padding: 1.5rem 1rem;
-    background: white;
+    background: #f8fafc;
     border-radius: 1rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .about-stat-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .about-stat-icon {
@@ -708,7 +713,7 @@ h1, h2, h3, h4, h5, h6 {
    SECTION BACKGROUNDS - SMART CITY STYLE
    ======================================== */
 
-/* About Section */
+/* About Section - Blu ghiaccio with blue accents */
 section#about {
     background: var(--bg-about);
     position: relative;
@@ -722,12 +727,12 @@ section#about::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 10% 20%, hsl(197 100% 31% / 0.04) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, hsl(160 84% 39% / 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 10% 20%, rgba(33, 150, 243, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(66, 165, 245, 0.06) 0%, transparent 50%);
     pointer-events: none;
 }
 
-/* Services Section */
+/* Services Section - Light cyan with teal accents */
 section#services {
     background: var(--bg-services) !important;
     position: relative;
@@ -741,14 +746,14 @@ section#services::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 80% 10%, hsl(160 84% 39% / 0.06) 0%, transparent 40%),
-        radial-gradient(circle at 20% 90%, hsl(197 100% 31% / 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 10%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 20% 90%, rgba(0, 112, 160, 0.06) 0%, transparent 40%),
         var(--pattern-dots);
     background-size: auto, auto, 20px 20px;
     pointer-events: none;
 }
 
-/* Projects Section */
+/* Projects Section - Tiffany blue with teal accents */
 section#projects {
     background: var(--bg-projects);
     position: relative;
@@ -762,13 +767,12 @@ section#projects::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 50% 0%, hsl(197 100% 31% / 0.05) 0%, transparent 60%),
-        var(--pattern-grid);
-    background-size: auto, 40px 40px, 40px 40px;
+        radial-gradient(circle at 50% 0%, rgba(0, 128, 128, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 100%, rgba(72, 209, 204, 0.06) 0%, transparent 50%);
     pointer-events: none;
 }
 
-/* Testimonials Section */
+/* Testimonials Section - Light Steel Blue with blue accents */
 section#testimonials {
     background: var(--bg-testimonials) !important;
     position: relative;
@@ -782,12 +786,12 @@ section#testimonials::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 15% 50%, hsl(160 84% 39% / 0.06) 0%, transparent 45%),
-        radial-gradient(circle at 85% 30%, hsl(197 100% 31% / 0.04) 0%, transparent 45%);
+        radial-gradient(circle at 15% 50%, rgba(70, 130, 180, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 30%, rgba(100, 149, 237, 0.06) 0%, transparent 45%);
     pointer-events: none;
 }
 
-/* Contact Section */
+/* Contact Section - Warm cream with amber accents */
 section#contact {
     background: var(--bg-contact);
     position: relative;
@@ -801,8 +805,8 @@ section#contact::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 70% 100%, hsl(197 100% 31% / 0.06) 0%, transparent 50%),
-        radial-gradient(circle at 30% 20%, hsl(160 84% 39% / 0.04) 0%, transparent 50%);
+        radial-gradient(circle at 70% 100%, rgba(251, 146, 60, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 30% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -1629,6 +1633,76 @@ button[style*="background:linear-gradient"]:hover {
 /* Mobile scroll indicator adjustment */
 @media (max-width: 991px) {
     .hero-scroll-indicator {
+        bottom: 20px;
+    }
+}
+
+/* ========================================
+   FULL PAGE SECTIONS
+   ======================================== */
+.full-page-section {
+    min-height: 100vh;
+    position: relative !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 100px !important; /* Space for scroll indicator */
+    box-sizing: border-box;
+}
+
+/* Scroll indicator for all sections */
+.scroll-indicator-container {
+    position: absolute !important;
+    bottom: 25px !important;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.scroll-indicator-container:hover {
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Light section scroll indicator */
+.full-page-section .scroll-mouse {
+    border-color: rgba(0, 112, 160, 0.4);
+}
+
+.full-page-section .scroll-wheel {
+    background: var(--primary-color);
+}
+
+.full-page-section .scroll-text {
+    color: var(--text-muted);
+}
+
+/* Dark section scroll indicator (Features) */
+.features-section .scroll-indicator-container .scroll-mouse {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.features-section .scroll-indicator-container .scroll-wheel {
+    background: #00bfff;
+}
+
+.features-section .scroll-indicator-container .scroll-text {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 768px) {
+    .full-page-section {
+        min-height: auto;
+        padding: 4rem 0 6rem;
+    }
+    
+    .scroll-indicator-container {
         bottom: 20px;
     }
 }

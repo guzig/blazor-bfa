@@ -3,10 +3,10 @@
 @using BlazorBFA.ViewModels
 @inject TestimonialsViewModel ViewModel
 
-<section id="testimonials" class="rz-p-4 rz-py-8" style="background:var(--bg-muted);">
+<section id="testimonials" class="full-page-section" style="background:var(--bg-testimonials);">
     <div style="text-align:center; margin-bottom:2.5rem;">
-        <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">Testimonial</RadzenText>
-        <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">I nostri <span style="color:var(--primary-color);">Testimonial</span></RadzenText>
+        <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:var(--primary-color);">Testimonial</RadzenText>
+        <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">I nostri <span style="color:var(--accent-color);">Testimonial</span></RadzenText>
         <RadzenText Text="Cosa dicono di noi" Style="color:var(--text-muted); margin-top:0.5rem;" />
     </div>
 
@@ -15,7 +15,7 @@
             @foreach (var testimonial in ViewModel.Testimonials)
             {
                 <div class="testimonials-slideshow-card">
-                    <RadzenCard Style="height:100%; padding:2.5rem; border:1px solid var(--border-color); border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.1); background:white;">
+                    <RadzenCard Style="height:100%; padding:2.5rem; border:1px solid #e2e8f0; border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.1); background:white;">
                         <RadzenStack Gap="16px" AlignItems="AlignItems.Center">
                             <div style="color:var(--accent-color);">
                                 <RadzenRating Value="testimonial.Rating" Max="5" ReadOnly="true" />
@@ -29,4 +29,6 @@
             }
         </div>
     </div>
+    
+    <ScrollIndicator TargetSection="contact" Text="Contattaci" />
 </section>

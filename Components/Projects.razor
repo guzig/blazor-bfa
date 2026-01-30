@@ -3,10 +3,10 @@
 @using BlazorBFA.ViewModels
 @inject ProjectsViewModel ViewModel
 
-<section id="projects" class="rz-p-4 rz-py-8">
+<section id="projects" class="full-page-section" style="background:var(--bg-projects);">
 <div style="text-align:center; margin-bottom:2.5rem;">
-    <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">Il nostro Portfolio</RadzenText>
-    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">Amministrazioni Comunali <span style="color:var(--primary-color);">Progetti</span></RadzenText>
+    <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:var(--primary-color);">Il nostro Portfolio</RadzenText>
+    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">Amministrazioni Comunali <span style="color:var(--accent-color);">Progetti</span></RadzenText>
 </div>
 
 <div class="carousel-container">
@@ -16,9 +16,9 @@
             @foreach (var project in ViewModel.Projects)
             {
                 <div class="carousel-card">
-                    <RadzenCard Style="text-align:center; padding:1.5rem; min-width:260px; height:100%; border:1px solid var(--border-color); border-radius:0.75rem; box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                    <RadzenCard Style="text-align:center; padding:1.5rem; min-width:260px; height:100%; border:1px solid #e2e8f0; border-radius:0.75rem; box-shadow:0 4px 15px rgb(0 0 0 / 0.08); background:white;">
                         <RadzenStack Orientation="Orientation.Vertical" Gap="12px" AlignItems="AlignItems.Center">
-                            <div style="width:56px; height:56px; border-radius:0.75rem; background:hsl(197 100% 31% / 0.1); color:var(--primary-color); display:flex; align-items:center; justify-content:center;">
+                            <div style="width:56px; height:56px; border-radius:0.75rem; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color:white; display:flex; align-items:center; justify-content:center;">
                                 <RadzenIcon Icon="location_city" Style="font-size:28px;" />
                             </div>
                             <RadzenText TextStyle="TextStyle.H6" Style="font-weight:600; color:var(--text-dark);">@project.Name</RadzenText>
@@ -30,5 +30,7 @@
             }
         }
     </div>
-    </div>
+</div>
+
+<ScrollIndicator TargetSection="testimonials" Text="Testimonial" />
 </section>

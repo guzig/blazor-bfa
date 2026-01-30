@@ -3,20 +3,21 @@
 @using BlazorBFA.ViewModels
 @inject ContactViewModel ViewModel
 
-<section id="contact" class="rz-p-4 rz-py-8">
-    <div style="text-align:center; margin-bottom:3rem;">
-        <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">@ViewModel.SectionLabel</RadzenText>
-        <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">@ViewModel.Title <span style="color:var(--primary-color);">@ViewModel.TitleHighlight</span></RadzenText>
-    </div>
+<section id="contact" class="full-page-section" style="background:var(--bg-contact);">
+<div style="text-align:center; margin-bottom:3rem;">
+    <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:var(--primary-color);">@ViewModel.SectionLabel</RadzenText>
+    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">@ViewModel.Title <span style="color:var(--accent-color);">@ViewModel.TitleHighlight</span></RadzenText>
+</div>
 
+<div style="padding: 0 2rem;">
     <RadzenRow Gap="32px">
         <RadzenColumn Size="12" SizeMd="5">
             <RadzenStack Gap="16px">
                 @foreach (var info in ViewModel.ContactInfo)
                 {
-                    <RadzenCard Style="border:1px solid var(--border-color); border-radius:0.75rem; padding:1.25rem;">
+                    <RadzenCard Style="border:1px solid #e2e8f0; border-radius:0.75rem; padding:1.25rem; background:white; box-shadow:0 4px 15px rgb(0 0 0 / 0.08);">
                         <RadzenStack Orientation="Orientation.Horizontal" Gap="16px" AlignItems="AlignItems.Center">
-                            <div style="width:48px; height:48px; border-radius:0.75rem; background:hsl(197 100% 31% / 0.1); color:var(--primary-color); display:flex; align-items:center; justify-content:center;">
+                            <div style="width:48px; height:48px; border-radius:0.75rem; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color:white; display:flex; align-items:center; justify-content:center;">
                                 <RadzenIcon Icon="@info.Icon" />
                             </div>
                             <RadzenStack Gap="4px">
@@ -28,9 +29,9 @@
                 }
             </RadzenStack>
 
-            <RadzenCard Style="margin-top:1rem; border:1px solid var(--border-color); border-radius:0.75rem; padding:1.5rem;">
+            <RadzenCard Style="margin-top:1rem; border:1px solid #e2e8f0; border-radius:0.75rem; padding:1.5rem; background:white; box-shadow:0 4px 15px rgb(0 0 0 / 0.08);">
                 <RadzenStack Gap="8px" AlignItems="AlignItems.Center">
-                    <div style="width:48px; height:48px; border-radius:0.75rem; background:hsl(160 84% 39% / 0.1); color:var(--accent-color); display:flex; align-items:center; justify-content:center;">
+                    <div style="width:48px; height:48px; border-radius:0.75rem; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color:white; display:flex; align-items:center; justify-content:center;">
                         <RadzenIcon Icon="place" Style="font-size:24px;" />
                     </div>
                     <RadzenText Style="font-weight:600; color:var(--text-dark);">@ViewModel.AddressCity</RadzenText>
@@ -40,7 +41,7 @@
         </RadzenColumn>
 
         <RadzenColumn Size="12" SizeMd="7">
-            <RadzenCard Style="border:1px solid var(--border-color); border-radius:0.75rem; padding:2rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.1);">
+            <RadzenCard Style="border:1px solid #e2e8f0; border-radius:0.75rem; padding:2rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.1); background:white;">
                 <RadzenTemplateForm Data="@formData" TItem="FormData" Submit="HandleSubmit">
                     <RadzenText TextStyle="TextStyle.H5" Style="font-weight:600; color:var(--text-dark); margin-bottom:1.5rem;">@ViewModel.FormTitle</RadzenText>
                     <RadzenRow Gap="16px">
@@ -64,7 +65,7 @@
                         <RadzenTextArea @bind-Value="formData.Message" Style="width:100%; border-radius:0.5rem;" Rows="5" Name="Message" />
                     </div>
 
-                    <RadzenButton ButtonType="ButtonType.Submit" Text="@ViewModel.SubmitButtonText" Icon="@ViewModel.SubmitButtonIcon" Class="rz-mt-4" Style="background:var(--primary-color); border:none; border-radius:9999px; padding:14px 32px; font-weight:500;" />
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="@ViewModel.SubmitButtonText" Icon="@ViewModel.SubmitButtonIcon" Class="rz-mt-4" Style="background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); border:none; border-radius:9999px; padding:14px 32px; font-weight:500;" />
                 </RadzenTemplateForm>
             </RadzenCard>
 
@@ -74,6 +75,7 @@
             }
         </RadzenColumn>
     </RadzenRow>
+</div>
 </section>
 
 @code {
