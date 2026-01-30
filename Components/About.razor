@@ -1,19 +1,21 @@
 @using Radzen
 @using Radzen.Blazor
+@using BlazorBFA.ViewModels
+@inject AboutViewModel ViewModel
 
 <section id="about" class="rz-p-4 rz-py-8">
     <RadzenCard Style="box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.1); border:1px solid var(--border-color); border-radius:1rem;">
         <RadzenRow AlignItems="AlignItems.Center" Gap="2rem">
             <RadzenColumn Size="12" SizeMd="5">
-                <RadzenImage Path="images/about.jpg" Alt="BFA Consulting Team" Style="width:100%; border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.2);" />
+                <RadzenImage Path="@ViewModel.ImagePath" Alt="@ViewModel.ImageAlt" Style="width:100%; border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.2);" />
             </RadzenColumn>
             <RadzenColumn Size="12" SizeMd="7">
-                <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">Chi siamo</RadzenText>
-                <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; margin-bottom:1rem; color:var(--text-dark);">Siamo un team di professionisti con la passione per l'energia!</RadzenText>
-                <RadzenText Text="BFA Consulting nasce nel 2015. Siamo una società giovane, dinamica e in continua evoluzione. Forniamo servizi avanzati per l'approvvigionamento e la gestione dell'energia. Siamo sempre attenti alle esigenze di risparmio nei confronti del cliente. Ma soprattutto siamo sempre attenti e sensibili alle sfide poste dal grande tema del cambiamento climatico." Style="color:var(--text-muted); line-height:1.75; font-size:1rem;" />
+                <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">@ViewModel.SectionLabel</RadzenText>
+                <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; margin-bottom:1rem; color:var(--text-dark);">@ViewModel.Title</RadzenText>
+                <RadzenText Text="@ViewModel.Description" Style="color:var(--text-muted); line-height:1.75; font-size:1rem;" />
 
                 <RadzenRow Class="rz-mt-6" Gap="24px">
-                    @foreach (var stat in stats)
+                    @foreach (var stat in ViewModel.Stats)
                     {
                         <RadzenColumn Size="12" SizeMd="4">
                             <RadzenCard Style="text-align:center; border:none; box-shadow:none; background:transparent; padding:1rem;">
@@ -27,12 +29,3 @@
         </RadzenRow>
     </RadzenCard>
 </section>
-
-@code {
-    private readonly List<(string Label, double Value)> stats =
-    [
-        ("Controllo", 100),
-        ("Gestione", 100),
-        ("Risparmio", 100)
-    ];
-}

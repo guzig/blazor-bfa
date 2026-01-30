@@ -1,5 +1,8 @@
 @using Radzen
 @using Radzen.Blazor
+@using BlazorBFA.ViewModels
+@inject FeaturesViewModel ViewModel
+@inject NavigationManager NavigationManager
 
 <section id="features" class="features-section">
     <div class="features-container">
@@ -10,24 +13,23 @@
                     @* Badge *@
                     <div class="features-badge">
                         <RadzenIcon Icon="star" Style="font-size:16px;" />
-                        <span>Perché Sceglierci</span>
+                        <span>@ViewModel.BadgeText</span>
                     </div>
 
                     @* Title *@
                     <RadzenText TextStyle="TextStyle.H2" Style="font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:3.25rem; line-height:1.15; margin-bottom:1.5rem; color:white;">
-                        Tecnologia<br />
-                        <span style="color:var(--primary-light);">All'avanguardia</span> per la<br />
-                        Tua Città
+                        @ViewModel.Title<br />
+                        <span style="color:var(--primary-light);">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd
                     </RadzenText>
 
                     @* Description *@
                     <RadzenText Style="color:rgba(255,255,255,0.75); font-size:1.2rem; line-height:1.8; margin-bottom:2.5rem; max-width:500px;">
-                        La nostra piattaforma integra le tecnologie più avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.
+                        @ViewModel.Description
                     </RadzenText>
 
                     @* Features list *@
                     <RadzenStack Gap="24px" Style="margin-bottom:2.5rem;">
-                        @foreach (var feature in features)
+                        @foreach (var feature in ViewModel.Features)
                         {
                             <div class="feature-item">
                                 <div class="feature-icon" style="@($"background:{feature.IconBg};")">
@@ -42,7 +44,7 @@
                     </RadzenStack>
 
                     @* CTA Button *@
-                    <RadzenButton Text="Inizia Ora" Icon="rocket_launch" 
+                    <RadzenButton Text="@ViewModel.ButtonText" Icon="@ViewModel.ButtonIcon" 
                                   Style="background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); border:none; border-radius:14px; padding:16px 32px; font-weight:600; font-size:1.1rem;"
                                   Click="@(() => NavigationManager.NavigateTo("#contact"))" />
                 </div>
@@ -53,78 +55,22 @@
                 <div class="features-image-container">
                     @* Main image *@
                     <div class="features-image-wrapper">
-                        <RadzenImage Path="images/smart-data.jpg" Alt="Tecnologia avanzata" Class="features-main-image" />
+                        <RadzenImage Path="@ViewModel.ImagePath" Alt="@ViewModel.ImageAlt" Class="features-main-image" />
                         
                         @* Overlay gradient *@
                         <div class="features-image-overlay"></div>
                     </div>
 
                     @* Floating badges *@
-                    <div class="floating-badge badge-top-left">
-                        <RadzenIcon Icon="check_circle" Style="color:var(--accent-color); font-size:18px;" />
-                        <span>Sistema Attivo</span>
-                    </div>
-
-                    <div class="floating-badge badge-bottom-left">
-                        <RadzenIcon Icon="schedule" Style="color:var(--primary-light); font-size:18px;" />
-                        <span>Real-time</span>
-                    </div>
-
-                    <div class="floating-badge badge-right">
-                        <RadzenIcon Icon="trending_up" Style="color:var(--accent-color); font-size:18px;" />
-                        <span>+45% Efficienza</span>
-                    </div>
+                    @foreach (var badge in ViewModel.FloatingBadges)
+                    {
+                        <div class="floating-badge @badge.PositionClass">
+                            <RadzenIcon Icon="@badge.Icon" Style="@($"color:{badge.IconColor}; font-size:18px;")" />
+                            <span>@badge.Text</span>
+                        </div>
+                    }
                 </div>
             </RadzenColumn>
         </RadzenRow>
     </div>
 </section>
-
-@code {
-    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
-
-    private readonly List<FeatureItem> features =
-    [
-        new()
-        {
-            Icon = "dashboard",
-            Title = "Piattaforma Unificata",
-            Description = "Tutti i servizi integrati in un'unica dashboard intuitiva e potente.",
-            IconBg = "rgba(0, 112, 160, 0.2)",
-            IconColor = "#4db8ff"
-        },
-        new()
-        {
-            Icon = "insights",
-            Title = "Analisi Intelligente",
-            Description = "Algoritmi avanzati per predizione, ottimizzazione e automazione.",
-            IconBg = "rgba(16, 185, 129, 0.2)",
-            IconColor = "#10b981"
-        },
-        new()
-        {
-            Icon = "security",
-            Title = "Sicurezza Garantita",
-            Description = "Protezione dati conforme GDPR e massima riservatezza.",
-            IconBg = "rgba(139, 92, 246, 0.2)",
-            IconColor = "#a78bfa"
-        },
-        new()
-        {
-            Icon = "speed",
-            Title = "Risultati Misurabili",
-            Description = "Monitoraggio costante con report dettagliati sui risparmi ottenuti.",
-            IconBg = "rgba(245, 158, 11, 0.2)",
-            IconColor = "#fbbf24"
-        }
-    ];
-
-    private class FeatureItem
-    {
-        public string Icon { get; set; } = string.Empty;
-        public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
-        public string IconBg { get; set; } = string.Empty;
-        public string IconColor { get; set; } = string.Empty;
-    }
-}

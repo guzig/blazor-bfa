@@ -1,40 +1,60 @@
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-content">
-            <!-- Logo -->
-            <div class="footer-logo">
-                <div class="logo-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2v2"/><path d="M7 8l-2 2"/><path d="M17 8l2 2"/><path d="M12 12a4 4 0 0 0-4-4 4 4 0 0 0-4 4c0 2.5 2 4 4 5l4 1 4-1c2-1 4-2.5 4-5a4 4 0 0 0-4-4 4 4 0 0 0-4 4z"/></svg>
+@using Radzen
+@using Radzen.Blazor
+@using BlazorBFA.ViewModels
+@inject FooterViewModel ViewModel
+
+<footer class="footer-new">
+    <div class="footer-container-new">
+        @* Main footer content *@
+        <div class="footer-main">
+            @* Brand column *@
+            <div class="footer-brand">
+                <div class="footer-logo-new">
+                    <RadzenIcon Icon="bolt" Style="font-size:28px; color:var(--primary-light);" />
+                    <span>@ViewModel.CompanyName</span>
                 </div>
-                <span class="logo-text">BFA Consulting</span>
+                <RadzenText Style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem; max-width:300px;">
+                    @ViewModel.CompanyDescription
+                </RadzenText>
+                
+                @* Social icons *@
+                <div class="footer-social">
+                    @foreach (var social in ViewModel.SocialLinks)
+                    {
+                        <a href="@social.Href" target="_blank" class="social-icon">
+                            <RadzenIcon Icon="@social.Icon" Style="font-size:18px;" />
+                        </a>
+                    }
+                </div>
             </div>
-
-            <!-- Copyright -->
-            <p class="copyright">
-                Copyright © 2015 - @currentYear BFA Consulting, Tutti i diritti riservati.
-            </p>
-
-            <!-- Links -->
-            <div class="footer-links">
-                <a href="#home" @onclick="ScrollToHome" class="footer-link">Home</a>
-                <a href="#contact" @onclick="ScrollToContact" class="footer-link">Contatti</a>
-            </div>
+            
+            @* Link columns *@
+            @foreach (var group in ViewModel.LinkGroups)
+            {
+                <div class="footer-links-column">
+                    <RadzenText Style="font-weight:600; color:white; font-size:1rem; margin-bottom:1.25rem;">
+                        @group.Title
+                    </RadzenText>
+                    <ul class="footer-links-list">
+                        @foreach (var link in group.Links)
+                        {
+                            <li>
+                                <a href="@link.Href" class="footer-link-new">@link.Text</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+        
+        @* Footer bottom *@
+        <div class="footer-bottom">
+            <RadzenText Style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
+                © @ViewModel.CurrentYear @ViewModel.CompanyName. Tutti i diritti riservati.
+            </RadzenText>
+            <RadzenText Style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
+                Realizzato con <span style="color:#ef4444;">❤</span> in Italia
+            </RadzenText>
         </div>
     </div>
 </footer>
-
-@code {
-    [Inject] private IJSRuntime JSRuntime { get; set; } = default!;
-
-    private int currentYear = DateTime.Now.Year;
-
-    private async Task ScrollToHome()
-    {
-        await JSRuntime.InvokeVoidAsync("scrollInterop.scrollToElement", "#home");
-    }
-
-    private async Task ScrollToContact()
-    {
-        await JSRuntime.InvokeVoidAsync("scrollInterop.scrollToElement", "#contact");
-    }
-}

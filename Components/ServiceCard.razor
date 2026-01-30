@@ -1,5 +1,6 @@
 @using Radzen
 @using Radzen.Blazor
+@using BlazorBFA.ViewModels
 
 <RadzenCard Class="service-card-new" Style="height:100%; padding:0; border:1px solid var(--border-color); border-radius:1.25rem; transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1); overflow:hidden; background:white;">
     
@@ -47,7 +48,7 @@
 </RadzenCard>
 
 @code {
-    [Parameter] public Services.ServiceModel Service { get; set; } = new();
+    [Parameter] public ServiceModel Service { get; set; } = new();
 
     private static string GetIcon(string icon) => icon switch
     {

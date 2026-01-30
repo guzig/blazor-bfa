@@ -1,0 +1,106 @@
+namespace BlazorBFA.ViewModels;
+
+public class ServicesViewModel
+{
+    public string SectionLabel { get; } = "I nostri servizi";
+    public string Title { get; } = "Quali servizi";
+    public string TitleHighlight { get; } = "Offriamo";
+    
+    public List<ServiceModel> Services { get; } =
+    [
+        new()
+        {
+            Title = "Controllo fatture (Bill Audit)",
+            Description = "Controllo correttezza contabile con certificazione di conformità alla normativa ARERA.",
+            Icon = "file-check",
+            Color = "#0070a0",
+            Image = "images/smart-data.jpg",
+            Features =
+            [
+                "Acquisizione digitale completa della fattura",
+                "Certificazione di conformità addebiti con normativa ARERA",
+                "Gestione reclami per recupero errori di fatturazione"
+            ]
+        },
+        new()
+        {
+            Title = "Gestione Energia",
+            Description = "Gestione completa delle forniture energetiche per ottimizzare costi e consumi.",
+            Icon = "settings",
+            Color = "#2c90c9",
+            Image = "images/smart-energy.jpg",
+            Features =
+            [
+                "Monitoraggio consumi in tempo reale",
+                "Reportistica personalizzata",
+                "Consulenza strategica energetica"
+            ]
+        },
+        new()
+        {
+            Title = "PEG Energetico",
+            Description = "Piano di Efficientamento Energetico per ridurre i consumi e le emissioni.",
+            Icon = "zap",
+            Color = "#10b981",
+            Image = "images/smart-mobility.jpg",
+            Features =
+            [
+                "Analisi energetica dettagliata",
+                "Proposte di intervento mirate",
+                "Monitoraggio risultati ottenuti"
+            ]
+        },
+        new()
+        {
+            Title = "Contenzioso",
+            Description = "Supporto nella gestione delle controversie con i fornitori di energia.",
+            Icon = "scale",
+            Color = "#f59e0b",
+            Image = "images/smart-security.jpg",
+            Features =
+            [
+                "Analisi fatture contestate",
+                "Negoziazione con fornitori",
+                "Recupero crediti energia"
+            ]
+        },
+        new()
+        {
+            Title = "Risparmio Energetico",
+            Description = "Strategie mirate per ridurre i costi energetici senza compromessi.",
+            Icon = "trending-down",
+            Color = "#8b5cf6",
+            Image = "images/smart-waste.jpg",
+            Features =
+            [
+                "Analisi mercato energetico",
+                "Negoziazione tariffe vantaggiose",
+                "Ottimizzazione contratti fornitura"
+            ]
+        },
+        new()
+        {
+            Title = "Consulenza Sostenibilità",
+            Description = "Accompagniamo le aziende verso un futuro più sostenibile e green.",
+            Icon = "eco",
+            Color = "#059669",
+            Image = "images/smart-health.jpg",
+            Features =
+            [
+                "Certificazioni ambientali",
+                "Energie rinnovabili",
+                "Carbon footprint reduction"
+            ]
+        }
+    ];
+}
+
+public class ServiceModel
+{
+    public string Title { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Icon { get; set; } = string.Empty;
+    public string Color { get; set; } = string.Empty;
+    public string Image { get; set; } = string.Empty;
+    public List<string> Features { get; set; } = [];
+}
