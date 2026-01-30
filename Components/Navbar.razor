@@ -1,0 +1,41 @@
+@using Radzen
+@using Radzen.Blazor
+@inject NavigationManager Navigation
+
+<header class="rz-background-color-primary rz-shadow-4" style="padding:0.5rem 1rem; position:sticky; top:0; z-index:1000;">
+    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.SpaceBetween" Style="width:100%;">
+        <RadzenLink Path="/" Style="color:white; font-weight:bold; font-size:1.2rem; text-decoration:none;">
+            BFA Consulting
+        </RadzenLink>
+
+        <RadzenStack Orientation="Orientation.Horizontal" Gap="1rem" AlignItems="AlignItems.Center" class="rz-display-none rz-display-md-flex">
+            @foreach (var link in navLinks)
+            {
+                <RadzenLink Path="@link.Href" Style="color:white; text-decoration:none;">@link.Name</RadzenLink>
+            }
+        </RadzenStack>
+
+        <RadzenButton ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Small" Icon="call" Click="ScrollContact" Text="Preventivo" />
+    </RadzenStack>
+</header>
+
+@code {
+    private readonly List<NavLinkItem> navLinks =
+    [
+        new("Home", "#home"),
+        new("Chi Siamo", "#about"),
+        new("Servizi", "#services"),
+        new("Progetti", "#projects"),
+        new("Testimonial", "#testimonials"),
+        new("Contatti", "#contact")
+    ];
+
+    private void ScrollTo(string target)
+    {
+        Navigation.NavigateTo(target, forceLoad: false);
+    }
+
+    private void ScrollContact() => ScrollTo("#contact");
+
+    private record NavLinkItem(string Name, string Href);
+}

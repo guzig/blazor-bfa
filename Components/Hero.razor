@@ -1,0 +1,26 @@
+@using Radzen
+@using Radzen.Blazor
+@inject NavigationManager Navigation
+
+<section id="home" class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:white;">BFA CONSULTING</RadzenText>
+        <RadzenText TextStyle="TextStyle.H1" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:3rem; line-height:1.2; margin-bottom:1rem; color:white;">Consulenza e servizi per la <span style="color:var(--accent-color);">gestione energetica</span></RadzenText>
+        <RadzenText TextStyle="TextStyle.Body1" Style="font-size:1.25rem; color:rgba(255,255,255,0.9); margin-bottom:2rem; line-height:1.7; max-width:600px;">Semplifichiamo la gestione delle forniture energetiche massimizzando il risparmio.</RadzenText>
+        <RadzenStack Orientation="Orientation.Horizontal" Gap="16px" Wrap="FlexWrap.Wrap">
+            <RadzenButton Text="Preventivo gratuito" Icon="arrow_forward" Style="background:var(--primary-color); border:none; border-radius:9999px; padding:14px 28px; font-weight:500; color:white;" Click="ScrollToContact" />
+            <RadzenButton Text="Scopri di più" Variant="Variant.Outlined" Style="border:2px solid white; color:white; border-radius:9999px; padding:14px 28px; font-weight:500; background:transparent;" Click="ScrollToAbout" />
+        </RadzenStack>
+    </div>
+</section>
+
+@code {
+    private void ScrollTo(string target)
+    {
+        Navigation.NavigateTo(target, forceLoad: false);
+    }
+
+    private void ScrollToContact() => ScrollTo("#contact");
+    private void ScrollToAbout() => ScrollTo("#about");
+}

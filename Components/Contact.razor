@@ -1,0 +1,139 @@
+@using Radzen
+@using Radzen.Blazor
+
+<section id="contact" class="rz-p-4 rz-py-8">
+    <div style="text-align:center; margin-bottom:3rem;">
+        <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">Contattaci</RadzenText>
+        <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">Resta in contatto con noi <span style="color:var(--primary-color);">adesso</span></RadzenText>
+    </div>
+
+    <RadzenRow Gap="32px">
+        <RadzenColumn Size="12" SizeMd="5">
+            <RadzenStack Gap="16px">
+                @foreach (ContactInfoModel info in contactInfo)
+                {
+                    <RadzenCard Style="border:1px solid var(--border-color); border-radius:0.75rem; padding:1.25rem;">
+                        <RadzenStack Orientation="Orientation.Horizontal" Gap="16px" AlignItems="AlignItems.Center">
+                            <div style="width:48px; height:48px; border-radius:0.75rem; background:hsl(197 100% 31% / 0.1); color:var(--primary-color); display:flex; align-items:center; justify-content:center;">
+                                <RadzenIcon Icon="@GetIcon(info.Icon)" />
+                            </div>
+                            <RadzenStack Gap="4px">
+                                <RadzenText Style="font-weight:600; color:var(--text-dark);">@info.Label</RadzenText>
+                                <a href="@info.Href" target="@(info.Icon == "map-pin" ? "_blank" : "_self")" style="color:var(--primary-color); text-decoration:none; font-weight:500;">@info.Value</a>
+                            </RadzenStack>
+                        </RadzenStack>
+                    </RadzenCard>
+                }
+            </RadzenStack>
+
+            <RadzenCard Style="margin-top:1rem; border:1px solid var(--border-color); border-radius:0.75rem; padding:1.5rem;">
+                <RadzenStack Gap="8px" AlignItems="AlignItems.Center">
+                    <div style="width:48px; height:48px; border-radius:0.75rem; background:hsl(160 84% 39% / 0.1); color:var(--accent-color); display:flex; align-items:center; justify-content:center;">
+                        <RadzenIcon Icon="place" Style="font-size:24px;" />
+                    </div>
+                    <RadzenText Style="font-weight:600; color:var(--text-dark);">Isola di Capo Rizzuto (KR)</RadzenText>
+                    <RadzenText Style="color:var(--text-muted);">Via Crotone 59</RadzenText>
+                </RadzenStack>
+            </RadzenCard>
+        </RadzenColumn>
+
+        <RadzenColumn Size="12" SizeMd="7">
+            <RadzenCard Style="border:1px solid var(--border-color); border-radius:0.75rem; padding:2rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.1);">
+                <RadzenTemplateForm Data="@formData" TItem="FormData" Submit="HandleSubmit">
+                    <RadzenText TextStyle="TextStyle.H5" Style="font-weight:600; color:var(--text-dark); margin-bottom:1.5rem;">Invia un messaggio</RadzenText>
+                    <RadzenRow Gap="16px">
+                        <RadzenColumn Size="12" SizeMd="6">
+                            <RadzenLabel Text="Nome" Style="font-weight:500; color:var(--text-dark); margin-bottom:0.5rem;" />
+                            <RadzenTextBox @bind-Value="formData.Name" Style="width:100%; border-radius:0.5rem;" Name="Name" />
+                        </RadzenColumn>
+                        <RadzenColumn Size="12" SizeMd="6">
+                            <RadzenLabel Text="Email" Style="font-weight:500; color:var(--text-dark); margin-bottom:0.5rem;" />
+                            <RadzenTextBox @bind-Value="formData.Email" Style="width:100%; border-radius:0.5rem;" Name="Email" />
+                        </RadzenColumn>
+                    </RadzenRow>
+
+                    <div style="margin-top:1rem;">
+                        <RadzenLabel Text="Oggetto" Style="font-weight:500; color:var(--text-dark); margin-bottom:0.5rem;" />
+                        <RadzenTextBox @bind-Value="formData.Subject" Style="width:100%; border-radius:0.5rem;" Name="Subject" />
+                    </div>
+
+                    <div style="margin-top:1rem;">
+                        <RadzenLabel Text="Messaggio" Style="font-weight:500; color:var(--text-dark); margin-bottom:0.5rem;" />
+                        <RadzenTextArea @bind-Value="formData.Message" Style="width:100%; border-radius:0.5rem;" Rows="5" Name="Message" />
+                    </div>
+
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="Invia messaggio" Icon="send" Class="rz-mt-4" Style="background:var(--primary-color); border:none; border-radius:9999px; padding:14px 32px; font-weight:500;" />
+                </RadzenTemplateForm>
+            </RadzenCard>
+
+            @if (!string.IsNullOrWhiteSpace(successMessage))
+            {
+                <RadzenAlert Severity="AlertSeverity.Success" Class="rz-mt-3" Style="border-radius:0.75rem;">@successMessage</RadzenAlert>
+            }
+        </RadzenColumn>
+    </RadzenRow>
+</section>
+
+@code {
+    private FormData formData = new();
+    private string? successMessage;
+
+    private readonly List<ContactInfoModel> contactInfo =
+    [
+        new()
+        {
+            Icon = "phone",
+            Label = "Telefono",
+            Value = "0962-791418",
+            Href = "tel:0962791418",
+            Color = "#0070a0"
+        },
+        new()
+        {
+            Icon = "mail",
+            Label = "Email",
+            Value = "info.brunofrancesco@gmail.com",
+            Href = "mailto:info.brunofrancesco@gmail.com",
+            Color = "#ec4899"
+        },
+        new()
+        {
+            Icon = "map-pin",
+            Label = "Indirizzo",
+            Value = "Isola di Capo Rizzuto (KR), Via Crotone 59",
+            Href = "https://maps.google.com/?q=Via+Crotone+59+Isola+di+Capo+Rizzuto",
+            Color = "#10b981"
+        }
+    ];
+
+    private void HandleSubmit(FormData _)
+    {
+        successMessage = "Messaggio inviato! Ti risponderemo al più presto.";
+        formData = new FormData();
+    }
+
+    private static string GetIcon(string icon) => icon switch
+    {
+        "phone" => "call",
+        "mail" => "mail",
+        "map-pin" => "place",
+        _ => "info"
+    };
+
+    public class ContactInfoModel
+    {
+        public string Icon { get; set; } = string.Empty;
+        public string Label { get; set; } = string.Empty;
+        public string Value { get; set; } = string.Empty;
+        public string Href { get; set; } = string.Empty;
+        public string Color { get; set; } = string.Empty;
+    }
+
+    public class FormData
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Subject { get; set; } = string.Empty;
+        public string Message { get; set; } = string.Empty;
+    }
+}

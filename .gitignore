@@ -1,0 +1,79 @@
+# .NET
+bin/
+obj/
+out/
+.vs/
+*.user
+*.userosscache
+*.suo
+*.cache
+*.log
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio
+.vs/
+*.rsuser
+*.sln.docstates
+*.userprefs
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# NuGet
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET
+ScaffoldingReadMe.txt
+
+# Blazor WebAssembly
+wwwroot/_framework/
+
+# Application Insights
+ApplicationInsights.config
+
+# Publish output
+publish/
+*.publish.xml
+
+# User secrets
+secrets.json
+
+# Environment files
+.env
+.env.local
+.env.*.local
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json

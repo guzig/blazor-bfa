@@ -1,0 +1,251 @@
+.contact {
+    padding: 5rem 0;
+    background: white;
+}
+
+@media (min-width: 1024px) {
+    .contact {
+        padding: 8rem 0;
+    }
+}
+
+.contact-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .contact-container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contact-container {
+        padding: 0 2rem;
+    }
+}
+
+/* Header */
+.contact-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-label {
+    display: inline-block;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #0070a0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: #1f1f1f;
+    font-family: 'Fraunces', serif;
+}
+
+@media (min-width: 1024px) {
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+.highlight {
+    color: #0070a0;
+}
+
+/* Grid */
+.contact-grid {
+    display: grid;
+    gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+    .contact-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+    }
+}
+
+/* Contact Info */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    background: #f7f9fa;
+    border-radius: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.info-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.25rem;
+    transition: transform 0.3s ease;
+}
+
+.info-card:hover .info-icon {
+    transform: scale(1.1);
+}
+
+.info-label {
+    font-size: 0.875rem;
+    color: #626a72;
+    margin-bottom: 0.25rem;
+}
+
+.info-value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1f1f1f;
+    transition: color 0.3s ease;
+}
+
+.info-card:hover .info-value {
+    color: #0070a0;
+}
+
+/* Map Placeholder */
+.map-placeholder {
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    height: 16rem;
+    background: #f7f9fa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-location {
+    color: #626a72;
+    margin-top: 0.75rem;
+}
+
+.map-address {
+    font-size: 0.875rem;
+    color: #99a4af;
+}
+
+/* Contact Form */
+.contact-form {
+    background: #f7f9fa;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+@media (min-width: 640px) {
+    .contact-form {
+        padding: 2.5rem;
+    }
+}
+
+.form-row {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row .form-group {
+    margin-bottom: 0;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #33383f;
+    margin-bottom: 0.5rem;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    color: #1f1f1f;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: #0070a0;
+    box-shadow: 0 0 0 3px rgba(0, 112, 160, 0.1);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: #99a4af;
+}
+
+.form-textarea {
+    resize: none;
+    min-height: 120px;
+}
+
+/* Submit Button */
+.submit-btn {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: #0070a0;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #004968;
+    box-shadow: 0 10px 30px rgba(0, 112, 160, 0.3);
+}
+
+.submit-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.submit-btn:hover svg {
+    transform: translateX(4px);
+}

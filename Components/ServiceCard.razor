@@ -1,0 +1,48 @@
+@using Radzen
+@using Radzen.Blazor
+
+<RadzenCard Style="height:100%; text-align:center; padding:2rem; border:1px solid var(--border-color); border-radius:0.75rem; transition:all 0.3s ease; box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1);" Class="service-card">
+    <RadzenStack Gap="12px" AlignItems="AlignItems.Center">
+        <div style="width:64px; height:64px; border-radius:0.75rem; background:hsl(197 100% 31% / 0.1); color:var(--primary-color); display:flex; align-items:center; justify-content:center; font-size:1.75rem;">
+            <RadzenIcon Icon="@GetIcon(Service.Icon)" />
+        </div>
+        <RadzenText TextStyle="TextStyle.H6" Style="font-weight:600; color:var(--text-dark); font-size:1.1rem;">@Service.Title</RadzenText>
+        <RadzenText Text="@Service.Description" Style="color:var(--text-muted); font-size:0.9rem; line-height:1.6;" />
+
+        <RadzenButton Variant="Variant.Text" 
+                      Size="ButtonSize.Small" 
+                      Icon="@(isExpanded ? "expand_less" : "expand_more")" 
+                      Text="@(isExpanded ? "Nascondi dettagli" : "Mostra dettagli")"
+                      Click="@(() => isExpanded = !isExpanded)"
+                      Style="color:var(--primary-color); font-weight:500;" />
+
+        @if (isExpanded)
+        {
+            <RadzenStack Gap="6px" Style="padding-left:12px; border-left:3px solid var(--accent-color); text-align:left; width:100%;">
+                @foreach (var feature in Service.Features)
+                {
+                    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="10px">
+                        <RadzenIcon Icon="check_circle" Style="color:var(--accent-color); font-size:18px;" />
+                        <RadzenText TextStyle="TextStyle.Body2" Style="color:var(--text-muted);">@feature</RadzenText>
+                    </RadzenStack>
+                }
+            </RadzenStack>
+        }
+    </RadzenStack>
+</RadzenCard>
+
+@code {
+    [Parameter] public Services.ServiceModel Service { get; set; } = new();
+
+    private bool isExpanded;
+
+    private static string GetIcon(string icon) => icon switch
+    {
+        "file-check" => "task_alt",
+        "settings" => "settings",
+        "zap" => "bolt",
+        "scale" => "balance",
+        "trending-down" => "trending_down",
+        _ => "info"
+    };
+}

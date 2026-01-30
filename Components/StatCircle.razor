@@ -1,0 +1,67 @@
+@inject IJSRuntime JSRuntime
+
+<div class="stat-circle">
+    <div class="circle-container">
+        <svg class="progress-svg" viewBox="0 0 100 100">
+            <!-- Background circle -->
+            <circle
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#e2e8f0"
+                stroke-width="8" />
+            <!-- Progress circle -->
+            <circle
+                @ref="circleRef"
+                class="progress-circle"
+                cx="50"
+                cy="50"
+                r="45"
+                fill="none"
+                stroke="#0070a0"
+                stroke-width="8"
+                stroke-linecap="round"
+                stroke-dasharray="@circumference"
+                stroke-dashoffset="@circumference" />
+        </svg>
+        <div class="circle-value">
+            <span class="value-text">@currentValue%</span>
+        </div>
+    </div>
+    <span class="stat-label">@Label</span>
+</div>
+
+@code {
+    [Parameter] public int Percentage { get; set; }
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public int Delay { get; set; }
+
+    private ElementReference circleRef;
+    private int currentValue = 0;
+    private double circumference = 2 * Math.PI * 45;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync("statCircleInterop.animate", circleRef, Percentage, Delay);
+            await AnimateValue();
+        }
+    }
+
+    private async Task AnimateValue()
+    {
+        await Task.Delay(Delay);
+        var steps = 30;
+        var increment = (double)Percentage / steps;
+        var delayPerStep = 1500 / steps;
+
+        for (int i = 0; i <= steps; i++)
+        {
+            currentValue = (int)Math.Round(increment * i);
+            StateHasChanged();
+            await Task.Delay(delayPerStep);
+        }
+    }
+}

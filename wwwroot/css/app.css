@@ -1,0 +1,899 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&display=swap');
+
+/* Reset and base styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    line-height: 1.5;
+    color: hsl(220 15% 15%);
+    background: hsl(0 0% 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.2;
+    color: hsl(220 15% 15%);
+}
+
+/* Smart City Theme - Primary colors */
+:root {
+    --background: 0 0% 100%;
+    --foreground: 220 15% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+    --primary: 197 100% 31%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 20% 96%;
+    --secondary-foreground: 220 15% 15%;
+    --muted: 210 20% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
+    --border: 214 20% 90%;
+    --ring: 197 100% 31%;
+    --radius: 0.625rem;
+    
+    /* Easy access colors */
+    --primary-color: hsl(197 100% 31%);
+    --primary-hover: hsl(197 100% 25%);
+    --accent-color: hsl(160 84% 39%);
+    --text-dark: hsl(220 15% 15%);
+    --text-muted: hsl(215 16% 47%);
+    --text-light: hsl(215 16% 67%);
+    --bg-light: hsl(210 20% 98%);
+    --bg-muted: hsl(210 20% 96%);
+    --border-color: hsl(214 20% 90%);
+}
+
+/* Hero section with background image */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-image: url('../images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0, 70, 100, 0.85) 0%, rgba(0, 112, 160, 0.75) 50%, rgba(16, 185, 129, 0.6) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 2rem;
+    max-width: 800px;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 80vh;
+        background-attachment: scroll;
+    }
+    
+    .hero-content {
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem !important;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-hover);
+}
+
+/* Section label style */
+.section-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+/* Section title style */
+.section-title {
+    font-size: 2.25rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    font-family: 'Fraunces', Georgia, serif;
+}
+
+.section-title .highlight {
+    color: var(--primary-color);
+}
+
+/* Muted text */
+.text-muted {
+    color: var(--text-muted) !important;
+}
+
+/* Card styles */
+.card {
+    background: hsl(var(--card));
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Button styles */
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 9999px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* Badge styles */
+.badge-accent {
+    background: hsl(160 84% 39% / 0.1);
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Page container */
+.page {
+    min-height: 100vh;
+}
+
+/* Not found page */
+.not-found {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+}
+
+.not-found h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-family: 'Fraunces', Georgia, serif;
+}
+
+.not-found p {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 9999px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.back-link:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* Utility classes */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Animation utilities */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Loading spinner */
+.loading-spinner {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid hsl(197 100% 31% / 0.3);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Blazor error UI */
+#blazor-error-ui {
+    background: #fef2f2;
+    color: #991b1b;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+/* Carousel auto-scroll */
+.carousel-container {
+    overflow: hidden;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    position: relative;
+    mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.carousel-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    animation: carousel-scroll 80s linear infinite;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+.carousel-card {
+    flex-shrink: 0;
+}
+
+@keyframes carousel-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Testimonials slideshow - one at a time with pause */
+.testimonials-slideshow-container {
+    overflow: hidden;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem 0;
+    position: relative;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.testimonials-slideshow-track {
+    display: flex;
+    width: 300%; /* 3 testimonials */
+    animation: testimonials-slideshow 18s ease-in-out infinite;
+}
+
+.testimonials-slideshow-track:hover {
+    animation-play-state: paused;
+}
+
+.testimonials-slideshow-card {
+    flex-shrink: 0;
+    width: 33.333%; /* 100% / 3 */
+    padding: 0 1rem;
+}
+
+/* 3 slides: each gets ~33% of animation time
+   5s pause + 0.5s transition = 5.5s per slide
+   Total: 16.5s rounded to 18s for smoother timing
+   
+   Keyframe percentages:
+   0% - 27%: Show slide 1 (pause)
+   27% - 30%: Transition to slide 2
+   30% - 60%: Show slide 2 (pause)
+   60% - 63%: Transition to slide 3
+   63% - 93%: Show slide 3 (pause)
+   93% - 100%: Transition back to slide 1
+*/
+@keyframes testimonials-slideshow {
+    0%, 27% {
+        transform: translateX(0);
+    }
+    30%, 60% {
+        transform: translateX(-33.333%);
+    }
+    63%, 93% {
+        transform: translateX(-66.666%);
+    }
+    96%, 100% {
+        transform: translateX(0);
+    }
+}
+
+/* ========================================
+   SMART CITY INSPIRED ENHANCEMENTS
+   ======================================== */
+
+/* Gradient Accent */
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+}
+
+/* Glassmorphism effect */
+.glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Enhanced shadows */
+.shadow-glow {
+    box-shadow: 0 0 40px hsl(197 100% 31% / 0.2);
+}
+
+.shadow-elevated {
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+}
+
+/* ========================================
+   ENHANCED NAVBAR
+   ======================================== */
+header.rz-background-color-primary {
+    background: linear-gradient(135deg, hsl(197 100% 28%) 0%, hsl(180 60% 35%) 100%) !important;
+    backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+header.rz-background-color-primary:hover {
+    box-shadow: 0 4px 30px hsl(197 100% 31% / 0.3);
+}
+
+/* Nav links hover effect */
+header a[href^="#"]:hover,
+header .rz-link:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+    transition: all 0.2s ease;
+}
+
+/* ========================================
+   ENHANCED HERO SECTION
+   ======================================== */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, hsl(197 100% 31% / 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, hsl(160 84% 39% / 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.hero-content {
+    animation: heroFadeIn 1s ease-out forwards;
+}
+
+@keyframes heroFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   ENHANCED SECTION STYLES
+   ======================================== */
+section[id] {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Section decorative backgrounds */
+section#services::before,
+section#testimonials::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, hsl(197 100% 31% / 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+section#about::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -15%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, hsl(160 84% 39% / 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* ========================================
+   ENHANCED SERVICE CARDS
+   ======================================== */
+.service-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 20px 40px -10px rgb(0 0 0 / 0.15) !important;
+    border-color: hsl(197 100% 31% / 0.3) !important;
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Service icon pulse animation */
+.service-card:hover [style*="width:64px"] {
+    animation: iconPulse 0.6s ease;
+}
+
+@keyframes iconPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ========================================
+   ENHANCED ABOUT SECTION CARDS
+   ======================================== */
+#about .rz-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease !important;
+}
+
+#about .rz-card::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+    background: linear-gradient(
+        45deg,
+        transparent 0%,
+        hsl(197 100% 31% / 0.03) 50%,
+        transparent 100%
+    );
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+    pointer-events: none;
+}
+
+#about .rz-card:hover::before {
+    top: -50%;
+    left: -50%;
+}
+
+/* About stats counter effect */
+#about [style*="font-size:2.5rem"] {
+    transition: all 0.3s ease;
+}
+
+#about .rz-card:hover [style*="font-size:2.5rem"] {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px hsl(197 100% 31% / 0.3);
+}
+
+/* ========================================
+   ENHANCED PROJECT CARDS
+   ======================================== */
+.carousel-card .rz-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-card .rz-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.carousel-card .rz-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 15px 30px -5px rgb(0 0 0 / 0.12) !important;
+}
+
+.carousel-card .rz-card:hover::after {
+    transform: scaleX(1);
+}
+
+/* ========================================
+   ENHANCED TESTIMONIAL CARDS
+   ======================================== */
+.testimonials-slideshow-card .rz-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease !important;
+}
+
+.testimonials-slideshow-card .rz-card::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 6rem;
+    font-family: 'Fraunces', Georgia, serif;
+    color: hsl(197 100% 31% / 0.08);
+    line-height: 1;
+    pointer-events: none;
+}
+
+.testimonials-slideshow-card .rz-card:hover {
+    box-shadow: 0 20px 50px -10px rgb(0 0 0 / 0.15) !important;
+}
+
+/* Rating stars enhancement */
+.rz-rating .rz-rating-icon {
+    transition: transform 0.2s ease;
+}
+
+.testimonials-slideshow-card:hover .rz-rating .rz-rating-icon {
+    animation: starTwinkle 0.5s ease forwards;
+}
+
+@keyframes starTwinkle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+/* ========================================
+   ENHANCED CONTACT SECTION
+   ======================================== */
+#contact .rz-card {
+    transition: all 0.3s ease !important;
+}
+
+#contact .rz-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px -5px rgb(0 0 0 / 0.1) !important;
+}
+
+/* Contact info icon animation */
+#contact [style*="width:48px"][style*="height:48px"] {
+    transition: all 0.3s ease;
+}
+
+#contact .rz-card:hover [style*="width:48px"][style*="height:48px"] {
+    transform: scale(1.1);
+    background: hsl(197 100% 31% / 0.15) !important;
+}
+
+/* Form focus enhancements */
+#contact .rz-textbox:focus,
+#contact .rz-textarea:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 3px hsl(197 100% 31% / 0.15) !important;
+    transition: all 0.2s ease;
+}
+
+/* Submit button enhancement */
+#contact button[type="submit"] {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease !important;
+}
+
+#contact button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+#contact button[type="submit"]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px hsl(197 100% 31% / 0.4) !important;
+}
+
+#contact button[type="submit"]:hover::before {
+    left: 100%;
+}
+
+/* ========================================
+   ENHANCED BUTTONS
+   ======================================== */
+.rz-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.rz-button:hover {
+    transform: translateY(-2px);
+}
+
+.rz-button:active {
+    transform: translateY(0);
+}
+
+/* Primary button glow */
+.rz-button.rz-primary:hover,
+button[style*="background:var(--primary-color)"]:hover {
+    box-shadow: 0 8px 25px -5px hsl(197 100% 31% / 0.4);
+}
+
+/* ========================================
+   SCROLL REVEAL ANIMATIONS
+   ======================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animations for cards */
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+/* ========================================
+   FLOATING ANIMATION
+   ======================================== */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ========================================
+   RESPONSIVE ENHANCEMENTS
+   ======================================== */
+@media (max-width: 768px) {
+    .service-card:hover {
+        transform: translateY(-4px) !important;
+    }
+    
+    .carousel-card .rz-card:hover {
+        transform: translateY(-3px) !important;
+    }
+    
+    section#services::before,
+    section#testimonials::before,
+    section#about::after {
+        display: none;
+    }
+}
+
+/* ========================================
+   RADZEN COMPONENT OVERRIDES
+   ======================================== */
+/* Enhanced Radzen Cards */
+.rz-card {
+    transition: all 0.3s ease;
+}
+
+/* Enhanced Radzen Badges */
+.rz-badge {
+    transition: all 0.2s ease;
+}
+
+.badge-accent:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px hsl(160 84% 39% / 0.3);
+}
+
+/* Enhanced Radzen Alerts */
+.rz-alert {
+    animation: slideUp 0.4s ease-out;
+}
+
+/* Enhanced form inputs */
+.rz-textbox,
+.rz-textarea,
+.rz-dropdown {
+    transition: all 0.2s ease !important;
+    border-radius: 0.5rem !important;
+}
+
+.rz-textbox:hover,
+.rz-textarea:hover,
+.rz-dropdown:hover {
+    border-color: hsl(197 100% 31% / 0.5) !important;
+}
+
+/* ========================================
+   LOADING IMPROVEMENTS
+   ======================================== */
+.loading-container {
+    background: linear-gradient(135deg, hsl(210 20% 98%) 0%, hsl(210 20% 95%) 100%);
+}
+
+.loading-spinner {
+    border-color: hsl(197 100% 31% / 0.2);
+    border-top-color: var(--primary-color);
+    animation: spin 0.8s linear infinite;
+}
+
+/* ========================================
+   ACCESSIBILITY FOCUS STATES
+   ======================================== */
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}

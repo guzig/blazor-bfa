@@ -1,0 +1,32 @@
+@using Radzen
+@using Radzen.Blazor
+@using BlazorBFA.ViewModels
+@inject TestimonialsViewModel ViewModel
+
+<section id="testimonials" class="rz-p-4 rz-py-8" style="background:var(--bg-muted);">
+    <div style="text-align:center; margin-bottom:2.5rem;">
+        <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">Testimonial</RadzenText>
+        <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">I nostri <span style="color:var(--primary-color);">Testimonial</span></RadzenText>
+        <RadzenText Text="Cosa dicono di noi" Style="color:var(--text-muted); margin-top:0.5rem;" />
+    </div>
+
+    <div class="testimonials-slideshow-container">
+        <div class="testimonials-slideshow-track">
+            @foreach (var testimonial in ViewModel.Testimonials)
+            {
+                <div class="testimonials-slideshow-card">
+                    <RadzenCard Style="height:100%; padding:2.5rem; border:1px solid var(--border-color); border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.1); background:white;">
+                        <RadzenStack Gap="16px" AlignItems="AlignItems.Center">
+                            <div style="color:var(--accent-color);">
+                                <RadzenRating Value="testimonial.Rating" Max="5" ReadOnly="true" />
+                            </div>
+                            <RadzenText Text="@testimonial.Content" Style="font-style:italic; color:var(--text-muted); text-align:center; font-size:1.05rem; line-height:1.8;" />
+                            <RadzenText TextStyle="TextStyle.H6" Style="font-weight:600; color:var(--text-dark); font-family:'Fraunces',Georgia,serif;">@testimonial.Name</RadzenText>
+                            <RadzenText Style="color:var(--text-light); font-size:0.9rem;">@testimonial.Role</RadzenText>
+                        </RadzenStack>
+                    </RadzenCard>
+                </div>
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - La Città del Futuro</title>
+    <base href="./">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/smartcity.css">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#home">
+                <span class="material-icons brand-icon">smart_toy</span>
+                <span class="brand-text">SmartCity</span>
+            </a>
+            <button class="navbar-toggler" id="navToggler" aria-label="Toggle navigation">
+                <span class="material-icons">menu</span>
+            </button>
+            <div class="navbar-collapse" id="navCollapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Servizi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Caratteristiche</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonianze</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contatti</a></li>
+                </ul>
+                <div class="navbar-actions">
+                    <a href="#contact" class="btn btn-primary btn-sm">
+                        <span class="material-icons">calendar_today</span> Richiedi Demo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-background">
+            <img src="images/hero-bg.jpg" alt="Smart City" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-8 mx-auto text-center">
+                        <div class="hero-badge">
+                            <span class="material-icons">smart_toy</span>
+                            <span>La Città del Futuro è Oggi</span>
+                        </div>
+                        <h1 class="hero-title">
+                            <span class="gradient-text">Smart City</span><br>
+                            <span class="text-white">Innovazione Urbana</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Trasformiamo le città in ecosistemi intelligenti, connessi e sostenibili. 
+                            Tecnologie avanzate per migliorare la qualità della vita dei cittadini.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#services" class="btn btn-primary btn-lg me-3 hero-btn-primary">
+                                <span class="material-icons">arrow_forward</span> Scopri i Servizi
+                            </a>
+                            <a href="#contact" class="btn btn-outline-light btn-lg hero-btn-secondary">
+                                <span class="material-icons">mail</span> Contattaci
+                            </a>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <span class="stat-number">50+</span>
+                                <span class="stat-label">Città Connesse</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <span class="stat-number">2M</span>
+                                <span class="stat-label">Cittadini Serviti</span>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="stat-item">
+                                <span class="stat-number">99%</span>
+                                <span class="stat-label">Efficienza</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse"><div class="wheel"></div></div>
+            <div class="scroll-text">Scorri per esplorare</div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats">
+        <div class="stats-background"><div class="stats-pattern"></div></div>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-icon"><span class="material-icons">location_city</span></div>
+                        <div class="stat-content">
+                            <div class="stat-value-wrapper">
+                                <span class="stat-value" data-count="50">50</span>
+                                <span class="stat-suffix">+</span>
+                            </div>
+                            <span class="stat-label">Città Connesse</span>
+                        </div>
+                        <div class="stat-progress"><div class="progress-bar" style="width: 50%"></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-icon"><span class="material-icons">people</span></div>
+                        <div class="stat-content">
+                            <div class="stat-value-wrapper">
+                                <span class="stat-value" data-count="2">2</span>
+                                <span class="stat-suffix">M</span>
+                            </div>
+                            <span class="stat-label">Cittadini Serviti</span>
+                        </div>
+                        <div class="stat-progress"><div class="progress-bar" style="width: 75%"></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-icon"><span class="material-icons">sensors</span></div>
+                        <div class="stat-content">
+                            <div class="stat-value-wrapper">
+                                <span class="stat-value" data-count="500">500</span>
+                                <span class="stat-suffix">K</span>
+                            </div>
+                            <span class="stat-label">Sensori IoT</span>
+                        </div>
+                        <div class="stat-progress"><div class="progress-bar" style="width: 85%"></div></div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-card">
+                        <div class="stat-icon"><span class="material-icons">eco</span></div>
+                        <div class="stat-content">
+                            <div class="stat-value-wrapper">
+                                <span class="stat-value" data-count="40">40</span>
+                                <span class="stat-suffix">%</span>
+                            </div>
+                            <span class="stat-label">Efficienza Energetica</span>
+                        </div>
+                        <div class="stat-progress"><div class="progress-bar" style="width: 40%"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-badge">
+                    <span class="material-icons">apps</span> I Nostri Servizi
+                </span>
+                <h2 class="section-title">Soluzioni <span class="gradient-text">Smart City</span></h2>
+                <p class="section-subtitle">Tecnologie innovative per rendere la tua città più efficiente, sostenibile e vivibile</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="images/smart-mobility.jpg" alt="Smart Mobility">
+                            <div class="service-icon"><span class="material-icons">directions_car</span></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Smart Mobility</h3>
+                            <p class="service-description">Gestione intelligente del traffico e trasporto pubblico ottimizzato con AI e IoT.</p>
+                            <ul class="service-features">
+                                <li><span class="material-icons feature-icon">check_circle</span> Traffico intelligente in tempo reale</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Parcheggi smart con sensori</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Trasporto pubblico ottimizzato</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Veicoli elettrici e sharing</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-link service-btn">Scopri di più <span class="material-icons">arrow_forward</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="images/smart-energy.jpg" alt="Smart Energy">
+                            <div class="service-icon"><span class="material-icons">bolt</span></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Smart Energy</h3>
+                            <p class="service-description">Rete energetica intelligente con fonti rinnovabili e monitoraggio consumi.</p>
+                            <ul class="service-features">
+                                <li><span class="material-icons feature-icon">check_circle</span> Griglia energetica smart</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Fonti rinnovabili integrate</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Monitoraggio consumi real-time</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Efficienza energetica automatizzata</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-link service-btn">Scopri di più <span class="material-icons">arrow_forward</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="images/smart-security.jpg" alt="Smart Security">
+                            <div class="service-icon"><span class="material-icons">security</span></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Smart Security</h3>
+                            <p class="service-description">Sistema di sicurezza avanzato con sorveglianza intelligente e risposta rapida.</p>
+                            <ul class="service-features">
+                                <li><span class="material-icons feature-icon">check_circle</span> Videosorveglianza AI-powered</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Riconoscimento facciale</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Droni di sorveglianza</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Allarmi intelligenti</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-link service-btn">Scopri di più <span class="material-icons">arrow_forward</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="images/smart-waste.jpg" alt="Smart Waste">
+                            <div class="service-icon"><span class="material-icons">recycling</span></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Smart Waste</h3>
+                            <p class="service-description">Gestione dei rifiuti ottimizzata con raccolta intelligente e riciclaggio avanzato.</p>
+                            <ul class="service-features">
+                                <li><span class="material-icons feature-icon">check_circle</span> Cassonetti con sensori di riempimento</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Raccolta ottimizzata per route</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Riciclaggio automatizzato</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Smaltimento eco-sostenibile</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-link service-btn">Scopri di più <span class="material-icons">arrow_forward</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="images/smart-health.jpg" alt="Smart Health">
+                            <div class="service-icon"><span class="material-icons">local_hospital</span></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Smart Health</h3>
+                            <p class="service-description">Servizi sanitari connessi con telemedicina e monitoraggio della salute pubblica.</p>
+                            <ul class="service-features">
+                                <li><span class="material-icons feature-icon">check_circle</span> Telemedicina e consultazioni remote</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Monitoraggio salute pubblica</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Risposta emergenze ottimizzata</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Kiosk sanitari intelligenti</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-link service-btn">Scopri di più <span class="material-icons">arrow_forward</span></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-image">
+                            <img src="images/smart-data.jpg" alt="Smart Data">
+                            <div class="service-icon"><span class="material-icons">analytics</span></div>
+                        </div>
+                        <div class="service-content">
+                            <h3 class="service-title">Smart Data</h3>
+                            <p class="service-description">Piattaforma dati unificata per analisi predittive e decisioni informate.</p>
+                            <ul class="service-features">
+                                <li><span class="material-icons feature-icon">check_circle</span> Data analytics avanzato</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Dashboard in tempo reale</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Predizione e pianificazione</li>
+                                <li><span class="material-icons feature-icon">check_circle</span> Open data per cittadini</li>
+                            </ul>
+                            <a href="#contact" class="btn btn-link service-btn">Scopri di più <span class="material-icons">arrow_forward</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="features-content">
+                        <span class="section-badge"><span class="material-icons">star</span> Perché Sceglierci</span>
+                        <h2 class="section-title">Tecnologia <span class="gradient-text">All'avanguardia</span> per la Tua Città</h2>
+                        <p class="section-description">La nostra piattaforma integra le tecnologie più avanzate per creare città intelligenti, sicure e sostenibili.</p>
+                        <div class="features-list">
+                            <div class="feature-item">
+                                <div class="feature-icon-wrapper"><span class="material-icons">dashboard</span></div>
+                                <div class="feature-text">
+                                    <h4>Piattaforma Unificata</h4>
+                                    <p>Tutti i servizi integrati in un'unica dashboard intuitiva e potente.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon-wrapper"><span class="material-icons">psychology</span></div>
+                                <div class="feature-text">
+                                    <h4>AI & Machine Learning</h4>
+                                    <p>Algoritmi intelligenti per predizione, ottimizzazione e automazione.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon-wrapper"><span class="material-icons">shield</span></div>
+                                <div class="feature-text">
+                                    <h4>Sicurezza Avanzata</h4>
+                                    <p>Crittografia end-to-end e protezione dati conforme GDPR.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon-wrapper"><span class="material-icons">trending_up</span></div>
+                                <div class="feature-text">
+                                    <h4>Scalabilità Illimitata</h4>
+                                    <p>Cresci con noi: la piattaforma si adatta a città di ogni dimensione.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#contact" class="btn btn-primary btn-lg mt-4">
+                            <span class="material-icons">rocket_launch</span> Inizia Ora
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="features-visual">
+                        <div class="features-image-wrapper">
+                            <img src="images/smart-data.jpg" alt="Smart City Technology" class="features-image">
+                            <div class="floating-card card-1">
+                                <span class="material-icons text-success">check_circle</span>
+                                <span>Sistema Attivo</span>
+                            </div>
+                            <div class="floating-card card-2">
+                                <span class="material-icons text-primary">trending_up</span>
+                                <span>+45% Efficienza</span>
+                            </div>
+                            <div class="floating-card card-3">
+                                <span class="material-icons text-warning">speed</span>
+                                <span>Real-time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="testimonials-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+        </div>
+        <div class="container">
+            <div class="section-header text-center">
+                <span class="section-badge"><span class="material-icons">format_quote</span> Testimonianze</span>
+                <h2 class="section-title">Cosa Dicono di <span class="gradient-text">Noi</span></h2>
+                <p class="section-subtitle">Scopri come le città stanno trasformandosi grazie alle nostre soluzioni</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon"><span class="material-icons">format_quote</span></div>
+                            <p class="testimonial-text">Grazie alle soluzioni Smart City, abbiamo ridotto il traffico del 30% e migliorato la qualità dell'aria. I cittadini apprezzano la trasparenza.</p>
+                            <div class="testimonial-rating">
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-1.jpg" alt="Laura Bianchi" class="author-image">
+                            <div class="author-info">
+                                <h4 class="author-name">Laura Bianchi</h4>
+                                <p class="author-role">Assessore all'Innovazione</p>
+                                <p class="author-company">Comune di Milano</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon"><span class="material-icons">format_quote</span></div>
+                            <p class="testimonial-text">L'integrazione della piattaforma è stata impeccabile. In pochi mesi abbiamo ottenuto risultati straordinari in termini di efficienza energetica.</p>
+                            <div class="testimonial-rating">
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-2.jpg" alt="Marco Rossi" class="author-image">
+                            <div class="author-info">
+                                <h4 class="author-name">Marco Rossi</h4>
+                                <p class="author-role">CTO</p>
+                                <p class="author-company">TechCity Torino</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="quote-icon"><span class="material-icons">format_quote</span></div>
+                            <p class="testimonial-text">La capacità predittiva dell'AI ci ha permesso di pianificare interventi mirati e ottimizzare le risorse. Una trasformazione digitale vera.</p>
+                            <div class="testimonial-rating">
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                                <span class="material-icons star-filled">star</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/testimonial-3.jpg" alt="Elena Verdi" class="author-image">
+                            <div class="author-info">
+                                <h4 class="author-name">Elena Verdi</h4>
+                                <p class="author-role">City Planner</p>
+                                <p class="author-company">Urban Lab Bologna</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonials-logos">
+                <p class="logos-title">Città che si affidano a noi</p>
+                <div class="logos-grid">
+                    <div class="logo-item">Milano</div>
+                    <div class="logo-item">Torino</div>
+                    <div class="logo-item">Bologna</div>
+                    <div class="logo-item">Firenze</div>
+                    <div class="logo-item">Verona</div>
+                    <div class="logo-item">Padova</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-background">
+            <div class="cta-pattern"></div>
+            <div class="gradient-orb orb-left"></div>
+            <div class="gradient-orb orb-right"></div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="cta-card">
+                        <div class="row align-items-center">
+                            <div class="col-lg-8">
+                                <h2 class="cta-title">Pronto a Trasformare la Tua <span class="gradient-text">Città</span>?</h2>
+                                <p class="cta-description">Contattaci per una consulenza gratuita e scopri come le nostre soluzioni possono rendere la tua città più smart, sostenibile e vivibile.</p>
+                            </div>
+                            <div class="col-lg-4 text-lg-end">
+                                <button class="btn btn-primary btn-lg cta-btn mb-3" data-bs-toggle="modal" data-bs-target="#demoModal">
+                                    <span class="material-icons">calendar_today</span> Richiedi Demo
+                                </button>
+                                <div class="cta-contact">
+                                    <span class="material-icons">phone</span>
+                                    <span>+39 02 1234 5678</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon"><span class="material-icons">location_on</span></div>
+                        <h4>Sede Principale</h4>
+                        <p>Via dell'Innovazione, 42<br>20100 Milano, Italia</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon"><span class="material-icons">email</span></div>
+                        <h4>Email</h4>
+                        <p>info@smartcity.it<br>supporto@smartcity.it</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="contact-card">
+                        <div class="contact-icon"><span class="material-icons">phone</span></div>
+                        <h4>Telefono</h4>
+                        <p>+39 02 1234 5678<br>+39 02 8765 4321</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+                        <div class="footer-brand">
+                            <div class="brand-logo">
+                                <span class="material-icons logo-icon">smart_toy</span>
+                                <span class="brand-name">SmartCity</span>
+                            </div>
+                            <p class="brand-description">Trasformiamo le città in ecosistemi intelligenti, connessi e sostenibili. La tecnologia al servizio dei cittadini.</p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><span class="material-icons">facebook</span></a>
+                                <a href="#" class="social-link"><span class="material-icons">alternate_email</span></a>
+                                <a href="#" class="social-link"><span class="material-icons">business</span></a>
+                                <a href="#" class="social-link"><span class="material-icons">photo_camera</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <div class="footer-links">
+                            <h5>Servizi</h5>
+                            <ul>
+                                <li><a href="#services">Smart Mobility</a></li>
+                                <li><a href="#services">Smart Energy</a></li>
+                                <li><a href="#services">Smart Security</a></li>
+                                <li><a href="#services">Smart Waste</a></li>
+                                <li><a href="#services">Smart Health</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <div class="footer-links">
+                            <h5>Azienda</h5>
+                            <ul>
+                                <li><a href="#">Chi Siamo</a></li>
+                                <li><a href="#">Team</a></li>
+                                <li><a href="#">Carriere</a></li>
+                                <li><a href="#">News</a></li>
+                                <li><a href="#contact">Contatti</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
+                        <div class="footer-links">
+                            <h5>Risorse</h5>
+                            <ul>
+                                <li><a href="#">Documentazione</a></li>
+                                <li><a href="#">API</a></li>
+                                <li><a href="#">Case Study</a></li>
+                                <li><a href="#">Blog</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <div class="footer-links">
+                            <h5>Legale</h5>
+                            <ul>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Termini di Servizio</a></li>
+                                <li><a href="#">Cookie Policy</a></li>
+                                <li><a href="#">GDPR</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <p class="copyright">&copy; 2026 SmartCity. Tutti i diritti riservati.</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p class="made-with">Realizzato con <span class="material-icons heart-icon">favorite</span> in Italia</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Richiedi una Demo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="demoForm">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Nome e Cognome *" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Email *" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Azienda / Comune">
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control" placeholder="Telefono">
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select">
+                                <option selected>Seleziona un servizio di interesse</option>
+                                <option>Smart Mobility</option>
+                                <option>Smart Energy</option>
+                                <option>Smart Security</option>
+                                <option>Smart Waste</option>
+                                <option>Smart Health</option>
+                                <option>Smart Data</option>
+                                <option>Soluzione Completa</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="3" placeholder="Messaggio (opzionale)"></textarea>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" required id="privacyCheck">
+                            <label class="form-check-label" for="privacyCheck">Accetto la privacy policy *</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Annulla</button>
+                    <button type="submit" class="btn btn-primary" form="demoForm">
+                        <span class="material-icons">send</span> Richiedi Demo
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="js/smartcity.js"></script>
+</body>
+</html>

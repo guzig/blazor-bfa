@@ -1,0 +1,34 @@
+@using Radzen
+@using Radzen.Blazor
+@using BlazorBFA.ViewModels
+@inject ProjectsViewModel ViewModel
+
+<section id="projects" class="rz-p-4 rz-py-8">
+<div style="text-align:center; margin-bottom:2.5rem;">
+    <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">Il nostro Portfolio</RadzenText>
+    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">Amministrazioni Comunali <span style="color:var(--primary-color);">Progetti</span></RadzenText>
+</div>
+
+<div class="carousel-container">
+    <div class="carousel-track">
+        @for (int i = 0; i < 2; i++)
+        {
+            @foreach (var project in ViewModel.Projects)
+            {
+                <div class="carousel-card">
+                    <RadzenCard Style="text-align:center; padding:1.5rem; min-width:260px; height:100%; border:1px solid var(--border-color); border-radius:0.75rem; box-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1);">
+                        <RadzenStack Orientation="Orientation.Vertical" Gap="12px" AlignItems="AlignItems.Center">
+                            <div style="width:56px; height:56px; border-radius:0.75rem; background:hsl(197 100% 31% / 0.1); color:var(--primary-color); display:flex; align-items:center; justify-content:center;">
+                                <RadzenIcon Icon="location_city" Style="font-size:28px;" />
+                            </div>
+                            <RadzenText TextStyle="TextStyle.H6" Style="font-weight:600; color:var(--text-dark);">@project.Name</RadzenText>
+                            <RadzenText Style="color:var(--text-muted); font-size:0.9rem;">(@project.Province)</RadzenText>
+                            <RadzenBadge Text=@($"Dal {project.Year}") Class="badge-accent" />
+                        </RadzenStack>
+                    </RadzenCard>
+                </div>
+            }
+        }
+    </div>
+    </div>
+</section>
