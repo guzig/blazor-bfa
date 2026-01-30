@@ -2,30 +2,44 @@
 @using Radzen.Blazor
 @using BlazorBFA.ViewModels
 @inject AboutViewModel ViewModel
+@inject StatsViewModel StatsViewModel
 
-<section id="about" class="rz-p-4 rz-py-8">
-    <RadzenCard Style="box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.1); border:1px solid var(--border-color); border-radius:1rem;">
-        <RadzenRow AlignItems="AlignItems.Center" Gap="2rem">
-            <RadzenColumn Size="12" SizeMd="5">
-                <RadzenImage Path="@ViewModel.ImagePath" Alt="@ViewModel.ImageAlt" Style="width:100%; border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.2);" />
-            </RadzenColumn>
-            <RadzenColumn Size="12" SizeMd="7">
-                <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">@ViewModel.SectionLabel</RadzenText>
-                <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; margin-bottom:1rem; color:var(--text-dark);">@ViewModel.Title</RadzenText>
-                <RadzenText Text="@ViewModel.Description" Style="color:var(--text-muted); line-height:1.75; font-size:1rem;" />
-
-                <RadzenRow Class="rz-mt-6" Gap="24px">
-                    @foreach (var stat in ViewModel.Stats)
-                    {
-                        <RadzenColumn Size="12" SizeMd="4">
-                            <RadzenCard Style="text-align:center; border:none; box-shadow:none; background:transparent; padding:1rem;">
-                                <RadzenText Style="font-size:2.5rem; font-weight:700; color:var(--primary-color); font-family:'Fraunces',Georgia,serif;">@stat.Value%</RadzenText>
-                                <RadzenText Style="font-weight:500; color:var(--text-dark); font-size:0.9rem;">@stat.Label</RadzenText>
-                            </RadzenCard>
-                        </RadzenColumn>
-                    }
-                </RadzenRow>
-            </RadzenColumn>
-        </RadzenRow>
-    </RadzenCard>
+<section id="about" class="about-section">
+    <div class="about-container">
+        <RadzenCard Style="box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.1); border:1px solid var(--border-color); border-radius:1rem;">
+            <RadzenRow AlignItems="AlignItems.Center" Gap="2rem">
+                <RadzenColumn Size="12" SizeMd="5">
+                    <RadzenImage Path="@ViewModel.ImagePath" Alt="@ViewModel.ImageAlt" Style="width:100%; border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.2);" />
+                </RadzenColumn>
+                <RadzenColumn Size="12" SizeMd="7">
+                    <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label">@ViewModel.SectionLabel</RadzenText>
+                    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; margin-bottom:1rem; color:var(--text-dark);">@ViewModel.Title</RadzenText>
+                    <RadzenText Text="@ViewModel.Description" Style="color:var(--text-muted); line-height:1.75; font-size:1rem;" />
+                </RadzenColumn>
+            </RadzenRow>
+        </RadzenCard>
+        
+        @* Stats Cards integrated in About section *@
+        <div class="about-stats-container">
+            <RadzenRow Gap="24px" JustifyContent="JustifyContent.Center">
+                @foreach (var stat in StatsViewModel.StatCards)
+                {
+                    <RadzenColumn Size="6" SizeSm="6" SizeLg="3">
+                        <div class="about-stat-card">
+                            <div class="about-stat-icon" style="background: linear-gradient(135deg, @stat.GradientStart 0%, @stat.GradientEnd 100%);">
+                                <RadzenIcon Icon="@stat.Icon" Style="font-size:24px; color:white;" />
+                            </div>
+                            <div class="about-stat-content">
+                                <div class="about-stat-value">
+                                    <span class="about-stat-number">@stat.Value</span>
+                                    <span class="about-stat-suffix">@stat.Suffix</span>
+                                </div>
+                                <div class="about-stat-label">@stat.Label</div>
+                            </div>
+                        </div>
+                    </RadzenColumn>
+                }
+            </RadzenRow>
+        </div>
+    </div>
 </section>

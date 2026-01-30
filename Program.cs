@@ -21,6 +21,7 @@ builder.Services.AddScoped<AboutViewModel>();
 builder.Services.AddScoped<HeroViewModel>();
 builder.Services.AddScoped<NavbarViewModel>();
 builder.Services.AddScoped<ContactViewModel>();
+builder.Services.AddScoped<StatsViewModel>();
 
 // Add services here if needed
 // builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });

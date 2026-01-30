@@ -7,8 +7,10 @@ public class HeroViewModel
     public string TitleHighlight { get; } = "gestione energetica";
     public string Subtitle { get; } = "Semplifichiamo la gestione delle forniture energetiche massimizzando il risparmio.";
     
-    public string PrimaryButtonText { get; } = "Preventivo gratuito";
+    public string PrimaryButtonText { get; } = "Scopri i Servizi";
     public string PrimaryButtonIcon { get; } = "arrow_forward";
     
-    public string SecondaryButtonText { get; } = "Scopri di più";
+    public string SecondaryButtonText { get; } = "Contattaci";
+    
+    public string ScrollText { get; } = "Scorri per esplorare";
 }

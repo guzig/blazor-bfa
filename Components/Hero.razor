@@ -6,18 +6,53 @@
 
 <section id="home" class="hero-section">
     <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:white;">@ViewModel.Label</RadzenText>
-        <RadzenText TextStyle="TextStyle.H1" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; font-size:3rem; line-height:1.2; margin-bottom:1rem; color:white;">@ViewModel.Title <span style="color:var(--accent-color);">@ViewModel.TitleHighlight</span></RadzenText>
-        <RadzenText TextStyle="TextStyle.Body1" Style="font-size:1.25rem; color:rgba(255,255,255,0.9); margin-bottom:2rem; line-height:1.7; max-width:600px;">@ViewModel.Subtitle</RadzenText>
-        <RadzenStack Orientation="Orientation.Horizontal" Gap="16px" Wrap="FlexWrap.Wrap">
-            <RadzenButton Text="@ViewModel.PrimaryButtonText" Icon="@ViewModel.PrimaryButtonIcon" Style="background:var(--primary-color); border:none; border-radius:9999px; padding:14px 28px; font-weight:500; color:white;" Click="ScrollToContact" />
-            <RadzenButton Text="@ViewModel.SecondaryButtonText" Variant="Variant.Outlined" Style="border:2px solid white; color:white; border-radius:9999px; padding:14px 28px; font-weight:500; background:transparent;" Click="ScrollToAbout" />
-        </RadzenStack>
+    
+    <div class="hero-main-container">
+        <div class="hero-content">
+            <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:white;">@ViewModel.Label</RadzenText>
+            <h1 class="hero-title">@ViewModel.Title <span class="hero-title-highlight">@ViewModel.TitleHighlight</span></h1>
+            <RadzenText TextStyle="TextStyle.Body1" Style="font-size:1.25rem; color:rgba(255,255,255,0.9); margin-bottom:2rem; line-height:1.7; max-width:600px;">@ViewModel.Subtitle</RadzenText>
+            <RadzenStack Orientation="Orientation.Horizontal" Gap="16px" Wrap="FlexWrap.Wrap" Class="hero-buttons">
+                <RadzenButton Text="@ViewModel.PrimaryButtonText" Icon="arrow_forward" Style="background: linear-gradient(135deg, #0070a0 0%, #00a8e8 100%); border:none; border-radius:9999px; padding:14px 28px; font-weight:500; color:white;" Click="ScrollToServices" />
+                <RadzenButton Text="@ViewModel.SecondaryButtonText" Icon="mail" Variant="Variant.Outlined" Style="border:2px solid rgba(255,255,255,0.8); color:white; border-radius:9999px; padding:14px 28px; font-weight:500; background:rgba(255,255,255,0.1);" Click="ScrollToContact" />
+            </RadzenStack>
+            
+            @* Stats below buttons *@
+            <div class="hero-stats-container">
+                <div class="hero-stats-row">
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-value">50+</span>
+                        <span class="hero-stat-label">Città Connesse</span>
+                    </div>
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-value">2M</span>
+                        <span class="hero-stat-label">Cittadini Serviti</span>
+                    </div>
+                </div>
+                <div class="hero-stats-row hero-stats-center">
+                    <div class="hero-stat-item">
+                        <span class="hero-stat-value">99%</span>
+                        <span class="hero-stat-label">Efficienza</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-image-container">
+            <img src="images/smart-energy.jpg" alt="Smart Energy Management" class="hero-right-image" />
+        </div>
+    </div>
+    
+    @* Scroll indicator *@
+    <div class="hero-scroll-indicator">
+        <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+        </div>
+        <span class="scroll-text">@ViewModel.ScrollText</span>
     </div>
 </section>
 
 @code {
+    private void ScrollToServices() => Navigation.NavigateTo("#services", forceLoad: false);
     private void ScrollToContact() => Navigation.NavigateTo("#contact", forceLoad: false);
-    private void ScrollToAbout() => Navigation.NavigateTo("#about", forceLoad: false);
 }

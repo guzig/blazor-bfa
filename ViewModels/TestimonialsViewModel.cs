@@ -7,20 +7,20 @@ public class TestimonialsViewModel
         new()
         {
             Name = "Ing. Otranto Antonio",
-            Role = "Tecnico Comunale",
+            Role = "Direttore Tecnico",
             Content = "Personale qualificato e sempre disponibile. Ci hanno facilitato la fuoriuscita dal regime di salvaguardia in tempi brevissimi, con grande risparmio per l'Ente.",
             Rating = 5
         },
         new()
         {
             Name = "Arch. Aprigliano Marilena",
-            Role = "Responsabile Amministrativo",
+            Role = "Direttore Tecnico",
             Content = "Ci hanno supportato operativamente, anche presso i nostri uffici, facilitando sia la gestione corrente che il superamento del contenzioso pregresso. Con la loro consulenza e il loro supporto abbiamo contestato numerose fatture non conformi, ottenendo un risparmio molto superiore al costo dei loro servizi.",
             Rating = 5
         },
         new()
         {
-            Name = "Arch. Benincasa Luigi",
+            Name = "Dott. Bernava Antonino",
             Role = "Direttore Tecnico",
             Content = "Una squadra giovane, efficiente e dinamica sempre al nostro fianco. Ci supportano in tutte le fasi della gestione energetica comunale. Il risparmio è stato superiore al costo del loro servizio.",
             Rating = 4

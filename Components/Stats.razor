@@ -1,0 +1,29 @@
+@using Radzen
+@using Radzen.Blazor
+@using BlazorBFA.ViewModels
+@inject StatsViewModel ViewModel
+
+<section class="stats-section">
+    <div class="stats-container">
+        <RadzenRow Gap="24px" JustifyContent="JustifyContent.Center">
+            @foreach (var stat in ViewModel.StatCards)
+            {
+                <RadzenColumn Size="12" SizeSm="6" SizeLg="3">
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, @stat.GradientStart 0%, @stat.GradientEnd 100%);">
+                            <RadzenIcon Icon="@stat.Icon" Style="font-size:24px; color:white;" />
+                        </div>
+                        <div class="stat-content">
+                            <div class="stat-value">
+                                <span class="stat-number">@stat.Value</span>
+                                <span class="stat-suffix">@stat.Suffix</span>
+                            </div>
+                            <div class="stat-label">@stat.Label</div>
+                        </div>
+                        <div class="stat-progress"></div>
+                    </div>
+                </RadzenColumn>
+            }
+        </RadzenRow>
+    </div>
+</section>
