@@ -725,8 +725,62 @@ section#about::after {
 }
 
 /* ========================================
-   ENHANCED SERVICE CARDS
+   ENHANCED SERVICE CARDS - NEW DESIGN
    ======================================== */
+.service-card-new {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.service-card-new:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.2) !important;
+    border-color: hsl(197 100% 31% / 0.3) !important;
+}
+
+/* Image zoom on hover */
+.service-card-new:hover .service-image {
+    transform: scale(1.08);
+}
+
+/* Arrow animation on hover */
+.service-card-new:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* Link hover effect */
+.service-link:hover {
+    color: var(--primary-hover) !important;
+    gap: 12px !important;
+}
+
+/* Icon badge glow on hover */
+.service-card-new:hover [style*="bottom:-20px"] {
+    box-shadow: 0 12px 30px -4px rgba(0, 112, 160, 0.5) !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Service card border glow effect */
+.service-card-new::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.service-card-new:hover::after {
+    transform: scaleX(1);
+}
+
+/* Legacy service card styles (kept for compatibility) */
 .service-card {
     position: relative;
     overflow: hidden;
