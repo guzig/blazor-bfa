@@ -49,13 +49,34 @@ h1, h2, h3, h4, h5, h6 {
     /* Easy access colors */
     --primary-color: hsl(197 100% 31%);
     --primary-hover: hsl(197 100% 25%);
+    --primary-light: hsl(197 100% 45%);
     --accent-color: hsl(160 84% 39%);
+    --accent-light: hsl(160 84% 92%);
     --text-dark: hsl(220 15% 15%);
     --text-muted: hsl(215 16% 47%);
     --text-light: hsl(215 16% 67%);
     --bg-light: hsl(210 20% 98%);
     --bg-muted: hsl(210 20% 96%);
     --border-color: hsl(214 20% 90%);
+    
+    /* Enhanced gradients - Smart City inspired */
+    --gradient-primary: linear-gradient(135deg, hsl(197 100% 31%) 0%, hsl(160 84% 39%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(160 84% 39%) 0%, hsl(197 100% 45%) 100%);
+    --gradient-hero: linear-gradient(135deg, rgba(0, 70, 100, 0.9) 0%, rgba(0, 112, 160, 0.8) 50%, rgba(16, 185, 129, 0.7) 100%);
+    --gradient-section-light: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(197 30% 95%) 100%);
+    --gradient-section-muted: linear-gradient(180deg, hsl(197 25% 95%) 0%, hsl(160 20% 96%) 100%);
+    
+    /* Section backgrounds */
+    --bg-about: linear-gradient(180deg, #ffffff 0%, hsl(197 30% 97%) 100%);
+    --bg-services: linear-gradient(180deg, hsl(197 25% 95%) 0%, hsl(160 20% 94%) 100%);
+    --bg-projects: linear-gradient(180deg, #ffffff 0%, hsl(210 25% 97%) 100%);
+    --bg-testimonials: linear-gradient(180deg, hsl(160 20% 95%) 0%, hsl(197 25% 96%) 100%);
+    --bg-contact: linear-gradient(180deg, #ffffff 0%, hsl(197 20% 97%) 100%);
+    
+    /* Decorative patterns */
+    --pattern-dots: radial-gradient(circle, hsl(197 100% 31% / 0.05) 1px, transparent 1px);
+    --pattern-grid: linear-gradient(hsl(197 100% 31% / 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, hsl(197 100% 31% / 0.03) 1px, transparent 1px);
 }
 
 /* Hero section with background image */
@@ -68,17 +89,57 @@ h1, h2, h3, h4, h5, h6 {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    overflow: hidden;
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(0, 70, 100, 0.85) 0%, rgba(0, 112, 160, 0.75) 50%, rgba(16, 185, 129, 0.6) 100%);
+    background: 
+        linear-gradient(135deg, rgba(0, 70, 100, 0.92) 0%, rgba(0, 112, 160, 0.85) 40%, rgba(16, 185, 129, 0.75) 100%);
+}
+
+/* Hero decorative elements */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+    animation: heroGlow 8s ease-in-out infinite alternate;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 60%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 112, 160, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+    animation: heroGlow 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes heroGlow {
+    0% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
 }
 
 .hero-content {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     padding: 4rem 2rem;
     max-width: 800px;
 }
@@ -87,6 +148,11 @@ h1, h2, h3, h4, h5, h6 {
     .hero-section {
         min-height: 80vh;
         background-attachment: scroll;
+    }
+    
+    .hero-section::before,
+    .hero-section::after {
+        display: none;
     }
     
     .hero-content {
@@ -457,6 +523,118 @@ h1, h2, h3, h4, h5, h6 {
 
 .shadow-elevated {
     box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+}
+
+/* ========================================
+   SECTION BACKGROUNDS - SMART CITY STYLE
+   ======================================== */
+
+/* About Section */
+section#about {
+    background: var(--bg-about);
+    position: relative;
+}
+
+section#about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, hsl(197 100% 31% / 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, hsl(160 84% 39% / 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Services Section */
+section#services {
+    background: var(--bg-services) !important;
+    position: relative;
+}
+
+section#services::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 80% 10%, hsl(160 84% 39% / 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 20% 90%, hsl(197 100% 31% / 0.05) 0%, transparent 40%),
+        var(--pattern-dots);
+    background-size: auto, auto, 20px 20px;
+    pointer-events: none;
+}
+
+/* Projects Section */
+section#projects {
+    background: var(--bg-projects);
+    position: relative;
+}
+
+section#projects::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 50% 0%, hsl(197 100% 31% / 0.05) 0%, transparent 60%),
+        var(--pattern-grid);
+    background-size: auto, 40px 40px, 40px 40px;
+    pointer-events: none;
+}
+
+/* Testimonials Section */
+section#testimonials {
+    background: var(--bg-testimonials) !important;
+    position: relative;
+}
+
+section#testimonials::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 15% 50%, hsl(160 84% 39% / 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 85% 30%, hsl(197 100% 31% / 0.04) 0%, transparent 45%);
+    pointer-events: none;
+}
+
+/* Contact Section */
+section#contact {
+    background: var(--bg-contact);
+    position: relative;
+}
+
+section#contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 70% 100%, hsl(197 100% 31% / 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 30% 20%, hsl(160 84% 39% / 0.04) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Ensure content is above decorative backgrounds */
+section#about > *,
+section#services > *,
+section#projects > *,
+section#testimonials > *,
+section#contact > * {
+    position: relative;
+    z-index: 1;
 }
 
 /* ========================================
