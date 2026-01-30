@@ -1,0 +1,129 @@
+@using Radzen
+@using Radzen.Blazor
+
+<section id="features" class="features-section">
+    <RadzenRow AlignItems="AlignItems.Center" Gap="3rem" class="rz-p-4">
+        @* Left content *@
+        <RadzenColumn Size="12" SizeLg="6">
+            <div class="features-content">
+                @* Badge *@
+                <div class="features-badge">
+                    <RadzenIcon Icon="star" Style="font-size:14px;" />
+                    <span>Perché Sceglierci</span>
+                </div>
+
+                @* Title *@
+                <RadzenText TextStyle="TextStyle.H2" Style="font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:2.75rem; line-height:1.2; margin-bottom:1.5rem; color:white;">
+                    Tecnologia<br />
+                    <span style="color:var(--primary-light);">All'avanguardia</span> per la<br />
+                    Tua Azienda
+                </RadzenText>
+
+                @* Description *@
+                <RadzenText Style="color:rgba(255,255,255,0.7); font-size:1.1rem; line-height:1.8; margin-bottom:2rem; max-width:450px;">
+                    La nostra piattaforma integra le tecnologie più avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.
+                </RadzenText>
+
+                @* Features list *@
+                <RadzenStack Gap="20px" Style="margin-bottom:2rem;">
+                    @foreach (var feature in features)
+                    {
+                        <div class="feature-item">
+                            <div class="feature-icon" style="@($"background:{feature.IconBg};")">
+                                <RadzenIcon Icon="@feature.Icon" Style="@($"color:{feature.IconColor}; font-size:20px;")" />
+                            </div>
+                            <div class="feature-text">
+                                <RadzenText Style="font-weight:600; color:white; font-size:1rem; margin-bottom:4px;">@feature.Title</RadzenText>
+                                <RadzenText Style="color:rgba(255,255,255,0.6); font-size:0.9rem; line-height:1.5;">@feature.Description</RadzenText>
+                            </div>
+                        </div>
+                    }
+                </RadzenStack>
+
+                @* CTA Button *@
+                <RadzenButton Text="Inizia Ora" Icon="rocket_launch" 
+                              Style="background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); border:none; border-radius:12px; padding:14px 28px; font-weight:600; font-size:1rem;"
+                              Click="@(() => NavigationManager.NavigateTo("#contact"))" />
+            </div>
+        </RadzenColumn>
+
+        @* Right image with floating badges *@
+        <RadzenColumn Size="12" SizeLg="6">
+            <div class="features-image-container">
+                @* Main image *@
+                <div class="features-image-wrapper">
+                    <RadzenImage Path="images/smart-energy.jpg" Alt="Tecnologia avanzata" Class="features-main-image" />
+                    
+                    @* Overlay gradient *@
+                    <div class="features-image-overlay"></div>
+                </div>
+
+                @* Floating badges *@
+                <div class="floating-badge badge-top-left">
+                    <RadzenIcon Icon="check_circle" Style="color:var(--accent-color); font-size:16px;" />
+                    <span>Sistema Attivo</span>
+                </div>
+
+                <div class="floating-badge badge-bottom-left">
+                    <RadzenIcon Icon="schedule" Style="color:var(--primary-light); font-size:16px;" />
+                    <span>Real-time</span>
+                </div>
+
+                <div class="floating-badge badge-right">
+                    <RadzenIcon Icon="trending_up" Style="color:var(--accent-color); font-size:16px;" />
+                    <span>+45% Efficienza</span>
+                </div>
+            </div>
+        </RadzenColumn>
+    </RadzenRow>
+</section>
+
+@code {
+    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+
+    private readonly List<FeatureItem> features =
+    [
+        new()
+        {
+            Icon = "dashboard",
+            Title = "Piattaforma Unificata",
+            Description = "Tutti i servizi integrati in un'unica dashboard intuitiva e potente.",
+            IconBg = "rgba(0, 112, 160, 0.2)",
+            IconColor = "#4db8ff"
+        },
+        new()
+        {
+            Icon = "insights",
+            Title = "Analisi Intelligente",
+            Description = "Algoritmi avanzati per predizione, ottimizzazione e automazione.",
+            IconBg = "rgba(16, 185, 129, 0.2)",
+            IconColor = "#10b981"
+        },
+        new()
+        {
+            Icon = "security",
+            Title = "Sicurezza Garantita",
+            Description = "Protezione dati conforme GDPR e massima riservatezza.",
+            IconBg = "rgba(139, 92, 246, 0.2)",
+            IconColor = "#a78bfa"
+        },
+        new()
+        {
+            Icon = "speed",
+            Title = "Risultati Misurabili",
+            Description = "Monitoraggio costante con report dettagliati sui risparmi ottenuti.",
+            IconBg = "rgba(245, 158, 11, 0.2)",
+            IconColor = "#fbbf24"
+        }
+    ];
+
+    private class FeatureItem
+    {
+        public string Icon { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string IconBg { get; set; } = string.Empty;
+        public string IconColor { get; set; } = string.Empty;
+    }
+}
+
