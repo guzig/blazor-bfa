@@ -643,9 +643,15 @@ section#features > * {
    ======================================== */
 .features-section {
     background: linear-gradient(135deg, #0a0e27 0%, #0d1333 50%, #0a1628 100%);
-    padding: 5rem 0;
+    padding: 6rem 0;
     position: relative;
     overflow: hidden;
+}
+
+.features-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .features-section::before {
@@ -670,28 +676,28 @@ section#features > * {
 .features-badge {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
+    gap: 10px;
+    padding: 10px 20px;
     background: rgba(0, 112, 160, 0.2);
     border: 1px solid rgba(0, 112, 160, 0.3);
     border-radius: 50px;
     color: var(--primary-light);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
 }
 
 /* Feature items */
 .feature-item {
     display: flex;
     align-items: flex-start;
-    gap: 16px;
+    gap: 18px;
 }
 
 .feature-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
