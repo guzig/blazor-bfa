@@ -2,49 +2,49 @@
 @using Radzen.Blazor
 @using BlazorBFA.ViewModels
 
-<RadzenCard Class="service-card-new" Style="height:100%; padding:0; border:1px solid #e2e8f0; border-radius:1.25rem; transition:all 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow:0 4px 20px rgb(0 0 0 / 0.08); overflow:hidden; background:white;">
+<RadzenCard Class="service-card-compact" Style="height:100%; padding:0; border:1px solid #e2e8f0; border-radius:1rem; transition:all 0.3s ease; box-shadow:0 2px 12px rgb(0 0 0 / 0.06); overflow:hidden; background:white; display:flex; flex-direction:row;">
     
-@* Image container with overlay icon *@
-<div class="service-image-container" style="position:relative; height:200px; overflow:hidden;">
+@* Image container - left side *@
+<div class="service-image-container" style="position:relative; width:192px; min-width:192px; overflow:hidden;">
     <RadzenImage Path="@Service.Image" 
                  Alt="@Service.Title" 
-                 Style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease;" 
+                 Style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;" 
                  Class="service-image" />
         
     @* Gradient overlay *@
-    <div style="position:absolute; inset:0; background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.5) 100%);"></div>
+    <div style="position:absolute; inset:0; background:linear-gradient(90deg, transparent 60%, rgba(255,255,255,0.8) 100%);"></div>
         
     @* Floating icon badge *@
-    <div style="position:absolute; bottom:-20px; left:20px; width:48px; height:48px; border-radius:12px; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 8px 20px -4px rgba(0, 112, 160, 0.4); z-index:2;">
-        <RadzenIcon Icon="@GetIcon(Service.Icon)" Style="color:white; font-size:22px;" />
+    <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); width:58px; height:58px; border-radius:12px; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0, 112, 160, 0.3); z-index:2;">
+        <RadzenIcon Icon="@GetIcon(Service.Icon)" Style="color:white; font-size:26px;" />
     </div>
 </div>
     
-@* Content section *@
-<div style="padding:2rem 1.5rem 1.5rem 1.5rem;">
-    <RadzenText TextStyle="TextStyle.H5" Style="font-weight:700; color:var(--text-dark); font-family:'Fraunces',Georgia,serif; margin-bottom:0.75rem; font-size:1.25rem;">
+@* Content section - right side *@
+<div style="padding:1.35rem 1.75rem; flex:1; display:flex; flex-direction:column; justify-content:center; min-width:0;">
+    <RadzenText TextStyle="TextStyle.H6" Style="font-weight:600; color:var(--text-dark); font-family:'Fraunces',Georgia,serif; margin-bottom:0.55rem; font-size:1.5rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">
         @Service.Title
     </RadzenText>
         
-    <RadzenText Text="@Service.Description" Style="color:var(--text-muted); font-size:0.95rem; line-height:1.7; margin-bottom:1.25rem;" />
+    <RadzenText Text="@Service.Description" Style="color:var(--text-muted); font-size:1.25rem; line-height:1.45; margin-bottom:1rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;" />
         
-        @* Features list - always visible *@
-        <RadzenStack Gap="10px" Style="margin-bottom:1.5rem;">
-            @foreach (var feature in Service.Features)
-            {
-                <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Start" Gap="10px">
-                    <RadzenIcon Icon="check_circle" Style="color:var(--accent-color); font-size:18px; margin-top:2px; flex-shrink:0;" />
-                    <RadzenText TextStyle="TextStyle.Body2" Style="color:var(--text-muted); font-size:0.9rem; line-height:1.5;">@feature</RadzenText>
-                </RadzenStack>
-            }
-        </RadzenStack>
+    @* Features list - compact *@
+    <RadzenStack Gap="5px" Style="margin-bottom:1rem; overflow:hidden;">
+        @foreach (var feature in Service.Features.Take(2))
+        {
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" Gap="8px" Style="min-width:0;">
+                <RadzenIcon Icon="check_circle" Style="color:var(--accent-color); font-size:20px; flex-shrink:0;" />
+                <RadzenText TextStyle="TextStyle.Body2" Style="color:var(--text-muted); font-size:1.2rem; line-height:1.3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">@feature</RadzenText>
+            </RadzenStack>
+        }
+    </RadzenStack>
         
-        @* Learn more link *@
-        <RadzenLink Path="#contact" Style="color:var(--primary-color); font-weight:600; font-size:0.95rem; display:inline-flex; align-items:center; gap:8px; text-decoration:none; transition:all 0.2s ease;" Class="service-link">
-            Scopri di più
-            <RadzenIcon Icon="arrow_forward" Style="font-size:18px; transition:transform 0.2s ease;" Class="arrow-icon" />
-        </RadzenLink>
-    </div>
+    @* Learn more link *@
+    <RadzenLink Path="#contact" Style="color:var(--primary-color); font-weight:600; font-size:1.25rem; display:inline-flex; align-items:center; gap:8px; text-decoration:none;" Class="service-link">
+        Scopri di più
+        <RadzenIcon Icon="arrow_forward" Style="font-size:20px;" Class="arrow-icon" />
+    </RadzenLink>
+</div>
 </RadzenCard>
 
 @code {

@@ -433,6 +433,38 @@ h1, h2, h3, h4, h5, h6 {
     animation: slideInRight 0.6s ease-out forwards;
 }
 
+/* ========================================
+   COMPACT SERVICE CARDS
+   ======================================== */
+.service-card-compact {
+    min-height: 140px;
+}
+
+.service-card-compact:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 0.12);
+}
+
+.service-card-compact:hover .service-image {
+    transform: scale(1.05);
+}
+
+.service-card-compact .service-link:hover {
+    gap: 10px;
+}
+
+@media (max-width: 768px) {
+    .service-card-compact {
+        flex-direction: column !important;
+    }
+    
+    .service-card-compact .service-image-container {
+        width: 100% !important;
+        min-width: 100% !important;
+        height: 120px;
+    }
+}
+
 /* Loading spinner */
 .loading-spinner {
     display: inline-block;
