@@ -76,12 +76,12 @@ h1, h2, h3, h4, h5, h6 {
     --gradient-section-light: linear-gradient(180deg, hsl(210 20% 98%) 0%, hsl(197 30% 95%) 100%);
     --gradient-section-muted: linear-gradient(180deg, hsl(197 25% 95%) 0%, hsl(160 20% 96%) 100%);
     
-    /* Section backgrounds - Light & Modern palette */
-    --bg-about: linear-gradient(180deg, #E3F2FD 0%, #BBDEFB 100%);           /* Blu ghiaccio */
-    --bg-services: linear-gradient(180deg, #ecfeff 0%, #e0f7fa 100%);        /* Light cyan/sky */
-    --bg-projects: linear-gradient(180deg, #c8e6e8 0%, #A8DADC 100%);        /* Tiffany blue */
-    --bg-testimonials: linear-gradient(180deg, #c8d6e8 0%, #B0C4DE 100%);    /* Light Steel Blue */
-    --bg-contact: linear-gradient(180deg, #fffbeb 0%, #fef3c7 100%);         /* Warm cream/amber */
+    /* Section backgrounds - Horizontal gradient with NAVAJO WHITE #FFDEAD */
+    --bg-about: linear-gradient(90deg, rgb(140, 110, 80) 0%, rgb(180, 145, 105) 40%, rgb(220, 180, 140) 70%, rgb(255, 222, 173) 100%);
+    --bg-services: linear-gradient(90deg, rgb(150, 120, 85) 0%, rgb(190, 155, 115) 40%, rgb(230, 190, 150) 70%, rgb(255, 225, 180) 100%);
+    --bg-projects: linear-gradient(90deg, rgb(160, 130, 90) 0%, rgb(200, 165, 125) 40%, rgb(240, 200, 160) 70%, rgb(255, 228, 185) 100%);
+    --bg-testimonials: linear-gradient(90deg, rgb(170, 140, 100) 0%, rgb(210, 175, 135) 40%, rgb(245, 210, 170) 70%, rgb(255, 230, 190) 100%);
+    --bg-contact: linear-gradient(90deg, rgb(180, 150, 110) 0%, rgb(220, 185, 145) 40%, rgb(250, 215, 175) 70%, rgb(255, 235, 200) 100%);
     
     /* Decorative patterns */
     --pattern-dots: radial-gradient(circle, hsl(197 100% 31% / 0.05) 1px, transparent 1px);
@@ -843,10 +843,11 @@ h1, h2, h3, h4, h5, h6 {
    SECTION BACKGROUNDS - SMART CITY STYLE
    ======================================== */
 
-/* About Section - Blu ghiaccio with blue accents */
+/* About Section - Dark theme */
 section#about {
     background: var(--bg-about);
     position: relative;
+    color: white;
 }
 
 section#about::before {
@@ -857,15 +858,16 @@ section#about::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 10% 20%, rgba(33, 150, 243, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 90% 80%, rgba(66, 165, 245, 0.06) 0%, transparent 50%);
+        radial-gradient(circle at 10% 20%, rgba(0, 150, 200, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(0, 180, 220, 0.1) 0%, transparent 50%);
     pointer-events: none;
 }
 
-/* Services Section - Light cyan with teal accents */
+/* Services Section - Dark theme */
 section#services {
     background: var(--bg-services) !important;
     position: relative;
+    color: white;
 }
 
 section#services::before {
@@ -876,17 +878,16 @@ section#services::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 80% 10%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 20% 90%, rgba(0, 112, 160, 0.06) 0%, transparent 40%),
-        var(--pattern-dots);
-    background-size: auto, auto, 20px 20px;
+        radial-gradient(circle at 80% 10%, rgba(0, 180, 220, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 20% 90%, rgba(0, 150, 200, 0.08) 0%, transparent 40%);
     pointer-events: none;
 }
 
-/* Projects Section - Tiffany blue with teal accents */
+/* Projects Section - Dark theme */
 section#projects {
     background: var(--bg-projects);
     position: relative;
+    color: white;
 }
 
 section#projects::before {
@@ -897,15 +898,16 @@ section#projects::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 50% 0%, rgba(0, 128, 128, 0.08) 0%, transparent 60%),
-        radial-gradient(circle at 80% 100%, rgba(72, 209, 204, 0.06) 0%, transparent 50%);
+        radial-gradient(circle at 50% 0%, rgba(0, 180, 200, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 80% 100%, rgba(0, 200, 220, 0.08) 0%, transparent 50%);
     pointer-events: none;
 }
 
-/* Testimonials Section - Light Steel Blue with blue accents */
+/* Testimonials Section - Dark theme */
 section#testimonials {
     background: var(--bg-testimonials) !important;
     position: relative;
+    color: white;
 }
 
 section#testimonials::before {
@@ -916,15 +918,16 @@ section#testimonials::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 15% 50%, rgba(70, 130, 180, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 85% 30%, rgba(100, 149, 237, 0.06) 0%, transparent 45%);
+        radial-gradient(circle at 15% 50%, rgba(0, 150, 200, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 85% 30%, rgba(0, 180, 220, 0.08) 0%, transparent 45%);
     pointer-events: none;
 }
 
-/* Contact Section - Warm cream with amber accents */
+/* Contact Section - Dark theme */
 section#contact {
     background: var(--bg-contact);
     position: relative;
+    color: white;
 }
 
 section#contact::before {
@@ -935,8 +938,8 @@ section#contact::before {
     right: 0;
     bottom: 0;
     background: 
-        radial-gradient(circle at 70% 100%, rgba(251, 146, 60, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 30% 20%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+        radial-gradient(circle at 70% 100%, rgba(0, 180, 220, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 30% 20%, rgba(0, 150, 200, 0.08) 0%, transparent 50%);
     pointer-events: none;
 }
 
@@ -949,6 +952,87 @@ section#contact > *,
 section#features > * {
     position: relative;
     z-index: 1;
+}
+
+/* Dark theme text colors */
+section#about,
+section#services,
+section#projects,
+section#testimonials,
+section#contact {
+    color: #3d2914;
+}
+
+section#about h2,
+section#about h3,
+section#services h2,
+section#services h3,
+section#projects h2,
+section#projects h3,
+section#testimonials h2,
+section#testimonials h3,
+section#contact h2,
+section#contact h3 {
+    color: #2d1f0f !important;
+}
+
+section#about .text-muted,
+section#services .text-muted,
+section#projects .text-muted,
+section#testimonials .text-muted,
+section#contact .text-muted {
+    color: rgba(60, 40, 20, 0.7) !important;
+}
+
+section#about .section-label,
+section#services .section-label,
+section#projects .section-label,
+section#testimonials .section-label,
+section#contact .section-label {
+    color: #8B4513 !important;
+}
+
+/* Card styles for light warm theme */
+section#about .rz-card,
+section#services .rz-card,
+section#projects .rz-card,
+section#testimonials .rz-card,
+section#contact .rz-card {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border-color: rgba(139, 69, 19, 0.2) !important;
+    color: #3d2914;
+}
+
+section#about .rz-card h3,
+section#about .rz-card h4,
+section#services .rz-card h3,
+section#services .rz-card h4,
+section#testimonials .rz-card h3,
+section#testimonials .rz-card h4 {
+    color: #2d1f0f !important;
+}
+
+/* About stats for light warm theme */
+.about-stats-container {
+    background: rgba(255, 255, 255, 0.5) !important;
+    border-color: rgba(139, 69, 19, 0.2) !important;
+}
+
+.about-stat-card {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border-color: rgba(139, 69, 19, 0.15) !important;
+}
+
+.about-stat-number {
+    color: #8B4513 !important;
+}
+
+.about-stat-suffix {
+    color: #8B4513 !important;
+}
+
+.about-stat-label {
+    color: rgba(60, 40, 20, 0.7) !important;
 }
 
 /* ========================================
@@ -1825,15 +1909,15 @@ button[style*="background:linear-gradient"]:hover {
 
 /* Light section scroll indicator */
 .full-page-section .scroll-mouse {
-    border-color: rgba(0, 112, 160, 0.4);
+    border-color: rgba(139, 69, 19, 0.4);
 }
 
 .full-page-section .scroll-wheel {
-    background: var(--primary-color);
+    background: #8B4513;
 }
 
 .full-page-section .scroll-text {
-    color: var(--text-muted);
+    color: rgba(60, 40, 20, 0.6);
 }
 
 /* Dark section scroll indicator (Features) */
