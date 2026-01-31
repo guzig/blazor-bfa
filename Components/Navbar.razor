@@ -5,16 +5,16 @@
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 
-<header class="rz-background-color-primary rz-shadow-4" style="padding:0.5rem 1rem; position:sticky; top:0; z-index:1000;">
+<header class="rz-background-color-primary rz-shadow-4 site-header">
     <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.SpaceBetween" Style="width:100%;">
-        <RadzenLink Path="/" Style="color:white; font-weight:bold; font-size:1.2rem; text-decoration:none;">
+        <RadzenLink Path="/" Class="navbar-brand">
             @ViewModel.BrandName
         </RadzenLink>
 
         <RadzenStack Orientation="Orientation.Horizontal" Gap="1rem" AlignItems="AlignItems.Center" class="nav-links-desktop">
             @foreach (var link in ViewModel.NavLinks)
             {
-                <RadzenLink Path="@link.Href" Style="color:white; text-decoration:none;">@link.Name</RadzenLink>
+                <RadzenLink Path="@link.Href" Class="nav-link">@link.Name</RadzenLink>
             }
         </RadzenStack>
 
@@ -27,6 +27,7 @@
         </RadzenStack>
     </RadzenStack>
 </header>
+
 
 @* Mobile Menu Overlay *@
 <div class="mobile-menu-overlay @(isMobileMenuOpen ? "active" : "")" @onclick="CloseMobileMenu">
