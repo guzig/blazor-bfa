@@ -6,15 +6,15 @@
 
 <section id="about" class="about-section full-page-section">
     <div class="about-container">
-        <RadzenCard Style="background: white; box-shadow:0 25px 50px -12px rgb(0 0 0 / 0.1); border:1px solid #e2e8f0; border-radius:1rem;">
+        <RadzenCard Class="about-main-card">
             <RadzenRow AlignItems="AlignItems.Center" Gap="2rem">
                 <RadzenColumn Size="12" SizeMd="5">
-                    <RadzenImage Path="@ViewModel.ImagePath" Alt="@ViewModel.ImageAlt" Style="width:100%; border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.2);" />
+                    <RadzenImage Path="@ViewModel.ImagePath" Alt="@ViewModel.ImageAlt" Class="about-image" />
                 </RadzenColumn>
                 <RadzenColumn Size="12" SizeMd="7">
                     <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color: var(--primary-color);">@ViewModel.SectionLabel</RadzenText>
-                    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; margin-bottom:1rem; color:var(--text-dark);">@ViewModel.Title</RadzenText>
-                    <RadzenText Text="@ViewModel.Description" Style="color:var(--text-muted); line-height:1.75; font-size:1rem;" />
+                    <RadzenText TextStyle="TextStyle.H3" Class="about-title" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; margin-bottom:1rem; color:var(--text-dark);">@ViewModel.Title</RadzenText>
+                    <RadzenText Text="@ViewModel.Description" Class="about-description" />
                 </RadzenColumn>
             </RadzenRow>
         </RadzenCard>
@@ -45,3 +45,88 @@
     
     <ScrollIndicator TargetSection="services" Text="Scopri i Servizi" />
 </section>
+
+<style>
+    .about-main-card {
+        background: white;
+        box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.1);
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+    }
+    
+    .about-image {
+        width: 100%;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 40px -10px rgb(0 0 0 / 0.2);
+    }
+    
+    .about-title {
+        font-size: 2.25rem;
+    }
+    
+    .about-description {
+        color: var(--text-muted);
+        line-height: 1.75;
+        font-size: 1rem;
+    }
+    
+    @@media (max-width: 480px) {
+        .about-container {
+            padding: 0 0.5rem !important;
+        }
+        
+        .about-main-card {
+            padding: 1rem !important;
+        }
+        
+        .about-title {
+            font-size: 1.5rem !important;
+        }
+        
+        .about-description {
+            font-size: 0.9rem !important;
+            line-height: 1.6 !important;
+        }
+        
+        .about-stats-container {
+            padding: 0.75rem !important;
+            margin-top: 1.5rem !important;
+        }
+        
+        .about-stat-card {
+            padding: 0.75rem 0.5rem !important;
+        }
+        
+        .about-stat-number {
+            font-size: 1.35rem !important;
+        }
+        
+        .about-stat-suffix {
+            font-size: 0.9rem !important;
+        }
+        
+        .about-stat-label {
+            font-size: 0.65rem !important;
+        }
+        
+        .about-stat-icon {
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 10px !important;
+        }
+        
+        .about-stat-icon .rz-icon {
+            font-size: 18px !important;
+        }
+    }
+    
+    @@media (min-width: 481px) and (max-width: 768px) {
+        .about-container {
+            padding: 0 1rem !important;
+        }
+        
+        .about-title {
+            font-size: 1.75rem !important;
+        }
+    }
+</style>

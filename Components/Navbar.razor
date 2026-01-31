@@ -3,6 +3,7 @@
 @using BlazorBFA.ViewModels
 @inject NavbarViewModel ViewModel
 @inject NavigationManager Navigation
+@inject IJSRuntime JS
 
 <header class="rz-background-color-primary rz-shadow-4" style="padding:0.5rem 1rem; position:sticky; top:0; z-index:1000;">
     <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.SpaceBetween" Style="width:100%;">
@@ -10,17 +11,201 @@
             @ViewModel.BrandName
         </RadzenLink>
 
-        <RadzenStack Orientation="Orientation.Horizontal" Gap="1rem" AlignItems="AlignItems.Center" class="rz-display-none rz-display-md-flex">
+        <RadzenStack Orientation="Orientation.Horizontal" Gap="1rem" AlignItems="AlignItems.Center" class="nav-links-desktop">
             @foreach (var link in ViewModel.NavLinks)
             {
                 <RadzenLink Path="@link.Href" Style="color:white; text-decoration:none;">@link.Name</RadzenLink>
             }
         </RadzenStack>
 
-        <RadzenButton ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Small" Icon="@ViewModel.CtaButtonIcon" Click="ScrollContact" Text="@ViewModel.CtaButtonText" />
+        <RadzenStack Orientation="Orientation.Horizontal" Gap="0.5rem" AlignItems="AlignItems.Center">
+            <RadzenButton ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Small" Icon="@ViewModel.CtaButtonIcon" Click="ScrollContact" Text="@ViewModel.CtaButtonText" class="cta-button-desktop" />
+            <RadzenButton ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Small" Icon="@ViewModel.CtaButtonIcon" Click="ScrollContact" class="cta-button-mobile" />
+            <button class="mobile-menu-btn" @onclick="ToggleMobileMenu" aria-label="Toggle menu">
+                <RadzenIcon Icon="menu" Style="font-size:1.5rem; color:white;" />
+            </button>
+        </RadzenStack>
     </RadzenStack>
 </header>
 
+@* Mobile Menu Overlay *@
+<div class="mobile-menu-overlay @(isMobileMenuOpen ? "active" : "")" @onclick="CloseMobileMenu">
+    <div class="mobile-menu-content" @onclick:stopPropagation>
+        <button class="mobile-menu-close-btn" @onclick="CloseMobileMenu" aria-label="Close menu">
+            <RadzenIcon Icon="close" Style="font-size:2rem; color:white;" />
+        </button>
+        <nav class="mobile-nav-links">
+            @foreach (var link in ViewModel.NavLinks)
+            {
+                <a href="@link.Href" @onclick="CloseMobileMenu">@link.Name</a>
+            }
+            <RadzenButton ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Medium" Icon="@ViewModel.CtaButtonIcon" Click="ScrollContactAndClose" Text="@ViewModel.CtaButtonText" Style="margin-top:1rem;" />
+        </nav>
+    </div>
+</div>
+
+<style>
+    /* Desktop nav links - hide on mobile and tablets */
+    .nav-links-desktop {
+        display: none !important;
+    }
+    
+    /* Show desktop nav only on large screens (1024px+) */
+    @@media (min-width: 1024px) {
+        .nav-links-desktop {
+            display: flex !important;
+        }
+        
+        .mobile-menu-btn {
+            display: none !important;
+        }
+        
+        .cta-button-mobile {
+            display: none !important;
+        }
+        
+        .cta-button-desktop {
+            display: flex !important;
+        }
+    }
+    
+    /* Hide CTA text on smaller screens, show only on large */
+    @@media (max-width: 1023px) {
+        .cta-button-desktop {
+            display: none !important;
+        }
+        
+        .cta-button-mobile {
+            display: flex !important;
+        }
+        
+        .mobile-menu-btn {
+            display: flex !important;
+        }
+    }
+    
+    @@media (max-width: 480px) {
+        .cta-button-mobile {
+            display: none !important;
+        }
+    }
+    
+    /* Mobile menu button */
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: background 0.2s ease;
+    }
+    
+    .mobile-menu-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Mobile menu overlay */
+    .mobile-menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .mobile-menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Mobile menu content */
+    .mobile-menu-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 280px;
+        max-width: 85vw;
+        height: 100%;
+        background: linear-gradient(180deg, hsl(197 100% 25%) 0%, hsl(180 60% 28%) 100%);
+        transform: translateX(100%);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        padding: 1.5rem;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .mobile-menu-overlay.active .mobile-menu-content {
+        transform: translateX(0);
+    }
+    
+    /* Close button */
+    .mobile-menu-close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        transition: background 0.2s ease;
+    }
+    
+    .mobile-menu-close-btn:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Mobile nav links */
+    .mobile-nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 4rem;
+    }
+    
+    .mobile-nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.25rem;
+        font-weight: 500;
+        padding: 1rem 1.5rem;
+        border-radius: 0.75rem;
+        transition: background 0.2s ease;
+    }
+    
+    .mobile-nav-links a:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+</style>
+
 @code {
-    private void ScrollContact() => Navigation.NavigateTo("#contact", forceLoad: false);
+    private bool isMobileMenuOpen = false;
+    
+    private void ToggleMobileMenu()
+    {
+        isMobileMenuOpen = !isMobileMenuOpen;
+    }
+    
+    private void CloseMobileMenu()
+    {
+        isMobileMenuOpen = false;
+    }
+    
+    private void ScrollContact()
+    {
+        Navigation.NavigateTo("#contact", forceLoad: false);
+    }
+    
+    private void ScrollContactAndClose()
+    {
+        CloseMobileMenu();
+        Navigation.NavigateTo("#contact", forceLoad: false);
+    }
 }

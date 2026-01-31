@@ -4,9 +4,9 @@
 @inject TestimonialsViewModel ViewModel
 
 <section id="testimonials" class="full-page-section" style="background:var(--bg-testimonials);">
-    <div style="text-align:center; margin-bottom:2.5rem;">
+    <div style="text-align:center; margin-bottom:2.5rem; padding:0 1rem;">
         <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:var(--primary-color);">Testimonial</RadzenText>
-        <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">I nostri <span style="color:var(--accent-color);">Testimonial</span></RadzenText>
+        <RadzenText TextStyle="TextStyle.H3" Class="testimonials-section-title" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">I nostri <span style="color:var(--accent-color);">Testimonial</span></RadzenText>
         <RadzenText Text="Cosa dicono di noi" Style="color:var(--text-muted); margin-top:0.5rem;" />
     </div>
 
@@ -15,12 +15,12 @@
             @foreach (var testimonial in ViewModel.Testimonials)
             {
                 <div class="testimonials-slideshow-card">
-                    <RadzenCard Style="height:100%; padding:2.5rem; border:1px solid #e2e8f0; border-radius:0.75rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.1); background:white;">
+                    <RadzenCard Class="testimonial-card">
                         <RadzenStack Gap="16px" AlignItems="AlignItems.Center">
                             <div style="color:var(--accent-color);">
                                 <RadzenRating Value="testimonial.Rating" Max="5" ReadOnly="true" />
                             </div>
-                            <RadzenText Text="@testimonial.Content" Style="font-style:italic; color:var(--text-muted); text-align:center; font-size:1.05rem; line-height:1.8;" />
+                            <RadzenText Text="@testimonial.Content" Class="testimonial-content" />
                             <RadzenText TextStyle="TextStyle.H6" Style="font-weight:600; color:var(--text-dark); font-family:'Fraunces',Georgia,serif;">@testimonial.Name</RadzenText>
                             <RadzenText Style="color:var(--text-light); font-size:0.9rem;">@testimonial.Role</RadzenText>
                         </RadzenStack>
@@ -32,3 +32,55 @@
     
     <ScrollIndicator TargetSection="contact" Text="Contattaci" />
 </section>
+
+<style>
+    .testimonials-section-title {
+        font-size: 2.25rem;
+    }
+    
+    .testimonial-card {
+        height: 100%;
+        padding: 2.5rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 40px -10px rgb(0 0 0 / 0.1);
+        background: white;
+    }
+    
+    .testimonial-content {
+        font-style: italic;
+        color: var(--text-muted);
+        text-align: center;
+        font-size: 1.05rem;
+        line-height: 1.8;
+    }
+    
+    @@media (max-width: 480px) {
+        .testimonials-section-title {
+            font-size: 1.5rem !important;
+        }
+        
+        .testimonial-card {
+            padding: 1.5rem 1rem !important;
+        }
+        
+        .testimonial-content {
+            font-size: 0.9rem !important;
+            line-height: 1.6 !important;
+        }
+        
+        .testimonials-slideshow-container {
+            margin: 1rem 0.5rem !important;
+        }
+    }
+    
+    @@media (min-width: 481px) and (max-width: 768px) {
+        .testimonials-section-title {
+            font-size: 1.75rem !important;
+        }
+        
+        .testimonial-card {
+            padding: 2rem 1.5rem !important;
+        }
+    }
+</style>

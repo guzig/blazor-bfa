@@ -17,13 +17,13 @@
                     </div>
 
                     @* Title *@
-                    <RadzenText TextStyle="TextStyle.H2" Style="font-family:'Fraunces',Georgia,serif; font-weight:700; font-size:3.25rem; line-height:1.15; margin-bottom:1.5rem; color:white;">
+                    <RadzenText TextStyle="TextStyle.H2" Class="features-title">
                         @ViewModel.Title<br />
-                        <span style="color:var(--primary-light);">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd
+                        <span class="features-title-highlight">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd
                     </RadzenText>
 
                     @* Description *@
-                    <RadzenText Style="color:rgba(255,255,255,0.75); font-size:1.2rem; line-height:1.8; margin-bottom:2.5rem; max-width:500px;">
+                    <RadzenText Class="features-description">
                         @ViewModel.Description
                     </RadzenText>
 
@@ -45,7 +45,7 @@
 
                     @* CTA Button *@
                     <RadzenButton Text="@ViewModel.ButtonText" Icon="@ViewModel.ButtonIcon" 
-                                  Style="background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); border:none; border-radius:14px; padding:16px 32px; font-weight:600; font-size:1.1rem;"
+                                  Class="features-cta-btn"
                                   Click="@(() => NavigationManager.NavigateTo("#contact"))" />
                 </div>
             </RadzenColumn>
@@ -76,3 +76,113 @@
     
     <ScrollIndicator TargetSection="projects" Text="I Nostri Progetti" />
 </section>
+
+<style>
+    .features-title {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 700;
+        font-size: 3.25rem;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+        color: white;
+    }
+    
+    .features-title-highlight {
+        color: var(--primary-light);
+    }
+    
+    .features-description {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
+        max-width: 500px;
+    }
+    
+    .features-cta-btn {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        border: none;
+        border-radius: 14px;
+        padding: 16px 32px;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+    
+    @@media (max-width: 480px) {
+        .features-title {
+            font-size: 1.75rem !important;
+            line-height: 1.25 !important;
+            margin-bottom: 1rem !important;
+        }
+        
+        .features-description {
+            font-size: 0.95rem !important;
+            line-height: 1.6 !important;
+            margin-bottom: 1.5rem !important;
+        }
+        
+        .features-cta-btn {
+            padding: 12px 24px !important;
+            font-size: 1rem !important;
+            width: 100%;
+        }
+        
+        .feature-item {
+            gap: 12px !important;
+        }
+        
+        .feature-icon {
+            width: 40px !important;
+            height: 40px !important;
+        }
+        
+        .feature-text [style*="font-size:1.1rem"] {
+            font-size: 1rem !important;
+        }
+        
+        .feature-text [style*="font-size:0.95rem"] {
+            font-size: 0.85rem !important;
+        }
+        
+        .features-badge {
+            font-size: 0.85rem !important;
+            padding: 8px 14px !important;
+        }
+    }
+    
+    @@media (min-width: 481px) and (max-width: 768px) {
+        .features-title {
+            font-size: 2rem !important;
+        }
+        
+        .features-description {
+            font-size: 1rem !important;
+        }
+        
+        .features-content {
+            text-align: center;
+        }
+        
+        .features-badge {
+            justify-content: center;
+        }
+        
+        .features-description {
+            max-width: 100% !important;
+        }
+    }
+    
+    @@media (min-width: 769px) and (max-width: 991px) {
+        .features-title {
+            font-size: 2.5rem !important;
+        }
+        
+        .features-content {
+            text-align: center;
+        }
+        
+        .features-badge {
+            display: inline-flex;
+        }
+    }
+</style>

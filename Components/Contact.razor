@@ -4,44 +4,44 @@
 @inject ContactViewModel ViewModel
 
 <section id="contact" class="full-page-section" style="background:var(--bg-contact);">
-<div style="text-align:center; margin-bottom:3rem;">
+<div style="text-align:center; margin-bottom:3rem; padding:0 1rem;">
     <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:var(--primary-color);">@ViewModel.SectionLabel</RadzenText>
-    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">@ViewModel.Title <span style="color:var(--accent-color);">@ViewModel.TitleHighlight</span></RadzenText>
+    <RadzenText TextStyle="TextStyle.H3" Class="contact-section-title" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">@ViewModel.Title <span style="color:var(--accent-color);">@ViewModel.TitleHighlight</span></RadzenText>
 </div>
 
-<div style="padding: 0 2rem;">
+<div class="contact-content-container">
     <RadzenRow Gap="32px">
         <RadzenColumn Size="12" SizeMd="5">
             <RadzenStack Gap="16px">
                 @foreach (var info in ViewModel.ContactInfo)
                 {
-                    <RadzenCard Style="border:1px solid #e2e8f0; border-radius:0.75rem; padding:1.25rem; background:white; box-shadow:0 4px 15px rgb(0 0 0 / 0.08);">
+                    <RadzenCard Class="contact-info-card">
                         <RadzenStack Orientation="Orientation.Horizontal" Gap="16px" AlignItems="AlignItems.Center">
-                            <div style="width:48px; height:48px; border-radius:0.75rem; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color:white; display:flex; align-items:center; justify-content:center;">
+                            <div class="contact-icon-box">
                                 <RadzenIcon Icon="@info.Icon" />
                             </div>
                             <RadzenStack Gap="4px">
                                 <RadzenText Style="font-weight:600; color:var(--text-dark);">@info.Label</RadzenText>
-                                <a href="@info.Href" style="color:var(--primary-color); text-decoration:none; font-weight:500;">@info.Value</a>
+                                <a href="@info.Href" style="color:var(--primary-color); text-decoration:none; font-weight:500; word-break:break-all;">@info.Value</a>
                             </RadzenStack>
                         </RadzenStack>
                     </RadzenCard>
                 }
             </RadzenStack>
 
-            <RadzenCard Style="margin-top:1rem; border:1px solid #e2e8f0; border-radius:0.75rem; padding:1.5rem; background:white; box-shadow:0 4px 15px rgb(0 0 0 / 0.08);">
+            <RadzenCard Class="contact-address-card">
                 <RadzenStack Gap="8px" AlignItems="AlignItems.Center">
-                    <div style="width:48px; height:48px; border-radius:0.75rem; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color:white; display:flex; align-items:center; justify-content:center;">
+                    <div class="contact-icon-box">
                         <RadzenIcon Icon="place" Style="font-size:24px;" />
                     </div>
                     <RadzenText Style="font-weight:600; color:var(--text-dark);">@ViewModel.AddressCity</RadzenText>
-                    <RadzenText Style="color:var(--text-muted);">@ViewModel.AddressStreet</RadzenText>
+                    <RadzenText Style="color:var(--text-muted); text-align:center;">@ViewModel.AddressStreet</RadzenText>
                 </RadzenStack>
             </RadzenCard>
         </RadzenColumn>
 
         <RadzenColumn Size="12" SizeMd="7">
-            <RadzenCard Style="border:1px solid #e2e8f0; border-radius:0.75rem; padding:2rem; box-shadow:0 10px 40px -10px rgb(0 0 0 / 0.1); background:white;">
+            <RadzenCard Class="contact-form-card">
                 <RadzenTemplateForm Data="@formData" TItem="FormData" Submit="HandleSubmit">
                     <RadzenText TextStyle="TextStyle.H5" Style="font-weight:600; color:var(--text-dark); margin-bottom:1.5rem;">@ViewModel.FormTitle</RadzenText>
                     <RadzenRow Gap="16px">
@@ -65,7 +65,7 @@
                         <RadzenTextArea @bind-Value="formData.Message" Style="width:100%; border-radius:0.5rem;" Rows="5" Name="Message" />
                     </div>
 
-                    <RadzenButton ButtonType="ButtonType.Submit" Text="@ViewModel.SubmitButtonText" Icon="@ViewModel.SubmitButtonIcon" Class="rz-mt-4" Style="background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); border:none; border-radius:9999px; padding:14px 32px; font-weight:500;" />
+                    <RadzenButton ButtonType="ButtonType.Submit" Text="@ViewModel.SubmitButtonText" Icon="@ViewModel.SubmitButtonIcon" Class="rz-mt-4 contact-submit-btn" />
                 </RadzenTemplateForm>
             </RadzenCard>
 
@@ -77,6 +77,94 @@
     </RadzenRow>
 </div>
 </section>
+
+<style>
+    .contact-content-container {
+        padding: 0 2rem;
+    }
+    
+    .contact-section-title {
+        font-size: 2.25rem;
+    }
+    
+    .contact-icon-box {
+        width: 48px;
+        height: 48px;
+        border-radius: 0.75rem;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    
+    .contact-info-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        background: white;
+        box-shadow: 0 4px 15px rgb(0 0 0 / 0.08);
+    }
+    
+    .contact-address-card {
+        margin-top: 1rem;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        background: white;
+        box-shadow: 0 4px 15px rgb(0 0 0 / 0.08);
+    }
+    
+    .contact-form-card {
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 10px 40px -10px rgb(0 0 0 / 0.1);
+        background: white;
+    }
+    
+    .contact-submit-btn {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        border: none;
+        border-radius: 9999px;
+        padding: 14px 32px;
+        font-weight: 500;
+    }
+    
+    @@media (max-width: 480px) {
+        .contact-content-container {
+            padding: 0 0.75rem !important;
+        }
+        
+        .contact-section-title {
+            font-size: 1.5rem !important;
+        }
+        
+        .contact-info-card {
+            padding: 1rem !important;
+        }
+        
+        .contact-form-card {
+            padding: 1.25rem !important;
+        }
+        
+        .contact-icon-box {
+            width: 40px !important;
+            height: 40px !important;
+        }
+    }
+    
+    @@media (min-width: 481px) and (max-width: 768px) {
+        .contact-content-container {
+            padding: 0 1rem !important;
+        }
+        
+        .contact-section-title {
+            font-size: 1.75rem !important;
+        }
+    }
+</style>
 
 @code {
     private FormData formData = new();
