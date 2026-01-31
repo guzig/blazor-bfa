@@ -1792,12 +1792,13 @@ button[style*="background:linear-gradient"]:hover {
    ======================================== */
 .full-page-section {
     min-height: 100vh;
+    min-height: 100svh; /* Small viewport height - accounts for mobile browser chrome */
     position: relative !important;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-top: 2rem;
-    padding-bottom: 100px !important; /* Space for scroll indicator */
+    padding-bottom: 100px; /* Space for scroll indicator */
     box-sizing: border-box;
 }
 
@@ -1848,12 +1849,12 @@ button[style*="background:linear-gradient"]:hover {
 
 @media (max-width: 768px) {
     .full-page-section {
-        min-height: auto;
-        padding: 4rem 0 6rem;
+        min-height: 100svh; /* Keep full screen on mobile */
+        padding: 3rem 1rem 80px;
     }
     
     .scroll-indicator-container {
-        bottom: 20px;
+        bottom: 15px;
     }
 }
 
@@ -2237,6 +2238,7 @@ textarea:focus-visible {
         line-height: 1.5;
     }
     
+    
     /* Hero buttons stack */
     .hero-buttons {
         flex-direction: column;
@@ -2271,9 +2273,10 @@ textarea:focus-visible {
         font-size: 1.5rem;
     }
     
-    /* Section padding */
+    /* Section padding - keep full height */
     .full-page-section {
-        padding: 2rem 0.75rem 4rem;
+        min-height: 100svh;
+        padding: 2rem 0.75rem 70px;
     }
     
     /* About section */
@@ -2387,9 +2390,10 @@ textarea:focus-visible {
         justify-content: center;
     }
     
-    /* Sections */
+    /* Sections - keep full height */
     .full-page-section {
-        padding: 2.5rem 1rem 5rem;
+        min-height: 100svh;
+        padding: 2.5rem 1rem 70px;
     }
     
     /* Section titles */
@@ -2414,6 +2418,7 @@ textarea:focus-visible {
     }
 }
 
+
 /* ========================================
    LARGE PHONES / PHABLETS (431px - 540px)
    iPhone 14 Pro Max, Surface Duo
@@ -2430,9 +2435,10 @@ textarea:focus-visible {
         justify-content: center;
     }
     
-    /* Sections */
+    /* Sections - keep full height */
     .full-page-section {
-        padding: 3rem 1.25rem 5rem;
+        min-height: 100svh;
+        padding: 3rem 1.25rem 70px;
     }
     
     /* Features */
@@ -2455,9 +2461,10 @@ textarea:focus-visible {
         padding: 2rem 1.5rem;
     }
     
-    /* Sections */
+    /* Sections - keep full height */
     .full-page-section {
-        padding: 3rem 1.5rem 5rem;
+        min-height: 100svh;
+        padding: 3rem 1.5rem 80px;
     }
     
     /* Features */
@@ -2489,9 +2496,10 @@ textarea:focus-visible {
         max-width: 80%;
     }
     
-    /* Sections */
+    /* Sections - keep full height */
     .full-page-section {
-        padding: 3.5rem 2rem 5.5rem;
+        min-height: 100svh;
+        padding: 3.5rem 2rem 90px;
     }
     
     /* About */
@@ -2549,9 +2557,10 @@ textarea:focus-visible {
         height: 400px;
     }
     
-    /* Sections */
+    /* Sections - keep full height */
     .full-page-section {
-        padding: 4rem 2rem 6rem;
+        min-height: 100svh;
+        padding: 4rem 2rem 100px;
     }
 }
 
@@ -2561,12 +2570,12 @@ textarea:focus-visible {
 @media (max-height: 500px) and (orientation: landscape) {
     /* Hero - reduce height for landscape phones */
     .hero-section {
-        min-height: auto;
+        min-height: 100svh;
     }
     
     .hero-rows-container {
         height: auto;
-        min-height: 100vh;
+        min-height: 100svh;
     }
     
     .hero-row-top {
