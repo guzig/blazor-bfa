@@ -6,13 +6,13 @@
 @inject IJSRuntime JS
 
 <section id="home" class="hero-section">
-    @* Video background *@
-    <div class="hero-video-background">
-        <video autoplay muted loop playsinline class="hero-bg-video">
-            <source src="videos/hero-video.mp4" type="video/mp4" />
-        </video>
-    </div>
-    <div class="hero-overlay"></div>
+@* Video background *@
+<div class="hero-video-background">
+    <video autoplay muted loop playsinline class="hero-bg-video">
+        <source src="videos/hero-video.mp4?v=2" type="video/mp4" />
+    </video>
+</div>
+<div class="hero-overlay"></div>
     
     @* Three horizontal rows: top, middle, bottom *@
     <div class="hero-rows-container">
@@ -29,26 +29,6 @@
                     <RadzenButton Text="@ViewModel.PrimaryButtonText" Icon="arrow_forward" Style="background: linear-gradient(135deg, #0070a0 0%, #00a8e8 100%); border:none; border-radius:9999px; padding:14px 28px; font-weight:500; color:white;" Click="ScrollToServices" />
                     <RadzenButton Text="@ViewModel.SecondaryButtonText" Icon="mail" Variant="Variant.Outlined" Style="border:2px solid rgba(255,255,255,0.8); color:white; border-radius:9999px; padding:14px 28px; font-weight:500; background:rgba(255,255,255,0.1);" Click="ScrollToContact" />
                 </RadzenStack>
-                
-                @* Stats below buttons *@
-                <div class="hero-stats-container">
-                    <div class="hero-stats-row">
-                        <div class="hero-stat-item">
-                            <span class="hero-stat-value">50+</span>
-                            <span class="hero-stat-label">Città Connesse</span>
-                        </div>
-                        <div class="hero-stat-item">
-                            <span class="hero-stat-value">2M</span>
-                            <span class="hero-stat-label">Cittadini Serviti</span>
-                        </div>
-                    </div>
-                    <div class="hero-stats-row hero-stats-center">
-                        <div class="hero-stat-item">
-                            <span class="hero-stat-value">99%</span>
-                            <span class="hero-stat-label">Efficienza</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         
