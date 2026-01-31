@@ -22,12 +22,15 @@
         @* Middle row - content *@
         <div class="hero-row-middle">
             <div class="hero-content">
-                <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label hero-label" Style="color:white;">@ViewModel.Label</RadzenText>
-                <h1 class="hero-title">@ViewModel.Title <span class="hero-title-highlight">@ViewModel.TitleHighlight</span></h1>
+            <div class="hero-label-container">
+                <span class="hero-label-line"></span>
+                <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label hero-label">@ViewModel.Label</RadzenText>
+            </div>
+            <h1 class="hero-title">@ViewModel.Title <span class="hero-title-highlight">@ViewModel.TitleHighlight</span></h1>
                 <RadzenText TextStyle="TextStyle.Body1" Class="hero-subtitle">@ViewModel.Subtitle</RadzenText>
                 <RadzenStack Orientation="Orientation.Horizontal" Gap="16px" Wrap="FlexWrap.Wrap" Class="hero-buttons" JustifyContent="JustifyContent.Start">
                     <RadzenButton Text="@ViewModel.PrimaryButtonText" Icon="arrow_forward" Class="hero-btn-primary" Click="ScrollToServices" />
-                    <RadzenButton Text="@ViewModel.SecondaryButtonText" Icon="mail" Variant="Variant.Outlined" Class="hero-btn-secondary" Click="ScrollToContact" />
+                    <RadzenButton Text="@ViewModel.SecondaryButtonText" Icon="phone" Class="hero-btn-secondary" Click="ScrollToContact" />
                 </RadzenStack>
             </div>
         </div>
@@ -46,34 +49,59 @@
 </section>
 
 <style>
-    .hero-label {
-        font-size: 0.875rem;
-    }
+.hero-label-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.hero-label-line {
+    width: 40px;
+    height: 3px;
+    background: #00a8e8;
+    border-radius: 2px;
+}
+
+.hero-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: #00a8e8 !important;
+    text-transform: uppercase;
+    margin: 0 !important;
+}
     
-    .hero-subtitle {
-        font-size: 1.25rem;
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 2rem;
-        line-height: 1.7;
-        max-width: 600px;
-    }
+.hero-subtitle {
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 2rem;
+    line-height: 1.7;
+    max-width: 600px;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+    font-weight: 400;
+}
     
     .hero-btn-primary {
         background: linear-gradient(135deg, #0070a0 0%, #00a8e8 100%);
         border: none;
         border-radius: 9999px;
         padding: 14px 28px;
-        font-weight: 500;
+        font-weight: 600;
         color: white;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
     
     .hero-btn-secondary {
-        border: 2px solid rgba(255, 255, 255, 0.8);
+        background: linear-gradient(135deg, #0070a0 0%, #00a8e8 100%);
+        border: none;
         color: white;
         border-radius: 9999px;
         padding: 14px 28px;
-        font-weight: 500;
-        background: rgba(255, 255, 255, 0.1);
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
     }
     
     @@media (max-width: 480px) {
