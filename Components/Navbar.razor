@@ -19,8 +19,6 @@
         </RadzenStack>
 
         <RadzenStack Orientation="Orientation.Horizontal" Gap="0.5rem" AlignItems="AlignItems.Center">
-            <RadzenButton ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Small" Icon="@ViewModel.CtaButtonIcon" Click="ScrollContact" Text="@ViewModel.CtaButtonText" class="cta-button-desktop" />
-            <RadzenButton ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Small" Icon="@ViewModel.CtaButtonIcon" Click="ScrollContact" class="cta-button-mobile" />
             <button class="mobile-menu-btn" @onclick="ToggleMobileMenu" aria-label="Toggle menu">
                 <RadzenIcon Icon="menu" Style="font-size:1.5rem; color:white;" />
             </button>
@@ -40,7 +38,6 @@
             {
                 <a href="@link.Href" @onclick="CloseMobileMenu">@link.Name</a>
             }
-            <RadzenButton ButtonStyle="ButtonStyle.Secondary" Size="ButtonSize.Medium" Icon="@ViewModel.CtaButtonIcon" Click="ScrollContactAndClose" Text="@ViewModel.CtaButtonText" Style="margin-top:1rem;" />
         </nav>
     </div>
 </div>
