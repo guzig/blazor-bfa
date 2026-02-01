@@ -1221,35 +1221,35 @@ header.rz-background-color-primary:hover {
 .navbar-brand,
 header .navbar-brand,
 header a.navbar-brand {
-    color: #00a8e8 !important;
+    color: #ffffff !important;
     font-weight: 700;
     font-size: 1.3rem;
     text-decoration: none;
 }
 
-/* Nav links - Same color as BFA Consulting (#00a8e8) */
+/* Nav links - White text */
 .nav-link {
-    color: #00a8e8 !important;
+    color: #ffffff !important;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 400;
 }
 
-/* All header links - Same color as BFA Consulting (except navbar-brand) */
+/* All header links - White text (except navbar-brand) */
 header a:not(.navbar-brand),
 header .rz-link,
 header .rz-button.rz-variant-text {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    color: #00a8e8 !important;
-    font-weight: 600;
+    color: #ffffff !important;
+    font-weight: 400;
 }
 
-/* Nav links hover effect - only text change */
+/* Nav links hover effect - cyan color on hover */
 header a[href^="#"]:hover,
 header .rz-link:hover {
     opacity: 1;
-    color: #00bfff !important;
+    color: #00a8e8 !important;
     transform: none;
     background: transparent !important;
     text-decoration: underline;
