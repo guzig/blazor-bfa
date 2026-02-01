@@ -1206,42 +1206,42 @@ section#contact .rz-card {
 }
 
 header.rz-background-color-primary {
-    background: rgba(0, 30, 50, 0.95) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1) !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 header.rz-background-color-primary:hover {
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
 }
 
-/* Navbar brand - White text on dark background */
+/* Navbar brand - Dark text on light background */
 .navbar-brand,
 header .navbar-brand,
 header a.navbar-brand {
-    color: #ffffff !important;
+    color: #0000FF !important;
     font-weight: 700;
     font-size: 1.3rem;
     text-decoration: none;
 }
 
-/* Nav links - White text */
+/* Nav links - Dark text */
 .nav-link {
-    color: #ffffff !important;
+    color: #0000FF !important;
     text-decoration: none;
     font-weight: 400;
 }
 
-/* All header links - White text (except navbar-brand) */
+/* All header links - Dark text (except navbar-brand) */
 header a:not(.navbar-brand),
 header .rz-link,
 header .rz-button.rz-variant-text {
     background: transparent !important;
     border: none !important;
     box-shadow: none !important;
-    color: #ffffff !important;
+    color: #0000FF !important;
     font-weight: 400;
 }
 
