@@ -13,8 +13,12 @@
                 </RadzenColumn>
                 <RadzenColumn Size="12" SizeMd="7">
                     <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color: var(--primary-color);">@ViewModel.SectionLabel</RadzenText>
-                    <RadzenText TextStyle="TextStyle.H3" Class="about-title" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; margin-bottom:1rem; color:var(--text-dark);">@ViewModel.Title</RadzenText>
+                    <RadzenText TextStyle="TextStyle.H3" Class="about-title" Style="font-family:'Plus Jakarta Sans',sans-serif; font-weight:800; margin-bottom:1rem; color:var(--text-dark);">@ViewModel.Title</RadzenText>
                     <RadzenText Text="@ViewModel.Description" Class="about-description" />
+                    <a href="@ViewModel.CtaHref" class="about-cta">
+                        @ViewModel.CtaText
+                        <span class="cta-arrow" aria-hidden="true">→</span>
+                    </a>
                 </RadzenColumn>
             </RadzenRow>
         </RadzenCard>
@@ -47,6 +51,11 @@
 </section>
 
 <style>
+    /* Scope Plus Jakarta Sans to About section only */
+    .about-section {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+    }
+
     .about-main-card {
         background: white;
         box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.1);
@@ -61,6 +70,7 @@
     }
     
     .about-title {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
         font-size: 2.25rem;
     }
     
@@ -68,29 +78,80 @@
         color: var(--text-muted);
         line-height: 1.75;
         font-size: 1rem;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-weight: 400;
+    }
+
+    /* CTA */
+    .about-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        padding: 0.85rem 1.75rem;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #fff;
+        background: var(--primary-color);
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: background 0.25s ease, transform 0.15s ease;
+    }
+
+    .about-cta:hover,
+    .about-cta:focus-visible {
+        background: var(--primary-hover);
+        transform: translateY(-2px);
+        color: #fff;
+    }
+
+    .cta-arrow {
+        font-size: 1.15rem;
+        transition: transform 0.2s ease;
+    }
+
+    .about-cta:hover .cta-arrow {
+        transform: translateX(4px);
+    }
+
+    /* Stats spacing */
+    .about-stats-container {
+        margin-top: 3.5rem;
+    }
+
+    .about-stat-card {
+        padding: 1.5rem 1rem;
     }
     
     @@media (max-width: 480px) {
         .about-container {
             padding: 0 0.5rem !important;
         }
-        
+
         .about-main-card {
             padding: 1rem !important;
         }
-        
+
         .about-title {
             font-size: 1.5rem !important;
         }
-        
+
         .about-description {
             font-size: 0.9rem !important;
             line-height: 1.6 !important;
         }
-        
+
+        .about-cta {
+            width: 100%;
+            justify-content: center;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.875rem;
+        }
+
         .about-stats-container {
             padding: 0.75rem !important;
-            margin-top: 1.5rem !important;
+            margin-top: 2.5rem !important;
         }
         
         .about-stat-card {
@@ -124,9 +185,13 @@
         .about-container {
             padding: 0 1rem !important;
         }
-        
+
         .about-title {
             font-size: 1.75rem !important;
+        }
+
+        .about-stats-container {
+            margin-top: 3rem !important;
         }
     }
 </style>
