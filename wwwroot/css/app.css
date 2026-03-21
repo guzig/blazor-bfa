@@ -695,7 +695,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* About Section with integrated Stats */
 .about-section {
-    background: var(--bg-about);
+    background: transparent;
 }
 
 .about-section.full-page-section {
@@ -703,7 +703,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -841,9 +841,9 @@ h1, h2, h3, h4, h5, h6 {
    SECTION BACKGROUNDS - SMART CITY STYLE
    ======================================== */
 
-/* About Section - Pure white */
+/* About Section - transparent to show background video */
 section#about {
-    background: #ffffff;
+    background: transparent;
     position: relative;
 }
 
@@ -872,7 +872,6 @@ section#contact {
 }
 
 /* Ensure content is above decorative backgrounds */
-section#about > *,
 section#services > *,
 section#projects > *,
 section#testimonials > *,
