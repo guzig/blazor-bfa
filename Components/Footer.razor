@@ -3,58 +3,48 @@
 @using BlazorBFA.ViewModels
 @inject FooterViewModel ViewModel
 
-<footer class="footer-new">
-    <div class="footer-container-new">
-        @* Main footer content *@
-        <div class="footer-main">
-            @* Brand column *@
-            <div class="footer-brand">
-                <div class="footer-logo-new">
-                    <RadzenIcon Icon="bolt" Style="font-size:28px; color:var(--primary-light);" />
-                    <span>@ViewModel.CompanyName</span>
-                </div>
-                <RadzenText Style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem; max-width:300px;">
-                    @ViewModel.CompanyDescription
-                </RadzenText>
-                
-                @* Social icons *@
-                <div class="footer-social">
+<footer class="lp-footer">
+    <div class="lp-container lp-footer__inner">
+        <!-- Brand -->
+        <div class="lp-footer__brand">
+            <a href="/" class="lp-nav__brand" style="color:#fff;">
+                @ViewModel.CompanyName.Split(' ')[0]
+                <span>@(ViewModel.CompanyName.Contains(' ') ? ViewModel.CompanyName[(ViewModel.CompanyName.IndexOf(' ') + 1)..] : "")</span>
+            </a>
+            <p>@ViewModel.CompanyDescription</p>
+            @if (ViewModel.SocialLinks?.Any() == true)
+            {
+                <div style="display:flex; gap:.75rem; margin-top:1.25rem;">
                     @foreach (var social in ViewModel.SocialLinks)
                     {
-                        <a href="@social.Href" target="_blank" class="social-icon">
+                        <a href="@social.Href" target="_blank" style="width:36px; height:36px; border-radius:50%; background:rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.6); transition:background .15s;" class="lp-footer__social">
                             <RadzenIcon Icon="@social.Icon" Style="font-size:18px;" />
                         </a>
                     }
                 </div>
-            </div>
-            
-            @* Link columns *@
-            @foreach (var group in ViewModel.LinkGroups)
-            {
-                <div class="footer-links-column">
-                    <RadzenText Style="font-weight:600; color:white; font-size:1rem; margin-bottom:1.25rem;">
-                        @group.Title
-                    </RadzenText>
-                    <ul class="footer-links-list">
-                        @foreach (var link in group.Links)
-                        {
-                            <li>
-                                <a href="@link.Href" class="footer-link-new">@link.Text</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
             }
         </div>
-        
-        @* Footer bottom *@
-        <div class="footer-bottom">
-            <RadzenText Style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
-                © @ViewModel.CurrentYear @ViewModel.CompanyName. Tutti i diritti riservati.
-            </RadzenText>
-            <RadzenText Style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
-                Realizzato con <span style="color:#ef4444;">❤</span> in Italia
-            </RadzenText>
+
+        <!-- Link groups -->
+        @foreach (var group in ViewModel.LinkGroups)
+        {
+            <div class="lp-footer__links">
+                <strong>@group.Title</strong>
+                @foreach (var link in group.Links)
+                {
+                    <a href="@link.Href">@link.Text</a>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="lp-footer__bottom">
+        <div class="lp-container">
+            © @ViewModel.CurrentYear @ViewModel.CompanyName – Tutti i diritti riservati
         </div>
     </div>
 </footer>
+
+<style>
+    .lp-footer__social:hover { background: rgba(255,255,255,.2) !important; color: #fff !important; }
+</style>

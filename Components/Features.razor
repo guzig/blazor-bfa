@@ -4,185 +4,68 @@
 @inject FeaturesViewModel ViewModel
 @inject NavigationManager NavigationManager
 
-<section id="features" class="features-section full-page-section">
-    <div class="features-container">
-        <RadzenRow AlignItems="AlignItems.Center" Gap="4rem" JustifyContent="JustifyContent.Center">
-            @* Left content *@
-            <RadzenColumn Size="12" SizeLg="5">
-                <div class="features-content">
-                    @* Badge *@
-                    <div class="features-badge">
-                        <RadzenIcon Icon="star" Style="font-size:16px;" />
-                        <span>@ViewModel.BadgeText</span>
+<section id="features" class="lp-section">
+    <div class="lp-container">
+        <div class="lp-section-header">
+            <div class="lp-features__badge">
+                <RadzenIcon Icon="star" Style="font-size:14px; color:#0070a0;" />
+                <span>@ViewModel.BadgeText</span>
+            </div>
+            <RadzenText TextStyle="TextStyle.H3" class="lp-heading" Style="margin-top:.75rem;">
+                @ViewModel.Title <span class="lp-accent">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd
+            </RadzenText>
+            <RadzenText class="lp-body lp-section-header__sub" Text="@ViewModel.Description" />
+        </div>
+
+        <!-- Steps -->
+        <div class="lp-steps">
+            @{ int stepNum = 1; }
+            @foreach (var feature in ViewModel.Features)
+            {
+                <div class="lp-step">
+                    <div class="lp-step__num">@stepNum.ToString("D2")</div>
+                    <div class="lp-step__content">
+                        <h3>@feature.Title</h3>
+                        <p>@feature.Description</p>
                     </div>
-
-                    @* Title *@
-                    <RadzenText TextStyle="TextStyle.H2" Class="features-title">
-                        @ViewModel.Title<br />
-                        <span class="features-title-highlight">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd
-                    </RadzenText>
-
-                    @* Description *@
-                    <RadzenText Class="features-description">
-                        @ViewModel.Description
-                    </RadzenText>
-
-                    @* Features list *@
-                    <RadzenStack Gap="24px" Style="margin-bottom:2.5rem;">
-                        @foreach (var feature in ViewModel.Features)
-                        {
-                            <div class="feature-item">
-                                <div class="feature-icon" style="@($"background:{feature.IconBg};")">
-                                    <RadzenIcon Icon="@feature.Icon" Style="@($"color:{feature.IconColor}; font-size:22px;")" />
-                                </div>
-                                <div class="feature-text">
-                                    <RadzenText Style="font-weight:600; color:white; font-size:1.1rem; margin-bottom:4px;">@feature.Title</RadzenText>
-                                    <RadzenText Style="color:rgba(255,255,255,0.65); font-size:0.95rem; line-height:1.6;">@feature.Description</RadzenText>
-                                </div>
-                            </div>
-                        }
-                    </RadzenStack>
-
-                    @* CTA Button *@
-                    <RadzenButton Text="@ViewModel.ButtonText" Icon="@ViewModel.ButtonIcon" 
-                                  Class="features-cta-btn"
-                                  Click="@(() => NavigationManager.NavigateTo("#contact"))" />
                 </div>
-            </RadzenColumn>
+                @if (stepNum < ViewModel.Features.Count)
+                {
+                    <div class="lp-step__connector"></div>
+                }
+                stepNum++;
+            }
+        </div>
 
-            @* Right image with floating badges *@
-            <RadzenColumn Size="12" SizeLg="6">
-                <div class="features-image-container">
-                    @* Main image *@
-                    <div class="features-image-wrapper">
-                        <RadzenImage Path="@ViewModel.ImagePath" Alt="@ViewModel.ImageAlt" Class="features-main-image" />
-                        
-                        @* Overlay gradient *@
-                        <div class="features-image-overlay"></div>
+        <!-- Feature highlights grid -->
+        <div class="lp-features-grid">
+            @foreach (var feature in ViewModel.Features)
+            {
+                <div class="lp-feature">
+                    <div class="lp-feature__icon">
+                        <RadzenIcon Icon="@feature.Icon" Style="@($"font-size:28px; color:{feature.IconColor};")" />
                     </div>
-
-                    @* Floating badges *@
-                    @foreach (var badge in ViewModel.FloatingBadges)
-                    {
-                        <div class="floating-badge @badge.PositionClass">
-                            <RadzenIcon Icon="@badge.Icon" Style="@($"color:{badge.IconColor}; font-size:18px;")" />
-                            <span>@badge.Text</span>
-                        </div>
-                    }
+                    <h4>@feature.Title</h4>
+                    <p>@feature.Description</p>
                 </div>
-            </RadzenColumn>
-        </RadzenRow>
+            }
+        </div>
+
+        <div style="text-align:center; margin-top:3rem;">
+            <RadzenButton Text="@ViewModel.ButtonText" Icon="@ViewModel.ButtonIcon"
+                          class="lp-btn lp-btn--primary"
+                          Style="border-radius:9999px; padding:.875rem 2rem; font-weight:700;"
+                          Click="@(() => NavigationManager.NavigateTo("#contact"))" />
+        </div>
     </div>
-    
-    <ScrollIndicator TargetSection="projects" Text="I Nostri Progetti" />
 </section>
 
 <style>
-    .features-title {
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 700;
-        font-size: 3.25rem;
-        line-height: 1.15;
-        margin-bottom: 1.5rem;
-        color: white;
-    }
-    
-    .features-title-highlight {
-        color: var(--primary-light);
-    }
-    
-    .features-description {
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 1.2rem;
-        line-height: 1.8;
-        margin-bottom: 2.5rem;
-        max-width: 500px;
-    }
-    
-    .features-cta-btn {
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-        border: none;
-        border-radius: 14px;
-        padding: 16px 32px;
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-    
-    @@media (max-width: 480px) {
-        .features-title {
-            font-size: 1.75rem !important;
-            line-height: 1.25 !important;
-            margin-bottom: 1rem !important;
-        }
-        
-        .features-description {
-            font-size: 0.95rem !important;
-            line-height: 1.6 !important;
-            margin-bottom: 1.5rem !important;
-        }
-        
-        .features-cta-btn {
-            padding: 12px 24px !important;
-            font-size: 1rem !important;
-            width: 100%;
-        }
-        
-        .feature-item {
-            gap: 12px !important;
-        }
-        
-        .feature-icon {
-            width: 40px !important;
-            height: 40px !important;
-        }
-        
-        .feature-text [style*="font-size:1.1rem"] {
-            font-size: 1rem !important;
-        }
-        
-        .feature-text [style*="font-size:0.95rem"] {
-            font-size: 0.85rem !important;
-        }
-        
-        .features-badge {
-            font-size: 0.85rem !important;
-            padding: 8px 14px !important;
-        }
-    }
-    
-    @@media (min-width: 481px) and (max-width: 768px) {
-        .features-title {
-            font-size: 2rem !important;
-        }
-        
-        .features-description {
-            font-size: 1rem !important;
-        }
-        
-        .features-content {
-            text-align: center;
-        }
-        
-        .features-badge {
-            justify-content: center;
-        }
-        
-        .features-description {
-            max-width: 100% !important;
-        }
-    }
-    
-    @@media (min-width: 769px) and (max-width: 991px) {
-        .features-title {
-            font-size: 2.5rem !important;
-        }
-        
-        .features-content {
-            text-align: center;
-        }
-        
-        .features-badge {
-            display: inline-flex;
-        }
+    .lp-features__badge {
+        display: inline-flex; align-items: center; gap: .4rem;
+        background: #eff6ff; border: 1px solid #bfdbfe;
+        border-radius: 9999px; padding: .35rem .9rem;
+        font-size: .8rem; font-weight: 600; color: var(--lp-blue);
+        margin-bottom: .5rem;
     }
 </style>
