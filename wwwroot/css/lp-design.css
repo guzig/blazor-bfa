@@ -75,8 +75,8 @@
     box-shadow: 0 1px 0 var(--lp-border);
     padding: .875rem 0;
 }
-.lp-nav--scrolled .lp-nav__links a   { color: var(--lp-ink); }
-.lp-nav--scrolled .lp-nav__links a:hover { color: var(--lp-blue); }
+.lp-nav--scrolled .lp-nav__links a   { color: var(--lp-ink) !important; }
+.lp-nav--scrolled .lp-nav__links a:hover { color: var(--lp-blue) !important; }
 .lp-nav--scrolled .lp-nav__brand     { color: var(--lp-ink) !important; }
 .lp-nav--scrolled .lp-nav__brand span { color: var(--lp-blue) !important; }
 .lp-nav__inner {
@@ -90,7 +90,7 @@
 }
 .lp-nav__brand span { color: #7dd3fc; }
 .lp-nav__links { display: flex; gap: 2rem; margin-left: auto; }
-.lp-nav__links a { text-decoration: none; color: #fff; font-weight: 700; font-size: .925rem; transition: color .15s, opacity .15s; font-family: var(--lp-font); }
+.lp-nav__links a { text-decoration: none !important; color: #fff !important; font-weight: 700 !important; font-size: .925rem; transition: opacity .15s; font-family: var(--lp-font); }
 .lp-nav__links a:hover { opacity: .75; }
 .lp-nav__burger {
     display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: .5rem; margin-left: auto;
@@ -228,20 +228,34 @@ h2:focus, h2:focus-visible { outline: none; }
 .lp-section--dark  { background: var(--lp-ink); }
 .lp-section > .lp-container { width: 100%; }
 
-/* Scroll hint chevron at bottom of each section */
+/* Scroll hint — mouse + wheel animato in ogni sezione (uguale all'hero) */
+.lp-section::before {
+    content: 'Scopri';
+    position: absolute; bottom: 5.5rem; left: 50%;
+    transform: translateX(-50%);
+    font-size: .7rem; color: rgba(0,0,0,.22);
+    letter-spacing: .12em; text-transform: uppercase;
+    font-family: var(--lp-font); white-space: nowrap;
+    pointer-events: none;
+}
 .lp-section::after {
     content: '';
-    position: absolute; bottom: 1.75rem; left: 50%;
-    width: 14px; height: 14px;
-    border-right: 2.5px solid rgba(0,0,0,.18);
-    border-bottom: 2.5px solid rgba(0,0,0,.18);
-    transform: translateX(-50%) rotate(45deg);
-    animation: chevronBounce .9s ease-in-out infinite alternate;
+    position: absolute; bottom: 2.5rem; left: 50%;
+    transform: translateX(-50%);
+    width: 26px; height: 42px;
+    border: 2px solid rgba(0,0,0,.15); border-radius: 13px;
+    background: radial-gradient(ellipse 4px 7px at 50% 0, var(--lp-blue) 0%, transparent 100%) no-repeat;
+    background-position: center 8px;
+    animation: scrollWheelSec 1.5s ease-in-out infinite;
+    pointer-events: none;
 }
-.lp-section--alt::after  { border-color: rgba(0,0,0,.15); }
-.lp-section--dark::after { border-color: rgba(255,255,255,.25); }
-section#contact::after   { display: none; }
-@keyframes chevronBounce { from { bottom: 1.75rem; } to { bottom: 1.25rem; } }
+.lp-section--dark::before { color: rgba(255,255,255,.35); }
+.lp-section--dark::after  { border-color: rgba(255,255,255,.25); background-image: radial-gradient(ellipse 4px 7px at 50% 0, #00bfff 0%, transparent 100%); }
+section#contact::before, section#contact::after { display: none; }
+@keyframes scrollWheelSec {
+    0%, 100% { background-position: center 8px;  opacity: 1; }
+    55%       { background-position: center 20px; opacity: .35; }
+}
 
 /* ── ABOUT ── */
 .lp-about {
@@ -351,10 +365,13 @@ section#contact::after   { display: none; }
     100% { transform: translateX(-50%); }
 }
 
-/* ── TESTIMONIALS ── */
-.lp-testimonials {
-    display: grid; grid-template-columns: 1fr 1.15fr 1fr; gap: 1.5rem; align-items: start;
+/* ── TESTIMONIALS CAROUSEL ── */
+.lp-testimonials-carousel { overflow: hidden; position: relative; }
+.lp-testimonials-track {
+    display: flex; gap: 1.5rem; padding: 0.5rem 1.5rem;
+    animation: lp-scroll 40s linear infinite;
 }
+.lp-testimonials-track:hover { animation-play-state: paused; }
 .lp-testimonial {
     background: var(--lp-surface); border: 1px solid var(--lp-border);
     border-radius: var(--lp-radius-lg); padding: 2rem;

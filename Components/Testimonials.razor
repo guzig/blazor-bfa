@@ -11,34 +11,41 @@
                 Cosa dicono di <span class="lp-accent">noi</span>
             </RadzenText>
         </div>
+    </div>
 
-        <div class="lp-testimonials">
-            @{ int idx = 0; }
-            @foreach (var testimonial in ViewModel.Testimonials)
-            {
-                bool featured = (idx == 1);
-                string cardClass = featured ? "lp-testimonial lp-testimonial--featured" : "lp-testimonial";
-                string initials = testimonial.Name?.Length >= 2
-                    ? testimonial.Name[..2].ToUpper()
-                    : (testimonial.Name ?? "??").ToUpper();
+    <div style="width:100%; margin-top:2.5rem;">
+        <div class="lp-testimonials-carousel">
+            <div class="lp-testimonials-track">
+                @foreach (var pass in Enumerable.Range(0, 2))
+                {
+                    int idx = 0;
+                    foreach (var testimonial in ViewModel.Testimonials)
+                    {
+                        bool featured = (idx == 1);
+                        string cardClass = featured ? "lp-testimonial lp-testimonial--featured" : "lp-testimonial";
+                        string initials = testimonial.Name?.Length >= 2
+                            ? testimonial.Name[..2].ToUpper()
+                            : (testimonial.Name ?? "??").ToUpper();
 
-                <RadzenCard Class="@cardClass" Style="padding:2rem;">
-                    <div class="lp-testimonial__stars">
-                        @for (int i = 0; i < testimonial.Rating; i++) { <span>★</span> }
-                        @for (int i = testimonial.Rating; i < 5; i++) { <span style="opacity:.3;">★</span> }
-                    </div>
-                    <RadzenText Text="@testimonial.Content" Class="lp-testimonial__text" />
-                    <div class="lp-testimonial__author">
-                        <div class="lp-testimonial__avatar">@initials</div>
-                        <div>
-                            <strong style="display:block; font-size:.9rem; color:@(featured ? "#fff" : "var(--lp-ink)");">@testimonial.Name</strong>
-                            <span style="font-size:.8rem; color:@(featured ? "rgba(255,255,255,.7)" : "var(--lp-ink-muted)");">@testimonial.Role</span>
-                        </div>
-                    </div>
-                </RadzenCard>
+                        <RadzenCard Class="@cardClass" Style="padding:2rem; flex-shrink:0; width:320px;">
+                            <div class="lp-testimonial__stars">
+                                @for (int i = 0; i < testimonial.Rating; i++) { <span>★</span> }
+                                @for (int i = testimonial.Rating; i < 5; i++) { <span style="opacity:.3;">★</span> }
+                            </div>
+                            <RadzenText Text="@testimonial.Content" Class="lp-testimonial__text" />
+                            <div class="lp-testimonial__author">
+                                <div class="lp-testimonial__avatar">@initials</div>
+                                <div>
+                                    <strong style="display:block; font-size:.9rem; color:@(featured ? "#fff" : "var(--lp-ink)");">@testimonial.Name</strong>
+                                    <span style="font-size:.8rem; color:@(featured ? "rgba(255,255,255,.7)" : "var(--lp-ink-muted)");">@testimonial.Role</span>
+                                </div>
+                            </div>
+                        </RadzenCard>
 
-                idx++;
-            }
+                        idx++;
+                    }
+                }
+            </div>
         </div>
     </div>
 </section>
