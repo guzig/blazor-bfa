@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "blazor-bfa",
+      "runtimeExecutable": "dotnet",
+      "runtimeArgs": ["run", "--project", "C:/Users/T/Desktop/OKComputer_Smart_City_Landing_Page_Build/blazor-bfa/BlazorBFA.csproj"],
+      "port": 5000
+    }
+  ]
+}
