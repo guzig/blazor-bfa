@@ -66,10 +66,10 @@
 .lp-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 1.25rem 0;
-    transition: background .3s, backdrop-filter .3s, box-shadow .3s;
+    transition: background .3s, box-shadow .3s, padding .3s;
 }
 .lp-nav--scrolled {
-    background: rgba(255,255,255,.95);
+    background: rgba(255,255,255,.97);
     backdrop-filter: blur(12px);
     box-shadow: 0 1px 0 var(--lp-border);
     padding: .875rem 0;
@@ -193,6 +193,38 @@ h2:focus, h2:focus-visible { outline: none; }
 .lp-hero__stat strong { display: block; font-size: 1.75rem; font-weight: 800; color: #fff; line-height: 1; font-family: var(--lp-font); }
 .lp-hero__stat span   { display: block; font-size: .8rem; color: rgba(255,255,255,.6); margin-top: .35rem; font-weight: 500; }
 .lp-hero__stat-sep  { width: 1px; height: 40px; background: rgba(255,255,255,.15); flex-shrink: 0; }
+
+/* ── SCROLL INDICATOR ── */
+.lp-hero__scroll-indicator {
+    position: absolute; bottom: 90px; left: 50%; transform: translateX(-50%);
+    z-index: 3; display: flex; flex-direction: column; align-items: center;
+    gap: 8px; cursor: pointer; opacity: .8; transition: opacity .2s;
+}
+.lp-hero__scroll-indicator:hover { opacity: 1; }
+.scroll-mouse {
+    width: 26px; height: 42px;
+    border: 2px solid rgba(255,255,255,.5); border-radius: 13px;
+    display: flex; justify-content: center; padding-top: 8px;
+}
+.scroll-wheel {
+    width: 4px; height: 8px;
+    background: #00bfff; border-radius: 2px;
+    animation: scrollWheel 1.5s ease-in-out infinite;
+}
+@keyframes scrollWheel {
+    0%, 100% { transform: translateY(0); opacity: 1; }
+    50%       { transform: translateY(8px); opacity: .3; }
+}
+.scroll-text {
+    font-size: .75rem; color: rgba(255,255,255,.6);
+    letter-spacing: .1em; text-transform: uppercase; font-family: var(--lp-font);
+}
+
+/* ── FULL PAGE SECTIONS ── */
+.lp-section        { min-height: 100vh; padding: 6rem 0; display: flex; align-items: center; background: var(--lp-surface); }
+.lp-section--alt   { background: var(--lp-surface-2); }
+.lp-section--dark  { background: var(--lp-ink); }
+.lp-section > .lp-container { width: 100%; }
 
 /* ── ABOUT ── */
 .lp-about {

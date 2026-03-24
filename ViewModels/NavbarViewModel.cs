@@ -14,7 +14,7 @@ public class NavbarViewModel
         new("Contatti", "#contact")
     ];
     
-    public string CtaButtonText { get; } = "Preventivo";
+    public string CtaButtonText { get; } = "Contattaci";
     public string CtaButtonIcon { get; } = "call";
 }
 

@@ -21,6 +21,13 @@
         </div>
     </div>
 
+    <div class="lp-hero__scroll-indicator" @onclick="ScrollDown">
+        <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+        </div>
+        <span class="scroll-text">Scopri</span>
+    </div>
+
     <div class="lp-hero__stats">
         <div class="lp-container lp-hero__stats-row">
             <div class="lp-hero__stat"><strong>50+</strong><span>Comuni Serviti</span></div>
@@ -33,3 +40,10 @@
         </div>
     </div>
 </section>
+
+@code {
+    private async Task ScrollDown()
+    {
+        await JS.InvokeVoidAsync("scrollToSection", "about");
+    }
+}
