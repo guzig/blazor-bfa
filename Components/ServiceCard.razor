@@ -2,7 +2,7 @@
 @using Radzen.Blazor
 @using BlazorBFA.ViewModels
 
-<div class="lp-service-card" style="border-top:3px solid @Service.Color;">
+<div class="lp-service-card" style="border-top:3px solid @Service.Color; background:@(Service.Color + "0d");">
     <div class="lp-service-card__icon" style="background:@(Service.Color + "22");">
         <RadzenIcon Icon="@GetIcon(Service.Icon)" Style="@($"color:{Service.Color}; font-size:22px;")" />
     </div>
