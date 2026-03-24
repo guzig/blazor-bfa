@@ -55,10 +55,7 @@
 .lp-btn--ghost:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); }
 .lp-btn--sm { padding: .6rem 1.25rem; font-size: .875rem; }
 
-/* ── Sections ── */
-.lp-section       { padding: 6rem 0; background: var(--lp-surface); }
-.lp-section--alt  { background: var(--lp-surface-2); }
-.lp-section--dark { background: var(--lp-ink); }
+/* ── Sections ── (full definitions in FULL PAGE SECTIONS below) ── */
 .lp-section-header { text-align: center; max-width: 640px; margin: 0 auto 4rem; }
 .lp-section-header__sub { margin-top: 1rem; }
 
@@ -226,10 +223,25 @@ h2:focus, h2:focus-visible { outline: none; }
 }
 
 /* ── FULL PAGE SECTIONS ── */
-.lp-section        { min-height: 100vh; padding: 6rem 0; display: flex; align-items: center; background: var(--lp-surface); }
+.lp-section        { min-height: 100vh; padding: 6rem 0; display: flex; flex-direction: column; justify-content: center; background: var(--lp-surface); position: relative; }
 .lp-section--alt   { background: var(--lp-surface-2); }
 .lp-section--dark  { background: var(--lp-ink); }
 .lp-section > .lp-container { width: 100%; }
+
+/* Scroll hint chevron at bottom of each section */
+.lp-section::after {
+    content: '';
+    position: absolute; bottom: 1.75rem; left: 50%;
+    width: 14px; height: 14px;
+    border-right: 2.5px solid rgba(0,0,0,.18);
+    border-bottom: 2.5px solid rgba(0,0,0,.18);
+    transform: translateX(-50%) rotate(45deg);
+    animation: chevronBounce .9s ease-in-out infinite alternate;
+}
+.lp-section--alt::after  { border-color: rgba(0,0,0,.15); }
+.lp-section--dark::after { border-color: rgba(255,255,255,.25); }
+section#contact::after   { display: none; }
+@keyframes chevronBounce { from { bottom: 1.75rem; } to { bottom: 1.25rem; } }
 
 /* ── ABOUT ── */
 .lp-about {
