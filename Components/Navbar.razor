@@ -11,23 +11,32 @@
                 <a href="@link.Href">@link.Name</a>
             }
         </nav>
-        <a href="#contact" class="lp-btn lp-btn--sm lp-btn--primary lp-nav__cta">Contattaci</a>
+        <a href="#contact" class="lp-btn lp-btn--sm lp-btn--primary lp-nav__cta">@ViewModel.CtaButtonText</a>
         <button class="lp-nav__burger" @onclick="ToggleMenu" aria-label="menu">
             <span></span><span></span><span></span>
         </button>
     </div>
-    @if (menuOpen)
-    {
-        <div class="lp-nav__overlay" @onclick="CloseMenu"></div>
-        <nav class="lp-nav__mobile">
+</header>
+
+@if (menuOpen)
+{
+    <div class="lp-drawer__overlay" @onclick="CloseMenu"></div>
+    <div class="lp-drawer">
+        <div class="lp-drawer__header">
+            <span class="lp-nav__brand" style="color:var(--lp-ink);">@brandFirst <span>@brandRest</span></span>
+            <button class="lp-drawer__close" @onclick="CloseMenu" aria-label="chiudi">✕</button>
+        </div>
+        <nav class="lp-drawer__links">
             @foreach (var link in ViewModel.NavLinks)
             {
                 <a href="@link.Href" @onclick="CloseMenu">@link.Name</a>
             }
-            <a href="#contact" class="lp-btn lp-btn--sm lp-btn--primary" style="margin-top:.5rem;border-radius:9999px;" @onclick="CloseMenu">Contattaci</a>
         </nav>
-    }
-</header>
+        <div class="lp-drawer__footer">
+            <a href="#contact" class="lp-btn lp-btn--primary" style="width:100%;justify-content:center;border-radius:9999px;" @onclick="CloseMenu">@ViewModel.CtaButtonText</a>
+        </div>
+    </div>
+}
 
 @code {
     bool scrolled  = false;
