@@ -5,56 +5,50 @@
 
 <footer class="footer-new">
     <div class="footer-container-new">
-        @* Main footer content *@
         <div class="footer-main">
-            @* Brand column *@
+            @* Brand *@
             <div class="footer-brand">
                 <div class="footer-logo-new">
-                    <RadzenIcon Icon="bolt" Style="font-size:28px; color:var(--primary-light);" />
+                    <RadzenIcon Icon="bolt" Style="font-size:26px;" />
                     <span>@ViewModel.CompanyName</span>
                 </div>
-                <RadzenText Style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem; max-width:300px;">
+                <p style="color:rgba(255,255,255,0.55); font-size:0.9rem; line-height:1.7; margin-bottom:1.25rem; max-width:280px; font-family:'Plus Jakarta Sans',sans-serif;">
                     @ViewModel.CompanyDescription
-                </RadzenText>
-                
-                @* Social icons *@
+                </p>
                 <div class="footer-social">
                     @foreach (var social in ViewModel.SocialLinks)
                     {
-                        <a href="@social.Href" target="_blank" class="social-icon">
-                            <RadzenIcon Icon="@social.Icon" Style="font-size:18px;" />
+                        <a href="@social.Href" target="_blank" class="social-icon" aria-label="@social.Icon">
+                            <RadzenIcon Icon="@social.Icon" Style="font-size:16px;" />
                         </a>
                     }
                 </div>
             </div>
-            
-            @* Link columns *@
+
+            @* Link groups *@
             @foreach (var group in ViewModel.LinkGroups)
             {
                 <div class="footer-links-column">
-                    <RadzenText Style="font-weight:600; color:white; font-size:1rem; margin-bottom:1.25rem;">
+                    <p style="font-weight:600; color:rgba(255,255,255,0.9); font-size:0.9rem; margin-bottom:1.25rem; font-family:'Plus Jakarta Sans',sans-serif; letter-spacing:0.03em;">
                         @group.Title
-                    </RadzenText>
+                    </p>
                     <ul class="footer-links-list">
                         @foreach (var link in group.Links)
                         {
-                            <li>
-                                <a href="@link.Href" class="footer-link-new">@link.Text</a>
-                            </li>
+                            <li><a href="@link.Href" class="footer-link-new">@link.Text</a></li>
                         }
                     </ul>
                 </div>
             }
         </div>
-        
-        @* Footer bottom *@
+
         <div class="footer-bottom">
-            <RadzenText Style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
+            <p style="color:rgba(255,255,255,0.4); font-size:0.825rem; font-family:'Plus Jakarta Sans',sans-serif;">
                 © @ViewModel.CurrentYear @ViewModel.CompanyName. Tutti i diritti riservati.
-            </RadzenText>
-            <RadzenText Style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
-                Realizzato con <span style="color:#ef4444;">❤</span> in Italia
-            </RadzenText>
+            </p>
+            <p style="color:rgba(255,255,255,0.4); font-size:0.825rem; font-family:'Plus Jakarta Sans',sans-serif;">
+                Realizzato con <span style="color:#F87171;">❤</span> in Italia
+            </p>
         </div>
     </div>
 </footer>

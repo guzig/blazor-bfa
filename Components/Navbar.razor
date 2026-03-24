@@ -5,205 +5,201 @@
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
 
-<header class="rz-background-color-primary rz-shadow-4 site-header">
-    <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.SpaceBetween" Style="width:100%;">
-        <RadzenLink Path="/" Class="navbar-brand">
-            @ViewModel.BrandName
-        </RadzenLink>
+<header class="site-header @(isScrolled ? "scrolled" : "")">
+    <div style="max-width:1280px; margin:0 auto; width:100%; display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+        <a href="/" class="navbar-brand">@ViewModel.BrandName</a>
 
-        <RadzenStack Orientation="Orientation.Horizontal" Gap="1rem" AlignItems="AlignItems.Center" class="nav-links-desktop">
+        <nav class="nav-links-desktop">
             @foreach (var link in ViewModel.NavLinks)
             {
-                <RadzenLink Path="@link.Href" Class="nav-link">@link.Name</RadzenLink>
+                <a href="@link.Href" class="nav-link">@link.Name</a>
             }
-        </RadzenStack>
+        </nav>
 
-        <RadzenStack Orientation="Orientation.Horizontal" Gap="0.5rem" AlignItems="AlignItems.Center">
-            <button class="mobile-menu-btn" @onclick="ToggleMobileMenu" aria-label="Toggle menu">
-            <RadzenIcon Icon="menu" Style="font-size:1.5rem; color:#0000FF;" />
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+            <a href="#contact" class="btn-primary nav-cta-desktop" style="padding:0.6rem 1.4rem; font-size:0.875rem;">
+                Contattaci
+            </a>
+            <button class="mobile-menu-btn" @onclick="ToggleMobileMenu" aria-label="Apri menu">
+                <span class="hamburger-line @(isMobileMenuOpen ? "open" : "")"></span>
+                <span class="hamburger-line @(isMobileMenuOpen ? "open" : "")"></span>
+                <span class="hamburger-line @(isMobileMenuOpen ? "open" : "")"></span>
             </button>
-        </RadzenStack>
-    </RadzenStack>
+        </div>
+    </div>
 </header>
 
-
-@* Mobile Menu Overlay *@
-<div class="mobile-menu-overlay @(isMobileMenuOpen ? "active" : "")" @onclick="CloseMobileMenu">
-    <div class="mobile-menu-content" @onclick:stopPropagation>
-        <button class="mobile-menu-close-btn" @onclick="CloseMobileMenu" aria-label="Close menu">
-            <RadzenIcon Icon="close" Style="font-size:2rem; color:white;" />
-        </button>
+@* Mobile Drawer *@
+<div class="mobile-overlay @(isMobileMenuOpen ? "active" : "")" @onclick="CloseMobileMenu">
+    <div class="mobile-drawer @(isMobileMenuOpen ? "active" : "")" @onclick:stopPropagation>
+        <div class="mobile-drawer-header">
+            <span class="navbar-brand">@ViewModel.BrandName</span>
+            <button class="mobile-close-btn" @onclick="CloseMobileMenu" aria-label="Chiudi menu">
+                <RadzenIcon Icon="close" Style="font-size:1.5rem; color:var(--text-dark);" />
+            </button>
+        </div>
         <nav class="mobile-nav-links">
             @foreach (var link in ViewModel.NavLinks)
             {
-                <a href="@link.Href" @onclick="CloseMobileMenu">@link.Name</a>
+                <a href="@link.Href" class="mobile-nav-link" @onclick="CloseMobileMenu">
+                    @link.Name
+                </a>
             }
         </nav>
+        <a href="#contact" class="btn-primary" style="margin:1rem 1.5rem; display:flex; justify-content:center;" @onclick="CloseMobileMenu">
+            Contattaci
+        </a>
     </div>
 </div>
 
 <style>
-    /* Desktop nav links - hide on mobile and tablets */
+    /* Desktop nav */
     .nav-links-desktop {
-        display: none !important;
+        display: none;
+        align-items: center;
+        gap: 0.25rem;
     }
-    
-    /* Show desktop nav only on large screens (1024px+) */
+
+    .nav-cta-desktop { display: none; }
+
     @@media (min-width: 1024px) {
-        .nav-links-desktop {
-            display: flex !important;
-        }
-        
-        .mobile-menu-btn {
-            display: none !important;
-        }
-        
-        .cta-button-mobile {
-            display: none !important;
-        }
-        
-        .cta-button-desktop {
-            display: flex !important;
-        }
+        .nav-links-desktop { display: flex !important; }
+        .nav-cta-desktop   { display: inline-flex !important; }
+        .mobile-menu-btn   { display: none !important; }
     }
-    
-    /* Hide CTA text on smaller screens, show only on large */
-    @@media (max-width: 1023px) {
-        .cta-button-desktop {
-            display: none !important;
-        }
-        
-        .cta-button-mobile {
-            display: flex !important;
-        }
-        
-        .mobile-menu-btn {
-            display: flex !important;
-        }
-    }
-    
-    @@media (max-width: 480px) {
-        .cta-button-mobile {
-            display: none !important;
-        }
-    }
-    
-    /* Mobile menu button */
+
+    /* Hamburger */
     .mobile-menu-btn {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: center;
+        gap: 5px;
         background: transparent;
         border: none;
         cursor: pointer;
         padding: 0.5rem;
         border-radius: 0.5rem;
+        width: 40px;
+        height: 40px;
         transition: background 0.2s ease;
     }
-    
-    .mobile-menu-btn:hover {
-        background: rgba(0, 30, 50, 0.1);
+
+    .mobile-menu-btn:hover { background: rgba(3,105,161,0.08); }
+
+    .hamburger-line {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text-dark);
+        border-radius: 2px;
+        transition: all 0.3s var(--ease-out);
+        transform-origin: center;
     }
-    
-    /* Mobile menu overlay */
-    .mobile-menu-overlay {
+
+    .hamburger-line.open:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-line.open:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger-line.open:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile overlay */
+    .mobile-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 9999;
+        inset: 0;
+        background: rgba(15,23,42,0.35);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        z-index: 998;
         opacity: 0;
         visibility: hidden;
         transition: opacity 0.3s ease, visibility 0.3s ease;
     }
-    
-    .mobile-menu-overlay.active {
+
+    .mobile-overlay.active {
         opacity: 1;
         visibility: visible;
     }
-    
-    /* Mobile menu content */
-    .mobile-menu-content {
-        position: absolute;
+
+    /* Mobile drawer */
+    .mobile-drawer {
+        position: fixed;
         top: 0;
         right: 0;
-        width: 280px;
-        max-width: 85vw;
+        width: 300px;
+        max-width: 88vw;
         height: 100%;
-        background: linear-gradient(180deg, hsl(197 100% 25%) 0%, hsl(180 60% 28%) 100%);
+        background: #FFFFFF;
+        z-index: 999;
         transform: translateX(100%);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        padding: 1.5rem;
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+        box-shadow: -8px 0 32px rgba(15,23,42,0.12);
+        display: flex;
+        flex-direction: column;
     }
-    
-    .mobile-menu-overlay.active .mobile-menu-content {
-        transform: translateX(0);
+
+    .mobile-drawer.active { transform: translateX(0); }
+
+    .mobile-drawer-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 1.5rem;
+        border-bottom: 1px solid var(--border-color);
     }
-    
-    /* Close button */
-    .mobile-menu-close-btn {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
+
+    .mobile-close-btn {
         background: transparent;
         border: none;
         cursor: pointer;
-        padding: 0.5rem;
+        padding: 0.4rem;
         border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
         transition: background 0.2s ease;
     }
-    
-    .mobile-menu-close-btn:hover {
-        background: rgba(255, 255, 255, 0.1);
-    }
-    
-    /* Mobile nav links */
+
+    .mobile-close-btn:hover { background: rgba(15,23,42,0.05); }
+
     .mobile-nav-links {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
-        margin-top: 4rem;
+        padding: 1rem 0;
+        flex: 1;
     }
-    
-    .mobile-nav-links a {
-        color: white;
-        text-decoration: none;
-        font-size: 1.25rem;
+
+    .mobile-nav-link {
+        color: var(--text-dark);
         font-weight: 500;
-        padding: 1rem 1.5rem;
-        border-radius: 0.75rem;
-        transition: background 0.2s ease;
+        font-size: 1rem;
+        text-decoration: none;
+        padding: 0.875rem 1.5rem;
+        transition: background 0.2s ease, color 0.2s ease;
+        font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    
-    .mobile-nav-links a:hover {
-        background: rgba(255, 255, 255, 0.1);
+
+    .mobile-nav-link:hover {
+        background: var(--bg-light);
+        color: var(--primary-color);
     }
 </style>
 
 @code {
     private bool isMobileMenuOpen = false;
-    
-    private void ToggleMobileMenu()
+    private bool isScrolled = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        isMobileMenuOpen = !isMobileMenuOpen;
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("navbarInterop.initialize", DotNetObjectReference.Create(this));
+        }
     }
-    
-    private void CloseMobileMenu()
+
+    [JSInvokable]
+    public void SetScrolled(bool scrolled)
     {
-        isMobileMenuOpen = false;
+        isScrolled = scrolled;
+        StateHasChanged();
     }
-    
-    private void ScrollContact()
-    {
-        Navigation.NavigateTo("#contact", forceLoad: false);
-    }
-    
-    private void ScrollContactAndClose()
-    {
-        CloseMobileMenu();
-        Navigation.NavigateTo("#contact", forceLoad: false);
-    }
+
+    private void ToggleMobileMenu() => isMobileMenuOpen = !isMobileMenuOpen;
+    private void CloseMobileMenu() => isMobileMenuOpen = false;
 }

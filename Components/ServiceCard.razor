@@ -2,213 +2,163 @@
 @using Radzen.Blazor
 @using BlazorBFA.ViewModels
 
-<RadzenCard Class="service-card-compact" Style="height:100%; padding:0; border:1px solid #e2e8f0; border-radius:1rem; transition:all 0.3s ease; box-shadow:0 2px 12px rgb(0 0 0 / 0.06); overflow:hidden; background:white;">
-    
-@* Image container *@
-<div class="service-image-container">
-    <RadzenImage Path="@Service.Image" 
-                 Alt="@Service.Title" 
-                 Style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;" 
-                 Class="service-image" />
-        
-    @* Gradient overlay *@
-    <div class="service-image-overlay"></div>
-        
-    @* Floating icon badge *@
-    <div class="service-icon-badge">
-        <RadzenIcon Icon="@GetIcon(Service.Icon)" Style="color:white; font-size:26px;" />
+<div class="service-card-compact" style="height:100%; border-radius:1rem; transition:all 0.3s cubic-bezier(0.16,1,0.3,1); overflow:hidden; background:#FFFFFF; border:1px solid #E2E8F0; box-shadow:0 2px 8px rgba(15,23,42,0.06); display:flex; flex-direction:row;">
+
+    @* Image container *@
+    <div class="service-image-container">
+        <RadzenImage Path="@Service.Image"
+                     Alt="@Service.Title"
+                     Style="width:100%; height:100%; object-fit:cover; transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);"
+                     Class="service-image" />
+        <div class="service-image-overlay"></div>
+        <div class="service-icon-badge">
+            <RadzenIcon Icon="@GetIcon(Service.Icon)" Style="color:white; font-size:24px;" />
+        </div>
+    </div>
+
+    @* Content *@
+    <div class="service-content">
+        <h4 class="service-title">@Service.Title</h4>
+        <p class="service-description">@Service.Description</p>
+
+        <div class="service-features">
+            @foreach (var feature in Service.Features.Take(2))
+            {
+                <div class="service-feature-item">
+                    <RadzenIcon Icon="check_circle" Style="color:var(--accent-color); font-size:16px; flex-shrink:0;" />
+                    <span class="service-feature-text">@feature</span>
+                </div>
+            }
+        </div>
+
+        <a href="#contact" class="service-link">
+            Scopri di più
+            <RadzenIcon Icon="arrow_forward" Style="font-size:16px;" Class="arrow-icon" />
+        </a>
     </div>
 </div>
-    
-@* Content section *@
-<div class="service-content">
-    <RadzenText TextStyle="TextStyle.H6" Class="service-title">
-        @Service.Title
-    </RadzenText>
-        
-    <RadzenText Text="@Service.Description" Class="service-description" />
-        
-    @* Features list *@
-    <RadzenStack Gap="5px" Class="service-features">
-        @foreach (var feature in Service.Features.Take(2))
-        {
-            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Start" Gap="8px" Class="service-feature-item">
-                <RadzenIcon Icon="check_circle" Style="color:var(--accent-color); font-size:18px; flex-shrink:0; margin-top:2px;" />
-                <RadzenText TextStyle="TextStyle.Body2" Class="service-feature-text">@feature</RadzenText>
-            </RadzenStack>
-        }
-    </RadzenStack>
-        
-    @* Learn more link *@
-    <RadzenLink Path="#contact" Class="service-link">
-        Scopri di pi�
-        <RadzenIcon Icon="arrow_forward" Style="font-size:18px;" Class="arrow-icon" />
-    </RadzenLink>
-</div>
-</RadzenCard>
 
 <style>
-    .service-card-compact {
-        display: flex;
-        flex-direction: row;
-    }
-    
     .service-image-container {
         position: relative;
-        width: 192px;
-        min-width: 192px;
+        width: 180px;
+        min-width: 180px;
         overflow: hidden;
     }
-    
+
     .service-image-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(90deg, transparent 60%, rgba(255,255,255,0.8) 100%);
+        background: linear-gradient(90deg, transparent 55%, rgba(255,255,255,0.9) 100%);
     }
-    
+
     .service-icon-badge {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 58px;
-        height: 58px;
+        width: 52px;
+        height: 52px;
         border-radius: 12px;
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+        background: var(--gradient-primary);
         display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 4px 12px rgba(0, 112, 160, 0.3);
+        box-shadow: 0 4px 16px rgba(3,105,161,0.30);
         z-index: 2;
     }
-    
+
     .service-content {
-        padding: 1.35rem 1.75rem;
+        padding: 1.35rem 1.5rem;
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
         min-width: 0;
-        overflow: hidden;
     }
-    
+
     .service-title {
-        font-weight: 600;
+        font-weight: 700;
         color: var(--text-dark);
         font-family: 'Fraunces', Georgia, serif;
-        margin-bottom: 0.55rem;
-        font-size: 1.5rem;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
+        margin-bottom: 0.5rem;
+        font-size: 1.35rem;
+        line-height: 1.25;
     }
-    
+
     .service-description {
         color: var(--text-muted);
-        font-size: 1.1rem;
-        line-height: 1.5;
-        margin-bottom: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.55;
+        margin-bottom: 0.875rem;
         display: -webkit-box;
         -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
+        font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    
+
     .service-features {
-        margin-bottom: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 0.875rem;
     }
-    
+
     .service-feature-item {
-        min-width: 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 7px;
     }
-    
+
     .service-feature-text {
         color: var(--text-muted);
-        font-size: 1rem;
-        line-height: 1.4;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
+        font-size: 0.875rem;
+        line-height: 1.45;
+        font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    
+
     .service-link {
         color: var(--primary-color);
         font-weight: 600;
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         display: inline-flex;
         align-items: center;
-        gap: 8px;
+        gap: 6px;
         text-decoration: none;
+        transition: gap 0.2s ease, color 0.2s ease;
+        font-family: 'Plus Jakarta Sans', sans-serif;
     }
-    
-    /* Mobile styles - stack vertically */
+
+    .service-link:hover {
+        color: var(--secondary-color);
+        gap: 10px;
+    }
+
+    /* Mobile – stack vertically */
     @@media (max-width: 768px) {
-        .service-card-compact {
-            flex-direction: column !important;
-        }
-        
+        div.service-card-compact { flex-direction: column !important; }
+
         .service-image-container {
             width: 100% !important;
             min-width: 100% !important;
             height: 160px;
         }
-        
+
         .service-image-overlay {
-            background: linear-gradient(180deg, transparent 60%, rgba(255,255,255,0.8) 100%) !important;
+            background: linear-gradient(180deg, transparent 55%, rgba(255,255,255,0.9) 100%) !important;
         }
-        
-        .service-icon-badge {
-            width: 50px;
-            height: 50px;
-        }
-        
-        .service-icon-badge .rz-icon {
-            font-size: 22px !important;
-        }
-        
-        .service-content {
-            padding: 1rem 1.25rem !important;
-        }
-        
-        .service-title {
-            font-size: 1.25rem !important;
-        }
-        
-        .service-description {
-            font-size: 0.95rem !important;
-            -webkit-line-clamp: 2;
-        }
-        
-        .service-feature-text {
-            font-size: 0.9rem !important;
-        }
-        
-        .service-link {
-            font-size: 1rem !important;
-        }
+
+        .service-icon-badge { width: 48px !important; height: 48px !important; }
+        .service-content { padding: 1rem 1.25rem !important; }
+        .service-title { font-size: 1.2rem !important; }
+        .service-description { font-size: 0.9rem !important; -webkit-line-clamp: 2; }
     }
-    
-    /* Very small screens */
+
     @@media (max-width: 375px) {
-        .service-content {
-            padding: 0.875rem 1rem !important;
-        }
-        
-        .service-title {
-            font-size: 1.1rem !important;
-        }
-        
-        .service-description {
-            font-size: 0.875rem !important;
-        }
-        
-        .service-feature-text {
-            font-size: 0.85rem !important;
-        }
-        
-        .service-image-container {
-            height: 140px;
-        }
+        .service-content { padding: 0.875rem 1rem !important; }
+        .service-title { font-size: 1.1rem !important; }
+        .service-image-container { height: 140px; }
     }
 </style>
 
@@ -217,12 +167,12 @@
 
     private static string GetIcon(string icon) => icon switch
     {
-        "file-check" => "task_alt",
-        "settings" => "settings",
-        "zap" => "bolt",
-        "scale" => "balance",
-        "trending-down" => "trending_down",
-        "eco" => "eco",
-        _ => "info"
+        "file-check"   => "task_alt",
+        "settings"     => "settings",
+        "zap"          => "bolt",
+        "scale"        => "balance",
+        "trending-down"=> "trending_down",
+        "eco"          => "eco",
+        _              => "info"
     };
 }

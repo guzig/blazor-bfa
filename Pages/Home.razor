@@ -1,6 +1,7 @@
 @page "/"
+@inject IJSRuntime JS
 
-<PageTitle>BFA Consulting - Consulenza Energetica</PageTitle>
+<PageTitle>BFA Consulting - Consulenza Energetica Smart City</PageTitle>
 
 <Navbar />
 <main>
@@ -13,3 +14,14 @@
     <Contact />
 </main>
 <Footer />
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Trigger GSAP ScrollTrigger after Blazor renders the full page
+            await JS.InvokeVoidAsync("blazorGsapBoot");
+        }
+    }
+}

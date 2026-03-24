@@ -3,34 +3,90 @@
 @using BlazorBFA.ViewModels
 @inject ProjectsViewModel ViewModel
 
-<section id="projects" class="full-page-section" style="background:var(--bg-projects);">
-<div style="text-align:center; margin-bottom:2.5rem;">
-    <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:var(--primary-color);">Il nostro Portfolio</RadzenText>
-    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">Amministrazioni Comunali <span style="color:var(--accent-color);">Progetti</span></RadzenText>
-</div>
-
-<div class="carousel-container">
-    <div class="carousel-track">
-        @for (int i = 0; i < 2; i++)
-        {
-            @foreach (var project in ViewModel.Projects)
-            {
-                <div class="carousel-card">
-                    <RadzenCard Style="text-align:center; padding:1.5rem; min-width:260px; height:100%; border:1px solid #e2e8f0; border-radius:0.75rem; box-shadow:0 4px 15px rgb(0 0 0 / 0.08); background:white;">
-                        <RadzenStack Orientation="Orientation.Vertical" Gap="12px" AlignItems="AlignItems.Center">
-                            <div style="width:56px; height:56px; border-radius:0.75rem; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color:white; display:flex; align-items:center; justify-content:center;">
-                                <RadzenIcon Icon="location_city" Style="font-size:28px;" />
-                            </div>
-                            <RadzenText TextStyle="TextStyle.H6" Style="font-weight:600; color:var(--text-dark);">@project.Name</RadzenText>
-                            <RadzenText Style="color:var(--text-muted); font-size:0.9rem;">(@project.Province)</RadzenText>
-                            <RadzenBadge Text=@($"Dal {project.Year}") Class="badge-accent" />
-                        </RadzenStack>
-                    </RadzenCard>
-                </div>
-            }
-        }
+<section id="projects" class="full-page-section" style="background:#F8FAFC;">
+    <div class="projects-header gsap-fade-up" style="text-align:center; margin-bottom:2.5rem; padding:0 1rem;">
+        <span class="section-label">Il nostro Portfolio</span>
+        <h2 class="section-title">
+            Amministrazioni Comunali
+            <span style="background:var(--gradient-hero-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                Progetti
+            </span>
+        </h2>
     </div>
-</div>
 
-<ScrollIndicator TargetSection="testimonials" Text="Testimonial" />
+    <div class="carousel-container gsap-fade-up">
+        <div class="carousel-track">
+            @for (int i = 0; i < 2; i++)
+            {
+                @foreach (var project in ViewModel.Projects)
+                {
+                    <div class="carousel-card">
+                        <div class="project-card">
+                            <div class="project-icon">
+                                <RadzenIcon Icon="location_city" Style="font-size:26px; color:white;" />
+                            </div>
+                            <p class="project-name">@project.Name</p>
+                            <p class="project-province">(@project.Province)</p>
+                            <span class="badge-accent">Dal @project.Year</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+    <ScrollIndicator TargetSection="testimonials" Text="Testimonial" />
 </section>
+
+<style>
+    .project-card {
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: var(--radius-lg);
+        padding: 1.5rem 1.25rem;
+        min-width: 220px;
+        max-width: 260px;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out);
+    }
+
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .project-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: var(--radius-md);
+        background: var(--gradient-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(3,105,161,0.25);
+    }
+
+    .project-name {
+        font-weight: 700;
+        color: var(--text-dark);
+        font-size: 0.95rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        line-height: 1.3;
+    }
+
+    .project-province {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    @@media (max-width: 480px) {
+        .project-card { min-width: 180px; padding: 1.25rem 1rem; }
+        .project-name { font-size: 0.875rem; }
+    }
+</style>

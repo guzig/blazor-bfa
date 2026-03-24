@@ -1,374 +1,226 @@
-// GSAP Animations for Blazor
-// Include GSAP in your index.html: <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-// <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+/* =====================================================
+   BFA CONSULTING – app.js
+   GSAP ScrollTrigger animations + utilities
+   ===================================================== */
 
-// Scroll to section with smooth animation
+// ── Smooth scroll utility ──────────────────────────────
 window.scrollToSection = function (sectionId) {
-    const element = document.getElementById(sectionId);
-    if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    const el = document.getElementById(sectionId);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
 
-// Scroll Interop
 window.scrollInterop = {
     scrollToElement: function (selector) {
-        const element = document.querySelector(selector);
-        if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
-        }
+        const el = document.querySelector(selector);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 };
 
-// Navbar Interop
+// ── Navbar scroll detection ───────────────────────────
 window.navbarInterop = {
     dotNetRef: null,
-    
+    _handler: null,
+
     initialize: function (dotNetRef) {
         this.dotNetRef = dotNetRef;
-        
-        const handleScroll = () => {
-            const isScrolled = window.scrollY > 50;
-            dotNetRef.invokeMethodAsync('SetScrolled', isScrolled);
+        this._handler = () => {
+            dotNetRef.invokeMethodAsync('SetScrolled', window.scrollY > 60);
         };
-        
-        window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // Check initial state
-        
-        this.handleScroll = handleScroll;
+        window.addEventListener('scroll', this._handler, { passive: true });
+        this._handler();
     },
-    
+
     dispose: function () {
-        if (this.handleScroll) {
-            window.removeEventListener('scroll', this.handleScroll);
-        }
+        if (this._handler) window.removeEventListener('scroll', this._handler);
         this.dotNetRef = null;
     }
 };
 
-// Hero Interop
-window.heroInterop = {
-    animate: function (headingRef, subheadingRef, ctaRef) {
-        if (typeof gsap === 'undefined') return;
-        
-        gsap.fromTo(headingRef, 
-            { y: 40, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: 'power3.out' }
-        );
-        
-        gsap.fromTo(subheadingRef,
-            { y: 30, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.7, delay: 0.4, ease: 'power3.out' }
-        );
-        
-        gsap.fromTo(ctaRef,
-            { scale: 0.9, opacity: 0 },
-            { scale: 1, opacity: 1, duration: 0.5, delay: 0.6, ease: 'power2.out' }
-        );
-    }
-};
+// ── GSAP ScrollTrigger setup ──────────────────────────
+window.gsapAnimations = {
+    initialized: false,
 
-// About Interop
-window.aboutInterop = {
-    animate: function (sectionRef, imageRef, contentRef) {
+    init: function () {
+        if (this.initialized) return;
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.fromTo(imageRef,
-            { x: -50, opacity: 0 },
-            {
-                x: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: sectionRef,
-                    start: 'top 70%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-        
-        gsap.fromTo(contentRef,
-            { x: 50, opacity: 0 },
-            {
-                x: 0,
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: sectionRef,
-                    start: 'top 70%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-    }
-};
 
-// Stat Circle Interop
-window.statCircleInterop = {
-    animate: function (circleRef, percentage, delay) {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
         gsap.registerPlugin(ScrollTrigger);
-        
-        const circumference = 2 * Math.PI * 45;
-        const offset = circumference - (percentage / 100) * circumference;
-        
-        gsap.fromTo(circleRef,
-            { strokeDashoffset: circumference },
-            {
-                strokeDashoffset: offset,
-                duration: 1.5,
-                delay: delay / 1000,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: circleRef,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-    }
-};
 
-// Services Interop
-window.servicesInterop = {
-    animateHeader: function (headerRef) {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.fromTo(headerRef,
-            { y: 30, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.6,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: headerRef,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-    }
-};
-
-// Service Card Interop
-window.serviceCardInterop = {
-    animate: function (cardRef, index) {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.fromTo(cardRef,
-            { y: 40, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: cardRef,
-                    start: 'top 85%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-    }
-};
-
-// Projects Interop
-window.projectsInterop = {
-    animate: function (headerRef, carouselRef) {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.fromTo(headerRef,
-            { y: 30, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.6,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: headerRef,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-        
-        gsap.fromTo(carouselRef,
-            { opacity: 0 },
-            {
-                opacity: 1,
-                duration: 0.8,
-                delay: 0.3,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: carouselRef,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-    },
-    
-    scroll: function (carouselRef, direction) {
-        const cardWidth = 280;
-        const scrollAmount = cardWidth * 2;
-        
-        if (direction === 'left') {
-            carouselRef.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        } else {
-            carouselRef.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        // Respect prefers-reduced-motion
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) {
+            document.querySelectorAll('.gsap-fade-up, .gsap-fade-in, .gsap-slide-left, .gsap-slide-right, .gsap-scale-in')
+                .forEach(el => {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                });
+            return;
         }
-    },
-    
-    scrollToDot: function (carouselRef, dotIndex) {
-        const cardWidth = 280;
-        const scrollAmount = cardWidth * 4 * dotIndex;
-        carouselRef.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-    },
-    
-    getScrollState: function (carouselRef) {
-        const scrollLeft = carouselRef.scrollLeft;
-        const maxScroll = carouselRef.scrollWidth - carouselRef.clientWidth;
-        const canScrollLeft = scrollLeft > 0;
-        const cardWidth = 280;
-        const currentDot = Math.floor(scrollLeft / (cardWidth * 4));
-        
-        return {
-            scrollLeft: scrollLeft,
-            canScrollLeft: canScrollLeft,
-            currentDot: currentDot
-        };
+
+        this.initialized = true;
+
+        // ── fade-up (most common) ──
+        gsap.utils.toArray('.gsap-fade-up').forEach((el, i) => {
+            const delay = parseFloat(el.dataset.delay || 0);
+            gsap.fromTo(el,
+                { y: 40, opacity: 0 },
+                {
+                    y: 0, opacity: 1,
+                    duration: 0.75,
+                    delay: delay,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 88%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // ── fade-in ──
+        gsap.utils.toArray('.gsap-fade-in').forEach(el => {
+            gsap.fromTo(el,
+                { opacity: 0 },
+                {
+                    opacity: 1,
+                    duration: 0.7,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 88%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // ── slide from left ──
+        gsap.utils.toArray('.gsap-slide-left').forEach(el => {
+            gsap.fromTo(el,
+                { x: -50, opacity: 0 },
+                {
+                    x: 0, opacity: 1,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // ── slide from right ──
+        gsap.utils.toArray('.gsap-slide-right').forEach(el => {
+            gsap.fromTo(el,
+                { x: 50, opacity: 0 },
+                {
+                    x: 0, opacity: 1,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
+
+        // ── scale in ──
+        gsap.utils.toArray('.gsap-scale-in').forEach(el => {
+            gsap.fromTo(el,
+                { scale: 0.88, opacity: 0 },
+                {
+                    scale: 1, opacity: 1,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 85%',
+                        toggleActions: 'play none none none'
+                    }
+                }
+            );
+        });
     }
 };
 
-// Testimonials Interop
-window.testimonialsInterop = {
-    animate: function (headerRef) {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.fromTo(headerRef,
-            { y: 30, opacity: 0 },
+// ── Hero entrance animations ──────────────────────────
+window.heroAnimations = {
+    init: function () {
+        if (typeof gsap === 'undefined') return;
+
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReduced) return;
+
+        const hero = document.getElementById('home');
+        if (!hero) return;
+
+        const items = hero.querySelectorAll('.gsap-fade-up');
+        gsap.fromTo(items,
+            { y: 35, opacity: 0 },
             {
-                y: 0,
-                opacity: 1,
-                duration: 0.6,
+                y: 0, opacity: 1,
+                duration: 0.75,
+                stagger: 0.15,
                 ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: headerRef,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
+                delay: 0.25
             }
         );
     }
 };
 
-// Contact Interop
+// ── Legacy interop stubs (kept for backwards-compat) ──
+window.heroInterop        = { animate: () => {} };
+window.aboutInterop       = { animate: () => {} };
+window.statCircleInterop  = { animate: () => {} };
+window.servicesInterop    = { animateHeader: () => {} };
+window.serviceCardInterop = { animate: () => {} };
+window.projectsInterop    = { animate: () => {}, scroll: () => {}, scrollToDot: () => {}, getScrollState: () => ({}) };
+window.testimonialsInterop= { animate: () => {} };
+
 window.contactInterop = {
-    animate: function (headerRef, infoRef, formRef) {
-        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
-        gsap.registerPlugin(ScrollTrigger);
-        
-        gsap.fromTo(headerRef,
-            { y: 30, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.6,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: headerRef,
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-        
-        const infoCards = infoRef.querySelectorAll('.info-card, .map-placeholder');
-        gsap.fromTo(infoCards,
-            { y: 30, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 0.5,
-                stagger: 0.1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: infoRef,
-                    start: 'top 70%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-        
-        gsap.fromTo(formRef,
-            { x: -30, opacity: 0 },
-            {
-                x: 0,
-                opacity: 1,
-                duration: 0.6,
-                delay: 0.3,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: formRef,
-                    start: 'top 70%',
-                    toggleActions: 'play none none none'
-                }
-            }
-        );
-    },
-    
+    animate: () => {},
     showToast: function (title, message) {
-        // Simple toast notification
         const toast = document.createElement('div');
         toast.style.cssText = `
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #0070a0;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            z-index: 9999;
-            animation: slideDown 0.3s ease-out;
+            position: fixed; top: 1.25rem; left: 50%;
+            transform: translateX(-50%) translateY(-120%);
+            background: linear-gradient(135deg, #0369A1 0%, #14B8A6 100%);
+            color: white; padding: 0.875rem 1.75rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 8px 24px rgba(3,105,161,0.30);
+            z-index: 9999; font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500; font-size: 0.9rem;
+            transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+            max-width: 90vw; text-align: center;
         `;
-        toast.innerHTML = `<strong>${title}</strong><br>${message}`;
+        toast.innerHTML = `<strong>${title}</strong><br><span style="opacity:0.85;">${message}</span>`;
         document.body.appendChild(toast);
-        
+        requestAnimationFrame(() => {
+            toast.style.transform = 'translateX(-50%) translateY(0)';
+        });
         setTimeout(() => {
-            toast.style.animation = 'slideUp 0.3s ease-out';
-            setTimeout(() => toast.remove(), 300);
-        }, 3000);
+            toast.style.transform = 'translateX(-50%) translateY(-120%)';
+            toast.style.opacity = '0';
+            setTimeout(() => toast.remove(), 400);
+        }, 3200);
     }
 };
 
-// Add toast animations
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideDown {
-        from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-        to { transform: translateX(-50%) translateY(0); opacity: 1; }
-    }
-    @keyframes slideUp {
-        from { transform: translateX(-50%) translateY(0); opacity: 1; }
-        to { transform: translateX(-50%) translateY(-100%); opacity: 0; }
-    }
-`;
-document.head.appendChild(style);
+// ── Boot: run GSAP after Blazor renders ──────────────
+// Blazor calls this after each navigation
+window.blazorGsapBoot = function () {
+    // Small delay to ensure DOM is painted
+    setTimeout(() => window.gsapAnimations.init(), 120);
+};
+
+// Also run on DOMContentLoaded as fallback
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => setTimeout(() => window.gsapAnimations.init(), 300));
+} else {
+    setTimeout(() => window.gsapAnimations.init(), 300);
+}

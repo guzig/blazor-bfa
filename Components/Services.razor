@@ -3,10 +3,15 @@
 @using BlazorBFA.ViewModels
 @inject ServicesViewModel ViewModel
 
-<section id="services" class="full-page-section" style="background:var(--bg-services);">
-    <div style="text-align:center; margin-bottom:2rem; padding:0 1rem;">
-        <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color: var(--primary-color);">@ViewModel.SectionLabel</RadzenText>
-        <RadzenText TextStyle="TextStyle.H3" Class="responsive-section-title" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">@ViewModel.Title <span style="color:var(--accent-color);">@ViewModel.TitleHighlight</span></RadzenText>
+<section id="services" class="full-page-section" style="background:#FFFFFF;">
+    <div class="services-header gsap-fade-up" style="text-align:center; margin-bottom:3rem; padding:0 1rem;">
+        <span class="section-label">@ViewModel.SectionLabel</span>
+        <h2 class="section-title">
+            @ViewModel.Title
+            <span style="background:var(--gradient-hero-text); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">
+                @ViewModel.TitleHighlight
+            </span>
+        </h2>
     </div>
 
     <div class="services-grid-container">
@@ -14,43 +19,29 @@
             @foreach (var service in ViewModel.Services)
             {
                 <RadzenColumn Size="12" SizeMd="6">
-                    <ServiceCard Service="service" />
+                    <div class="gsap-fade-up">
+                        <ServiceCard Service="service" />
+                    </div>
                 </RadzenColumn>
             }
         </RadzenRow>
     </div>
-    
-    <ScrollIndicator TargetSection="features" Text="Perché Sceglierci" />
+
+    <ScrollIndicator TargetSection="features" Text="PerchÃ© Sceglierci" />
 </section>
 
 <style>
     .services-grid-container {
         padding: 0 2rem;
-        max-width: 1680px;
+        max-width: 1280px;
         margin: 0 auto;
     }
-    
-    .responsive-section-title {
-        font-size: 2.25rem;
-    }
-    
+
     @@media (max-width: 480px) {
-        .services-grid-container {
-            padding: 0 0.75rem !important;
-        }
-        
-        .responsive-section-title {
-            font-size: 1.5rem !important;
-        }
+        .services-grid-container { padding: 0 0.75rem; }
     }
-    
+
     @@media (min-width: 481px) and (max-width: 768px) {
-        .services-grid-container {
-            padding: 0 1rem !important;
-        }
-        
-        .responsive-section-title {
-            font-size: 1.75rem !important;
-        }
+        .services-grid-container { padding: 0 1rem; }
     }
 </style>
