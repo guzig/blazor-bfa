@@ -2,16 +2,16 @@
 @using Radzen.Blazor
 @using BlazorBFA.ViewModels
 
-<div class="lp-service-card">
-    <div class="lp-service-card__icon" style="background:#e0f2fe;">
-        <RadzenIcon Icon="@GetIcon(Service.Icon)" Style="color:#0070a0; font-size:22px;" />
+<div class="lp-service-card" style="border-top:3px solid @Service.Color;">
+    <div class="lp-service-card__icon" style="background:@(Service.Color + "22");">
+        <RadzenIcon Icon="@GetIcon(Service.Icon)" Style="@($"color:{Service.Color}; font-size:22px;")" />
     </div>
     <h3>@Service.Title</h3>
     <p>@Service.Description</p>
     <ul>
         @foreach (var feature in Service.Features.Take(3))
         {
-            <li>@feature</li>
+            <li style="--bullet-color:@Service.Color">@feature</li>
         }
     </ul>
 </div>

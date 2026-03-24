@@ -7,7 +7,7 @@
     <div class="lp-container">
         <div class="lp-section-header">
             <span class="lp-label">I nostri clienti</span>
-            <RadzenText TextStyle="TextStyle.H3" class="lp-heading">
+            <RadzenText TextStyle="TextStyle.H3" Class="lp-heading">
                 Cosa dicono di <span class="lp-accent">noi</span>
             </RadzenText>
         </div>
@@ -17,22 +17,26 @@
             @foreach (var testimonial in ViewModel.Testimonials)
             {
                 bool featured = (idx == 1);
-                <RadzenCard class="@($"lp-testimonial {(featured ? "lp-testimonial--featured" : "")}")" Style="padding:2rem;">
+                string cardClass = featured ? "lp-testimonial lp-testimonial--featured" : "lp-testimonial";
+                string initials = testimonial.Name?.Length >= 2
+                    ? testimonial.Name[..2].ToUpper()
+                    : (testimonial.Name ?? "??").ToUpper();
+
+                <RadzenCard Class="@cardClass" Style="padding:2rem;">
                     <div class="lp-testimonial__stars">
                         @for (int i = 0; i < testimonial.Rating; i++) { <span>★</span> }
                         @for (int i = testimonial.Rating; i < 5; i++) { <span style="opacity:.3;">★</span> }
                     </div>
-                    <RadzenText Text="@testimonial.Content" class="lp-testimonial__text" />
+                    <RadzenText Text="@testimonial.Content" Class="lp-testimonial__text" />
                     <div class="lp-testimonial__author">
-                        <div class="lp-testimonial__avatar">
-                            @(testimonial.Name.Length >= 2 ? testimonial.Name[..2].ToUpper() : testimonial.Name.ToUpper())
-                        </div>
+                        <div class="lp-testimonial__avatar">@initials</div>
                         <div>
-                            <RadzenText TextStyle="TextStyle.Subtitle2" Style="font-weight:700; display:block;">@testimonial.Name</RadzenText>
-                            <RadzenText Style="font-size:.8rem;">@testimonial.Role</RadzenText>
+                            <strong style="display:block; font-size:.9rem; color:@(featured ? "#fff" : "var(--lp-ink)");">@testimonial.Name</strong>
+                            <span style="font-size:.8rem; color:@(featured ? "rgba(255,255,255,.7)" : "var(--lp-ink-muted)");">@testimonial.Role</span>
                         </div>
                     </div>
                 </RadzenCard>
+
                 idx++;
             }
         </div>

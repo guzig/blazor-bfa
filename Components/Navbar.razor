@@ -48,24 +48,7 @@
     {
         if (firstRender)
         {
-            await JS.InvokeVoidAsync("eval", @"
-                (function(){
-                    var ticking = false;
-                    window.addEventListener('scroll', function() {
-                        if (!ticking) {
-                            requestAnimationFrame(function() {
-                                var h = document.querySelector('.lp-nav');
-                                if (h) {
-                                    if (window.scrollY > 40) h.classList.add('lp-nav--scrolled');
-                                    else h.classList.remove('lp-nav--scrolled');
-                                }
-                                ticking = false;
-                            });
-                            ticking = true;
-                        }
-                    });
-                })();
-            ");
+            await JS.InvokeVoidAsync("initNavScroll");
         }
     }
 }

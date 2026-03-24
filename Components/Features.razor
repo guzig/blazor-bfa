@@ -7,37 +7,17 @@
 <section id="features" class="lp-section">
     <div class="lp-container">
         <div class="lp-section-header">
-            <div class="lp-features__badge">
+            <div class="lp-features-badge">
                 <RadzenIcon Icon="star" Style="font-size:14px; color:#0070a0;" />
                 <span>@ViewModel.BadgeText</span>
             </div>
-            <RadzenText TextStyle="TextStyle.H3" class="lp-heading" Style="margin-top:.75rem;">
+            <RadzenText TextStyle="TextStyle.H3" Class="lp-heading" Style="margin-top:.75rem;">
                 @ViewModel.Title <span class="lp-accent">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd
             </RadzenText>
-            <RadzenText class="lp-body lp-section-header__sub" Text="@ViewModel.Description" />
+            <RadzenText Class="lp-body lp-section-header__sub" Text="@ViewModel.Description" />
         </div>
 
-        <!-- Steps -->
-        <div class="lp-steps">
-            @{ int stepNum = 1; }
-            @foreach (var feature in ViewModel.Features)
-            {
-                <div class="lp-step">
-                    <div class="lp-step__num">@stepNum.ToString("D2")</div>
-                    <div class="lp-step__content">
-                        <h3>@feature.Title</h3>
-                        <p>@feature.Description</p>
-                    </div>
-                </div>
-                @if (stepNum < ViewModel.Features.Count)
-                {
-                    <div class="lp-step__connector"></div>
-                }
-                stepNum++;
-            }
-        </div>
-
-        <!-- Feature highlights grid -->
+        <!-- Feature grid (icon + title + description) -->
         <div class="lp-features-grid">
             @foreach (var feature in ViewModel.Features)
             {
@@ -53,19 +33,9 @@
 
         <div style="text-align:center; margin-top:3rem;">
             <RadzenButton Text="@ViewModel.ButtonText" Icon="@ViewModel.ButtonIcon"
-                          class="lp-btn lp-btn--primary"
+                          Class="lp-btn lp-btn--primary"
                           Style="border-radius:9999px; padding:.875rem 2rem; font-weight:700;"
                           Click="@(() => NavigationManager.NavigateTo("#contact"))" />
         </div>
     </div>
 </section>
-
-<style>
-    .lp-features__badge {
-        display: inline-flex; align-items: center; gap: .4rem;
-        background: #eff6ff; border: 1px solid #bfdbfe;
-        border-radius: 9999px; padding: .35rem .9rem;
-        font-size: .8rem; font-weight: 600; color: var(--lp-blue);
-        margin-bottom: .5rem;
-    }
-</style>

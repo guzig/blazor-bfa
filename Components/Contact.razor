@@ -72,22 +72,6 @@
     </div>
 </section>
 
-<style>
-    /* Override Radzen textbox/textarea inside dark contact section */
-    .lp-section--dark .rz-textbox,
-    .lp-section--dark .rz-textarea {
-        border: 1.5px solid var(--lp-border) !important;
-        border-radius: var(--lp-radius) !important;
-        font-family: var(--lp-font) !important;
-        padding: .75rem 1rem !important;
-        font-size: .95rem !important;
-    }
-    .lp-section--dark .rz-textbox:focus,
-    .lp-section--dark .rz-textarea:focus {
-        border-color: var(--lp-blue) !important;
-        box-shadow: 0 0 0 3px rgba(0,112,160,.12) !important;
-    }
-</style>
 
 @code {
     private FormData formData = new();

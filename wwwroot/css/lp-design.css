@@ -188,7 +188,16 @@
 .lp-service-card p  { font-size: .9rem; color: var(--lp-ink-muted); line-height: 1.6; margin-bottom: 1rem; }
 .lp-service-card ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: .4rem; }
 .lp-service-card ul li { font-size: .85rem; color: var(--lp-ink-muted); padding-left: 1.1rem; position: relative; }
-.lp-service-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--lp-blue-light); font-weight: 700; }
+.lp-service-card ul li::before { content: '→'; position: absolute; left: 0; color: var(--bullet-color, var(--lp-blue-light)); font-weight: 700; }
+
+/* ── FEATURES BADGE ── */
+.lp-features-badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    background: #eff6ff; border: 1px solid #bfdbfe;
+    border-radius: 9999px; padding: .35rem .9rem;
+    font-size: .8rem; font-weight: 600; color: var(--lp-blue);
+    margin-bottom: .5rem;
+}
 
 /* ── FEATURES / WHY ── */
 .lp-steps {
@@ -317,6 +326,52 @@
 .lp-contact__success h3 { font-size: 1.5rem; font-weight: 700; font-family: var(--lp-font); }
 .lp-contact__success p  { color: var(--lp-ink-muted); }
 
+/* ── APP.CSS CONFLICT OVERRIDES (section#contact/services/testimonials have !important rules) ── */
+section#contact.lp-section--dark,
+section#contact.lp-section--dark section {
+    background: var(--lp-ink) !important;
+    color: rgba(255,255,255,.75) !important;
+}
+section#contact.lp-section--dark h2,
+section#contact.lp-section--dark h3 {
+    color: #fff !important;
+}
+section#contact.lp-section--dark .lp-contact__detail,
+section#contact.lp-section--dark .lp-contact__detail span {
+    color: rgba(255,255,255,.75) !important;
+}
+section#contact.lp-section--dark .lp-contact__detail a {
+    color: rgba(255,255,255,.85) !important;
+    text-decoration: none !important;
+}
+section#contact.lp-section--dark .lp-label--light {
+    color: #7dd3fc !important;
+}
+section#contact.lp-section--dark .lp-body {
+    color: rgba(255,255,255,.7) !important;
+}
+section#testimonials.lp-section--alt {
+    background: var(--lp-surface-2) !important;
+}
+section#services.lp-section {
+    background: var(--lp-surface) !important;
+}
+
+/* ── RADZEN OVERRIDES inside lp sections ── */
+.lp-section--dark .rz-textbox,
+.lp-section--dark .rz-textarea {
+    border: 1.5px solid var(--lp-border) !important;
+    border-radius: var(--lp-radius) !important;
+    font-family: var(--lp-font) !important;
+    padding: .75rem 1rem !important;
+    font-size: .95rem !important;
+}
+.lp-section--dark .rz-textbox:focus,
+.lp-section--dark .rz-textarea:focus {
+    border-color: var(--lp-blue) !important;
+    box-shadow: 0 0 0 3px rgba(0,112,160,.12) !important;
+}
+
 /* ── FOOTER ── */
 .lp-footer { background: #060f1e; padding: 5rem 0 0; }
 .lp-footer__inner {
@@ -329,6 +384,7 @@
 .lp-footer__links a, .lp-footer__links span { color: rgba(255,255,255,.45); font-size: .875rem; text-decoration: none; transition: color .15s; font-family: var(--lp-font); }
 .lp-footer__links a:hover { color: #fff; }
 .lp-footer__bottom { padding: 1.5rem 0; text-align: center; color: rgba(255,255,255,.3); font-size: .825rem; font-family: var(--lp-font); }
+.lp-footer__social:hover { background: rgba(255,255,255,.2) !important; color: #fff !important; }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {

@@ -1,3 +1,21 @@
+// Navbar scroll handler (pure DOM, no Blazor re-render needed)
+window.initNavScroll = function () {
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(function () {
+                var h = document.querySelector('.lp-nav');
+                if (h) {
+                    if (window.scrollY > 40) h.classList.add('lp-nav--scrolled');
+                    else h.classList.remove('lp-nav--scrolled');
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+};
+
 // GSAP Animations for Blazor
 // Include GSAP in your index.html: <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 // <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
