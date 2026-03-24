@@ -18,6 +18,7 @@
     </div>
     @if (menuOpen)
     {
+        <div class="lp-nav__overlay" @onclick="CloseMenu"></div>
         <nav class="lp-nav__mobile">
             @foreach (var link in ViewModel.NavLinks)
             {

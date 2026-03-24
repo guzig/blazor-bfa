@@ -95,11 +95,24 @@
 }
 .lp-nav__burger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: background .15s; }
 .lp-nav--scrolled .lp-nav__burger span { background: var(--lp-ink); }
+.lp-nav__overlay {
+    position: fixed; inset: 0; z-index: 99;
+    background: rgba(15,23,42,.45);
+    backdrop-filter: blur(2px);
+    animation: fadeIn .2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 .lp-nav__mobile {
+    position: relative; z-index: 100;
     display: flex; flex-direction: column; gap: .5rem; padding: 1rem 1.5rem 1.5rem;
     background: #fff; border-top: 1px solid var(--lp-border);
+    box-shadow: 0 8px 32px rgba(15,23,42,.15);
 }
 .lp-nav__mobile a { text-decoration: none; color: var(--lp-ink); font-weight: 600; padding: .75rem 0; border-bottom: 1px solid var(--lp-border); font-family: var(--lp-font); }
+
+/* Remove focus outline from headings (caused by FocusOnNavigate) */
+h1:focus, h1:focus-visible,
+h2:focus, h2:focus-visible { outline: none; }
 
 /* ── HERO ── */
 .lp-hero {
