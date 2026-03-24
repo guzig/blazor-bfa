@@ -27,7 +27,7 @@
                             ? testimonial.Name[..2].ToUpper()
                             : (testimonial.Name ?? "??").ToUpper();
 
-                        <RadzenCard Class="@cardClass" Style="padding:2rem; flex-shrink:0; width:320px;">
+                        <RadzenCard Class="@cardClass" Style="padding:2rem;">
                             <div class="lp-testimonial__stars">
                                 @for (int i = 0; i < testimonial.Rating; i++) { <span>★</span> }
                                 @for (int i = testimonial.Rating; i < 5; i++) { <span style="opacity:.3;">★</span> }
@@ -48,4 +48,5 @@
             </div>
         </div>
     </div>
+    <ScrollIndicator TargetSection="contact" NextLabel="Contatti" />
 </section>

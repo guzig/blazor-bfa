@@ -44,7 +44,7 @@
     border: none; font-family: var(--lp-font);
 }
 .lp-btn--primary {
-    background: var(--lp-blue); color: #fff;
+    background: var(--lp-blue); color: #fff !important;
     box-shadow: 0 4px 14px rgba(0,112,160,.35);
 }
 .lp-btn--primary:hover { background: var(--lp-blue-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,112,160,.45); }
@@ -75,8 +75,10 @@
     box-shadow: 0 1px 0 var(--lp-border);
     padding: .875rem 0;
 }
-.lp-nav--scrolled .lp-nav__links a   { color: var(--lp-ink) !important; }
-.lp-nav--scrolled .lp-nav__links a:hover { color: var(--lp-blue) !important; }
+header.lp-nav--scrolled .lp-nav__inner .lp-nav__links a:not(.lp-btn),
+.lp-nav--scrolled .lp-nav__inner .lp-nav__links a   { color: var(--lp-blue) !important; }
+header.lp-nav--scrolled .lp-nav__inner .lp-nav__links a:not(.lp-btn):hover,
+.lp-nav--scrolled .lp-nav__inner .lp-nav__links a:hover { color: var(--lp-blue-dark) !important; }
 .lp-nav--scrolled .lp-nav__brand     { color: var(--lp-ink) !important; }
 .lp-nav--scrolled .lp-nav__brand span { color: var(--lp-blue) !important; }
 .lp-nav__inner {
@@ -90,8 +92,11 @@
 }
 .lp-nav__brand span { color: #7dd3fc; }
 .lp-nav__links { display: flex; gap: 2rem; margin-left: auto; }
-.lp-nav__links a { text-decoration: none !important; color: #fff !important; font-weight: 700 !important; font-size: .925rem; transition: opacity .15s; font-family: var(--lp-font); }
-.lp-nav__links a:hover { opacity: .75; }
+.lp-nav__links a,
+header.lp-nav .lp-nav__inner .lp-nav__links a,
+header .lp-nav__inner .lp-nav__links a:not(.lp-btn) { text-decoration: none !important; color: #fff !important; font-weight: 700 !important; font-size: .925rem; transition: opacity .15s; font-family: var(--lp-font); }
+.lp-nav__links a:hover,
+header.lp-nav .lp-nav__inner .lp-nav__links a:hover { opacity: .75; }
 .lp-nav__burger {
     display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: .5rem; margin-left: auto;
 }
@@ -220,7 +225,9 @@ h2:focus, h2:focus-visible { outline: none; }
 .scroll-text {
     font-size: .75rem; color: rgba(255,255,255,.6);
     letter-spacing: .1em; text-transform: uppercase; font-family: var(--lp-font);
+    display: flex; gap: .3em; align-items: center;
 }
+.scroll-text strong { color: #fff; font-weight: 800; }
 
 /* ── FULL PAGE SECTIONS ── */
 .lp-section        { min-height: 100vh; padding: 6rem 0; display: flex; flex-direction: column; justify-content: center; background: var(--lp-surface); position: relative; }
@@ -228,34 +235,17 @@ h2:focus, h2:focus-visible { outline: none; }
 .lp-section--dark  { background: var(--lp-ink); }
 .lp-section > .lp-container { width: 100%; }
 
-/* Scroll hint — mouse + wheel animato in ogni sezione (uguale all'hero) */
-.lp-section::before {
-    content: 'Scopri';
-    position: absolute; bottom: 5.5rem; left: 50%;
-    transform: translateX(-50%);
-    font-size: .7rem; color: rgba(0,0,0,.22);
-    letter-spacing: .12em; text-transform: uppercase;
-    font-family: var(--lp-font); white-space: nowrap;
-    pointer-events: none;
+/* Scroll indicator component — identico all'hero */
+.lp-scroll-indicator {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    z-index: 3; display: flex; flex-direction: column; align-items: center;
+    gap: 8px; cursor: pointer; opacity: .8; transition: opacity .2s;
 }
-.lp-section::after {
-    content: '';
-    position: absolute; bottom: 2.5rem; left: 50%;
-    transform: translateX(-50%);
-    width: 26px; height: 42px;
-    border: 2px solid rgba(0,0,0,.15); border-radius: 13px;
-    background: radial-gradient(ellipse 4px 7px at 50% 0, var(--lp-blue) 0%, transparent 100%) no-repeat;
-    background-position: center 8px;
-    animation: scrollWheelSec 1.5s ease-in-out infinite;
-    pointer-events: none;
-}
-.lp-section--dark::before { color: rgba(255,255,255,.35); }
-.lp-section--dark::after  { border-color: rgba(255,255,255,.25); background-image: radial-gradient(ellipse 4px 7px at 50% 0, #00bfff 0%, transparent 100%); }
-section#contact::before, section#contact::after { display: none; }
-@keyframes scrollWheelSec {
-    0%, 100% { background-position: center 8px;  opacity: 1; }
-    55%       { background-position: center 20px; opacity: .35; }
-}
+.lp-scroll-indicator:hover { opacity: 1; }
+.lp-scroll-indicator .scroll-mouse { border-color: rgba(0,0,0,.2); }
+.lp-scroll-indicator .scroll-text  { color: rgba(0,0,0,.35); }
+.lp-section--dark .lp-scroll-indicator .scroll-mouse { border-color: rgba(255,255,255,.45); }
+.lp-section--dark .lp-scroll-indicator .scroll-text  { color: rgba(255,255,255,.55); }
 
 /* ── ABOUT ── */
 .lp-about {
@@ -369,17 +359,33 @@ section#contact::before, section#contact::after { display: none; }
     100% { transform: translateX(0); }
 }
 
-/* ── TESTIMONIALS CAROUSEL ── */
+/* ── TESTIMONIALS CAROUSEL (1 card per volta, pause+slide) ── */
 .lp-testimonials-carousel {
-    overflow: hidden; position: relative;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    overflow: hidden; position: relative; padding: 0;
 }
 .lp-testimonials-track {
-    display: flex; gap: 1.75rem; padding: 1rem 0;
-    animation: lp-scroll-reverse 55s linear infinite;
+    display: flex; gap: 0; padding: 0.75rem 0;
+    animation: testimonialSlide 18s ease-in-out infinite;
 }
 .lp-testimonials-track:hover { animation-play-state: paused; }
+.lp-testimonials-track .lp-testimonial,
+.lp-testimonials-track .rz-card {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 680px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box;
+}
+@keyframes testimonialSlide {
+    0%        { transform: translateX(0); }
+    28%       { transform: translateX(0); animation-timing-function: cubic-bezier(.4,0,.2,1); }
+    33%       { transform: translateX(-16.66%); }
+    61%       { transform: translateX(-16.66%); animation-timing-function: cubic-bezier(.4,0,.2,1); }
+    66%       { transform: translateX(-33.33%); }
+    94%       { transform: translateX(-33.33%); animation-timing-function: cubic-bezier(.4,0,.2,1); }
+    99%, 100% { transform: translateX(-50%); }
+}
 .lp-testimonial {
     background: var(--lp-surface); border: 1px solid var(--lp-border);
     border-radius: var(--lp-radius-lg); padding: 2rem;
