@@ -364,12 +364,20 @@ section#contact::before, section#contact::after { display: none; }
     0%   { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
+@keyframes lp-scroll-reverse {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
 
 /* ── TESTIMONIALS CAROUSEL ── */
-.lp-testimonials-carousel { overflow: hidden; position: relative; }
+.lp-testimonials-carousel {
+    overflow: hidden; position: relative;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
 .lp-testimonials-track {
-    display: flex; gap: 1.5rem; padding: 0.5rem 1.5rem;
-    animation: lp-scroll 40s linear infinite;
+    display: flex; gap: 1.75rem; padding: 1rem 0;
+    animation: lp-scroll-reverse 55s linear infinite;
 }
 .lp-testimonials-track:hover { animation-play-state: paused; }
 .lp-testimonial {
