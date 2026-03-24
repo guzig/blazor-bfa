@@ -66,7 +66,11 @@
 .lp-nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     padding: 1.25rem 0;
-    transition: background .3s, box-shadow .3s, padding .3s;
+    background: rgba(255,255,255,.06);
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background .3s, border-color .3s, box-shadow .3s, padding .3s;
 }
 .lp-nav--scrolled {
     background: rgba(255,255,255,.97);
