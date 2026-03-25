@@ -11,7 +11,6 @@
                 <a href="@link.Href" style="color:#fff;font-weight:700;">@link.Name</a>
             }
         </nav>
-        <a href="#contact" class="lp-btn lp-btn--sm lp-btn--primary lp-nav__cta">@ViewModel.CtaButtonText</a>
         <button class="lp-nav__burger" @onclick="ToggleMenu" aria-label="menu">
             <span></span><span></span><span></span>
         </button>
@@ -32,9 +31,6 @@
                 <a href="@link.Href" @onclick="CloseMenu">@link.Name</a>
             }
         </nav>
-        <div class="lp-drawer__footer">
-            <a href="#contact" class="lp-btn lp-btn--primary" style="width:100%;justify-content:center;border-radius:9999px;" @onclick="CloseMenu">@ViewModel.CtaButtonText</a>
-        </div>
     </div>
 }
 
