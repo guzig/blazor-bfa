@@ -68,11 +68,19 @@ public class FeaturesViewModel
         },
         new()
         {
-            Icon = "monitor_heart",
-            Title = "Monitoraggio Continuo",
-            Description = "Consumi, scostamenti e anomalie sotto controllo in tempo reale â€” con alert automatici prima che un problema diventi un costo.",
-            IconBg = "rgba(239, 68, 68, 0.15)",
-            IconColor = "#ef4444"
+            Icon = “monitor_heart”,
+            Title = “Monitoraggio Continuo”,
+            Description = “Consumi, scostamenti e anomalie sotto controllo in tempo reale \u2014 con alert automatici prima che un problema diventi un costo.”,
+            IconBg = “rgba(239, 68, 68, 0.15)”,
+            IconColor = “#ef4444”
+        },
+        new()
+        {
+            Icon = “space_dashboard”,
+            Title = “Cruscotto operativo”,
+            Description = “I dati energetici vengono acquisiti, elaborati e resi fruibili sulla piattaforma senza alcun impegno per l'Ente, che dispone di un cruscotto operativo a supporto delle proprie decisioni strategiche in materia di energia e sostenibilit\u00e0.”,
+            IconBg = “rgba(0, 112, 160, 0.12)”,
+            IconColor = “#0070a0”
         }
     ];
     
