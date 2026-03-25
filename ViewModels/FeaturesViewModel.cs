@@ -4,9 +4,9 @@ public class FeaturesViewModel
 {
     public string BadgeText { get; } = "Perch� Sceglierci";
     
-    public string Title { get; } = "Tecnologia";
-    public string TitleHighlight { get; } = "All'avanguardia";
-    public string TitleEnd { get; } = "per la Tua Citt�";
+    public string Title { get; } = "Una piattaforma";
+    public string TitleHighlight { get; } = "specializzata";
+    public string TitleEnd { get; } = "per la gestione energetica e il monitoraggio della spesa.";
     
     public string Description { get; } = "La nostra piattaforma integra le tecnologie pi� avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.";
     
@@ -65,6 +65,14 @@ public class FeaturesViewModel
             Description = "Report pronti per dirigenti e revisori, con evidenza concreta dei risultati ottenuti.",
             IconBg = "rgba(245, 158, 11, 0.2)",
             IconColor = "#fbbf24"
+        },
+        new()
+        {
+            Icon = "monitor_heart",
+            Title = "Monitoraggio Continuo",
+            Description = "Consumi, scostamenti e anomalie sotto controllo in tempo reale — con alert automatici prima che un problema diventi un costo.",
+            IconBg = "rgba(239, 68, 68, 0.15)",
+            IconColor = "#ef4444"
         }
     ];
     
