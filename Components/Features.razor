@@ -4,38 +4,34 @@
 @inject FeaturesViewModel ViewModel
 @inject NavigationManager NavigationManager
 
-<section id="features" class="lp-section">
+<section id="features" class="lp-section lp-section--alt">
     <div class="lp-container">
         <div class="lp-section-header">
-            <div class="lp-features-badge">
-                <RadzenIcon Icon="star" Style="font-size:14px; color:#0070a0;" />
-                <span>@ViewModel.BadgeText</span>
-            </div>
+            <span class="lp-label">@ViewModel.BadgeText</span>
             <RadzenText TextStyle="TextStyle.H3" Class="lp-heading" Style="margin-top:.75rem;">
                 @ViewModel.Title <span class="lp-accent">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd
             </RadzenText>
             <RadzenText Class="lp-body lp-section-header__sub" Text="@ViewModel.Description" />
         </div>
 
-        <!-- Feature grid (icon + title + description) -->
-        <div class="lp-features-grid">
+        <div class="lp-services-grid">
             @foreach (var feature in ViewModel.Features)
             {
-                <div class="lp-feature">
-                    <div class="lp-feature__icon">
-                        <RadzenIcon Icon="@feature.Icon" Style="@($"font-size:28px; color:{feature.IconColor};")" />
+                <div class="lp-service-card" style="--bullet-color:@feature.IconColor; border-top:3px solid @feature.IconColor; background:#fff;">
+                    <div class="lp-service-card__icon" style="background:@feature.IconBg;">
+                        <RadzenIcon Icon="@feature.Icon" Style="@($"color:{feature.IconColor}; font-size:22px;")" />
                     </div>
-                    <h4>@feature.Title</h4>
+                    <h3>@feature.Title</h3>
                     <p>@feature.Description</p>
                 </div>
             }
         </div>
 
         <div style="text-align:center; margin-top:3rem;">
-            <RadzenButton Text="@ViewModel.ButtonText" Icon="@ViewModel.ButtonIcon"
-                          Class="lp-btn lp-btn--primary"
-                          Style="border-radius:9999px; padding:.875rem 2rem; font-weight:700;"
-                          Click="@(() => NavigationManager.NavigateTo("#contact"))" />
+            <a href="#contact" class="lp-btn lp-btn--primary" style="border-radius:9999px; padding:.875rem 2rem; font-weight:700; display:inline-flex; align-items:center; gap:.5rem; text-decoration:none;">
+                <RadzenIcon Icon="@ViewModel.ButtonIcon" Style="font-size:18px;" />
+                @ViewModel.ButtonText
+            </a>
         </div>
     </div>
     <ScrollIndicator TargetSection="projects" NextLabel="Progetti" />
