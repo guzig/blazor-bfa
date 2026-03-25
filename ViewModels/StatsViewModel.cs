@@ -14,7 +14,7 @@ public class StatsViewModel
     public List<StatCard> StatCards { get; } =
     [
         new("apartment", "50", "+", "Comuni Serviti", "#0070a0", "#00a8e8"),
-        new("group", "2", "M €", "Risparmi Generati", "#00a8e8", "#00d4aa"),
+        new("group", "2", "M â‚¬", "Risparmi Generati", "#00a8e8", "#00d4aa"),
         new("sensors", "1000", "+", "Fatture Controllate", "#0070a0", "#00a8e8"),
         new("eco", "99", "%", "Efficienza Energetica", "#00d4aa", "#10b981")
     ];

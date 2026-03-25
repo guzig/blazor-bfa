@@ -22,7 +22,7 @@ public class TestimonialsViewModel
         {
             Name = "Dott. Bernava Antonino",
             Role = "Direttore Tecnico",
-            Content = "Una squadra giovane, efficiente e dinamica sempre al nostro fianco. Ci supportano in tutte le fasi della gestione energetica comunale. Il risparmio è stato superiore al costo del loro servizio.",
+            Content = "Una squadra giovane, efficiente e dinamica sempre al nostro fianco. Ci supportano in tutte le fasi della gestione energetica comunale. Il risparmio Ã¨ stato superiore al costo del loro servizio.",
             Rating = 4
         }
     ];

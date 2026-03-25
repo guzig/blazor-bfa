@@ -2,13 +2,13 @@ namespace BlazorBFA.ViewModels;
 
 public class FeaturesViewModel
 {
-    public string BadgeText { get; } = "Perch� Sceglierci";
+    public string BadgeText { get; } = "PerchÃ© Sceglierci";
     
     public string Title { get; } = "Una piattaforma";
     public string TitleHighlight { get; } = "specializzata";
     public string TitleEnd { get; } = "per la gestione energetica e il monitoraggio della spesa.";
     
-    public string Description { get; } = "La nostra piattaforma integra le tecnologie pi� avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.";
+    public string Description { get; } = "La nostra piattaforma integra le tecnologie piÃ¹ avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.";
     
     public string ButtonText { get; } = "Inizia Ora";
     public string ButtonIcon { get; } = "rocket_launch";
@@ -46,7 +46,7 @@ public class FeaturesViewModel
         {
             Icon = "tips_and_updates",
             Title = "Dati che diventano decisioni",
-            Description = "Non solo grafici — il portale segnala anomalie, scostamenti e opportunità di risparmio in modo azionabile.",
+            Description = "Non solo grafici â€” il portale segnala anomalie, scostamenti e opportunitÃ  di risparmio in modo azionabile.",
             IconBg = "rgba(139, 92, 246, 0.2)",
             IconColor = "#a78bfa"
         },
@@ -54,7 +54,7 @@ public class FeaturesViewModel
         {
             Icon = "account_balance",
             Title = "Pensato per la PA",
-            Description = "Flussi conformi al codice degli appalti, gestione multi-ente, tracciabilità documentale. Non adattato — progettato.",
+            Description = "Flussi conformi al codice degli appalti, gestione multi-ente, tracciabilitÃ  documentale. Non adattato â€” progettato.",
             IconBg = "rgba(16, 185, 129, 0.15)",
             IconColor = "#10b981"
         },
@@ -70,7 +70,7 @@ public class FeaturesViewModel
         {
             Icon = "monitor_heart",
             Title = "Monitoraggio Continuo",
-            Description = "Consumi, scostamenti e anomalie sotto controllo in tempo reale — con alert automatici prima che un problema diventi un costo.",
+            Description = "Consumi, scostamenti e anomalie sotto controllo in tempo reale â€” con alert automatici prima che un problema diventi un costo.",
             IconBg = "rgba(239, 68, 68, 0.15)",
             IconColor = "#ef4444"
         }

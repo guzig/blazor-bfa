@@ -3,8 +3,8 @@ namespace BlazorBFA.ViewModels;
 public class AboutViewModel
 {
     public string SectionLabel { get; } = "Chi siamo";
-    public string Title { get; } = "Siamo un team di professionisti con esperienza nel settore energetico e nella PA per trasformare la complessit‡ del mercato in vantaggio per i nostri clienti";
-    public string Description { get; } = "Fondata nel 2015, BFA Consulting Ë una societ‡ di consulenza energetica che affianca imprese e PA nella gestione strategica dell'energia. Uniamo competenza tecnica, software specialistico avanzato, e visione di lungo periodo per offrire soluzioni concrete di risparmio, efficienza e sostenibilit‡. PerchÈ il cambiamento energetico non Ë solo una sfida ó Ë un'opportunit‡.";
+    public string Title { get; } = "Siamo un team di professionisti con esperienza nel settore energetico e nella PA per trasformare la complessit√† del mercato in vantaggio per i nostri clienti";
+    public string Description { get; } = "Fondata nel 2015, BFA Consulting √® una societ√† di consulenza energetica che affianca imprese e PA nella gestione strategica dell'energia. Uniamo competenza tecnica, software specialistico avanzato, e visione di lungo periodo per offrire soluzioni concrete di risparmio, efficienza e sostenibilit√†. Perch√© il cambiamento energetico non √® solo una sfida ‚Äî √® un'opportunit√†.";
     public string VideoPath { get; } = "videos/about-bg.mp4";
     public string ImagePath { get; } = "images/about.jpg";
     public string ImageAlt { get; } = "BFA Consulting Team";
