@@ -2,13 +2,13 @@ namespace BlazorBFA.ViewModels;
 
 public class FeaturesViewModel
 {
-    public string BadgeText { get; } = "Perché Sceglierci";
+    public string BadgeText { get; } = "Perchï¿½ Sceglierci";
     
     public string Title { get; } = "Tecnologia";
     public string TitleHighlight { get; } = "All'avanguardia";
-    public string TitleEnd { get; } = "per la Tua Città";
+    public string TitleEnd { get; } = "per la Tua Cittï¿½";
     
-    public string Description { get; } = "La nostra piattaforma integra le tecnologie più avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.";
+    public string Description { get; } = "La nostra piattaforma integra le tecnologie piï¿½ avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.";
     
     public string ButtonText { get; } = "Inizia Ora";
     public string ButtonIcon { get; } = "rocket_launch";
@@ -36,17 +36,33 @@ public class FeaturesViewModel
         },
         new()
         {
-            Icon = "security",
-            Title = "Sicurezza Garantita",
-            Description = "Protezione dati conforme GDPR e massima riservatezza.",
+            Icon = "hub",
+            Title = "Un solo posto per tutto",
+            Description = "Contratti, consumi, fatture e scadenze: tutto visibile da un'unica interfaccia, senza saltare tra sistemi.",
+            IconBg = "rgba(0, 112, 160, 0.15)",
+            IconColor = "#0070a0"
+        },
+        new()
+        {
+            Icon = "tips_and_updates",
+            Title = "Dati che diventano decisioni",
+            Description = "Non solo grafici â€” il portale segnala anomalie, scostamenti e opportunitÃ  di risparmio in modo azionabile.",
             IconBg = "rgba(139, 92, 246, 0.2)",
             IconColor = "#a78bfa"
         },
         new()
         {
+            Icon = "account_balance",
+            Title = "Pensato per la PA",
+            Description = "Flussi conformi al codice degli appalti, gestione multi-ente, tracciabilitÃ  documentale. Non adattato â€” progettato.",
+            IconBg = "rgba(16, 185, 129, 0.15)",
+            IconColor = "#10b981"
+        },
+        new()
+        {
             Icon = "speed",
-            Title = "Risultati Misurabili",
-            Description = "Monitoraggio costante con report dettagliati sui risparmi ottenuti.",
+            Title = "Risparmi dimostrabili",
+            Description = "Report pronti per dirigenti e revisori, con evidenza concreta dei risultati ottenuti.",
             IconBg = "rgba(245, 158, 11, 0.2)",
             IconColor = "#fbbf24"
         }
