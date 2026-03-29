@@ -2,187 +2,59 @@
 @using Radzen.Blazor
 @using BlazorBFA.ViewModels
 @inject FeaturesViewModel ViewModel
-@inject NavigationManager NavigationManager
 
-<section id="features" class="features-section full-page-section">
-    <div class="features-container">
-        <RadzenRow AlignItems="AlignItems.Center" Gap="4rem" JustifyContent="JustifyContent.Center">
-            @* Left content *@
-            <RadzenColumn Size="12" SizeLg="5">
-                <div class="features-content">
-                    @* Badge *@
-                    <div class="features-badge">
-                        <RadzenIcon Icon="star" Style="font-size:16px;" />
-                        <span>@ViewModel.BadgeText</span>
-                    </div>
+<section id="features" class="bg-muted/30 pb-24 relative overflow-hidden">
+    <div class="w-full h-px bg-border/60 mb-16"></div>
+    <div class="absolute right-0 top-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
 
-                    @* Title *@
-                    <RadzenText TextStyle="TextStyle.H2" Class="features-title">
-                        @ViewModel.Title<br />
-                        <span class="features-title-highlight">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd
-                    </RadzenText>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+            <div class="inline-flex items-center gap-2 mb-4 justify-center w-full">
+                <span class="h-px w-8 bg-primary"></span>
+                <h3 class="text-primary font-semibold tracking-wider uppercase text-sm">@ViewModel.BadgeText</h3>
+                <span class="h-px w-8 bg-primary"></span>
+            </div>
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-foreground mb-4">@ViewModel.Title <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">@ViewModel.TitleHighlight</span> @ViewModel.TitleEnd</h2>
+            <p class="text-muted-foreground text-lg">@ViewModel.Description</p>
+        </div>
 
-                    @* Description *@
-                    <RadzenText Class="features-description">
-                        @ViewModel.Description
-                    </RadzenText>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
+            @for (var i = 0; i < ViewModel.FloatingBadges.Count; i++)
+            {
+                var badge = ViewModel.FloatingBadges[i];
+                <article class="relative bg-card border border-border/50 rounded-2xl p-8 text-center overflow-hidden group hover:border-primary/30 hover:shadow-lg transition-all reveal" style="--reveal-delay: @(i * 90)ms;">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <RadzenIcon Icon="@badge.Icon" class="w-7 h-7 text-primary mx-auto mb-4" />
+                    <p class="text-xl font-display font-bold text-foreground relative z-10">@badge.Text</p>
+                </article>
+            }
+        </div>
 
-                    @* Features list *@
-                    <RadzenStack Gap="24px" Style="margin-bottom:2.5rem;">
-                        @foreach (var feature in ViewModel.Features)
-                        {
-                            <div class="feature-item">
-                                <div class="feature-icon" style="@($"background:{feature.IconBg};")">
-                                    <RadzenIcon Icon="@feature.Icon" Style="@($"color:{feature.IconColor}; font-size:22px;")" />
-                                </div>
-                                <div class="feature-text">
-                                    <RadzenText Style="font-weight:600; color:white; font-size:1.1rem; margin-bottom:4px;">@feature.Title</RadzenText>
-                                    <RadzenText Style="color:rgba(255,255,255,0.65); font-size:0.95rem; line-height:1.6;">@feature.Description</RadzenText>
-                                </div>
-                            </div>
-                        }
-                    </RadzenStack>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl border border-border/60 bg-card reveal reveal-left">
+                <img src="@ViewModel.ImagePath" alt="@ViewModel.ImageAlt" class="w-full h-full object-cover aspect-[4/3]" />
+            </div>
 
-                    @* CTA Button *@
-                    <RadzenButton Text="@ViewModel.ButtonText" Icon="@ViewModel.ButtonIcon" 
-                                  Class="features-cta-btn"
-                                  Click="@(() => NavigationManager.NavigateTo("#contact"))" />
-                </div>
-            </RadzenColumn>
-
-            @* Right image with floating badges *@
-            <RadzenColumn Size="12" SizeLg="6">
-                <div class="features-image-container">
-                    @* Main image *@
-                    <div class="features-image-wrapper">
-                        <RadzenImage Path="@ViewModel.ImagePath" Alt="@ViewModel.ImageAlt" Class="features-main-image" />
-                        
-                        @* Overlay gradient *@
-                        <div class="features-image-overlay"></div>
-                    </div>
-
-                    @* Floating badges *@
-                    @foreach (var badge in ViewModel.FloatingBadges)
-                    {
-                        <div class="floating-badge @badge.PositionClass">
-                            <RadzenIcon Icon="@badge.Icon" Style="@($"color:{badge.IconColor}; font-size:18px;")" />
-                            <span>@badge.Text</span>
+            <div class="space-y-5">
+                @for (var i = 0; i < ViewModel.Features.Count; i++)
+                {
+                    var feature = ViewModel.Features[i];
+                    <article class="flex gap-4 rounded-xl border border-border/50 bg-card p-5 hover:border-primary/30 transition-colors reveal" style="--reveal-delay: @(120 + i * 80)ms;">
+                        <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                            <RadzenIcon Icon="@feature.Icon" />
                         </div>
-                    }
-                </div>
-            </RadzenColumn>
-        </RadzenRow>
-    </div>
-    
-    <ScrollIndicator TargetSection="projects" Text="I Nostri Progetti" />
-</section>
+                        <div>
+                            <h3 class="text-lg font-display font-semibold text-foreground">@feature.Title</h3>
+                            <p class="text-muted-foreground">@feature.Description</p>
+                        </div>
+                    </article>
+                }
 
-<style>
-    .features-title {
-        font-family: 'Fraunces', Georgia, serif;
-        font-weight: 700;
-        font-size: 3.25rem;
-        line-height: 1.15;
-        margin-bottom: 1.5rem;
-        color: white;
-    }
-    
-    .features-title-highlight {
-        color: var(--primary-light);
-    }
-    
-    .features-description {
-        color: rgba(255, 255, 255, 0.75);
-        font-size: 1.2rem;
-        line-height: 1.8;
-        margin-bottom: 2.5rem;
-        max-width: 500px;
-    }
-    
-    .features-cta-btn {
-        background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
-        border: none;
-        border-radius: 14px;
-        padding: 16px 32px;
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-    
-    @@media (max-width: 480px) {
-        .features-title {
-            font-size: 1.75rem !important;
-            line-height: 1.25 !important;
-            margin-bottom: 1rem !important;
-        }
-        
-        .features-description {
-            font-size: 0.95rem !important;
-            line-height: 1.6 !important;
-            margin-bottom: 1.5rem !important;
-        }
-        
-        .features-cta-btn {
-            padding: 12px 24px !important;
-            font-size: 1rem !important;
-            width: 100%;
-        }
-        
-        .feature-item {
-            gap: 12px !important;
-        }
-        
-        .feature-icon {
-            width: 40px !important;
-            height: 40px !important;
-        }
-        
-        .feature-text [style*="font-size:1.1rem"] {
-            font-size: 1rem !important;
-        }
-        
-        .feature-text [style*="font-size:0.95rem"] {
-            font-size: 0.85rem !important;
-        }
-        
-        .features-badge {
-            font-size: 0.85rem !important;
-            padding: 8px 14px !important;
-        }
-    }
-    
-    @@media (min-width: 481px) and (max-width: 768px) {
-        .features-title {
-            font-size: 2rem !important;
-        }
-        
-        .features-description {
-            font-size: 1rem !important;
-        }
-        
-        .features-content {
-            text-align: center;
-        }
-        
-        .features-badge {
-            justify-content: center;
-        }
-        
-        .features-description {
-            max-width: 100% !important;
-        }
-    }
-    
-    @@media (min-width: 769px) and (max-width: 991px) {
-        .features-title {
-            font-size: 2.5rem !important;
-        }
-        
-        .features-content {
-            text-align: center;
-        }
-        
-        .features-badge {
-            display: inline-flex;
-        }
-    }
-</style>
+                <a href="#contact" class="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium border border-primary-border min-h-10 h-12 px-6 bg-primary hover:bg-primary/90 text-primary-foreground rounded-xl">
+                    @ViewModel.ButtonText
+                    <RadzenIcon Icon="@ViewModel.ButtonIcon" />
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

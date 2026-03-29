@@ -23,21 +23,21 @@ window.scrollInterop = {
 // Navbar Interop
 window.navbarInterop = {
     dotNetRef: null,
-    
+
     initialize: function (dotNetRef) {
         this.dotNetRef = dotNetRef;
-        
+
         const handleScroll = () => {
             const isScrolled = window.scrollY > 50;
             dotNetRef.invokeMethodAsync('SetScrolled', isScrolled);
         };
-        
+
         window.addEventListener('scroll', handleScroll, { passive: true });
-        handleScroll(); // Check initial state
-        
+        handleScroll();
+
         this.handleScroll = handleScroll;
     },
-    
+
     dispose: function () {
         if (this.handleScroll) {
             window.removeEventListener('scroll', this.handleScroll);
@@ -50,17 +50,17 @@ window.navbarInterop = {
 window.heroInterop = {
     animate: function (headingRef, subheadingRef, ctaRef) {
         if (typeof gsap === 'undefined') return;
-        
-        gsap.fromTo(headingRef, 
+
+        gsap.fromTo(headingRef,
             { y: 40, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: 'power3.out' }
         );
-        
+
         gsap.fromTo(subheadingRef,
             { y: 30, opacity: 0 },
             { y: 0, opacity: 1, duration: 0.7, delay: 0.4, ease: 'power3.out' }
         );
-        
+
         gsap.fromTo(ctaRef,
             { scale: 0.9, opacity: 0 },
             { scale: 1, opacity: 1, duration: 0.5, delay: 0.6, ease: 'power2.out' }
@@ -72,9 +72,9 @@ window.heroInterop = {
 window.aboutInterop = {
     animate: function (sectionRef, imageRef, contentRef) {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
+
         gsap.registerPlugin(ScrollTrigger);
-        
+
         gsap.fromTo(imageRef,
             { x: -50, opacity: 0 },
             {
@@ -89,7 +89,7 @@ window.aboutInterop = {
                 }
             }
         );
-        
+
         gsap.fromTo(contentRef,
             { x: 50, opacity: 0 },
             {
@@ -111,12 +111,12 @@ window.aboutInterop = {
 window.statCircleInterop = {
     animate: function (circleRef, percentage, delay) {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
+
         gsap.registerPlugin(ScrollTrigger);
-        
+
         const circumference = 2 * Math.PI * 45;
         const offset = circumference - (percentage / 100) * circumference;
-        
+
         gsap.fromTo(circleRef,
             { strokeDashoffset: circumference },
             {
@@ -138,9 +138,9 @@ window.statCircleInterop = {
 window.servicesInterop = {
     animateHeader: function (headerRef) {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
+
         gsap.registerPlugin(ScrollTrigger);
-        
+
         gsap.fromTo(headerRef,
             { y: 30, opacity: 0 },
             {
@@ -162,9 +162,9 @@ window.servicesInterop = {
 window.serviceCardInterop = {
     animate: function (cardRef, index) {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
+
         gsap.registerPlugin(ScrollTrigger);
-        
+
         gsap.fromTo(cardRef,
             { y: 40, opacity: 0 },
             {
@@ -187,9 +187,9 @@ window.serviceCardInterop = {
 window.projectsInterop = {
     animate: function (headerRef, carouselRef) {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
+
         gsap.registerPlugin(ScrollTrigger);
-        
+
         gsap.fromTo(headerRef,
             { y: 30, opacity: 0 },
             {
@@ -204,7 +204,7 @@ window.projectsInterop = {
                 }
             }
         );
-        
+
         gsap.fromTo(carouselRef,
             { opacity: 0 },
             {
@@ -220,31 +220,30 @@ window.projectsInterop = {
             }
         );
     },
-    
+
     scroll: function (carouselRef, direction) {
         const cardWidth = 280;
         const scrollAmount = cardWidth * 2;
-        
+
         if (direction === 'left') {
             carouselRef.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
         } else {
             carouselRef.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     },
-    
+
     scrollToDot: function (carouselRef, dotIndex) {
         const cardWidth = 280;
         const scrollAmount = cardWidth * 4 * dotIndex;
         carouselRef.scrollTo({ left: scrollAmount, behavior: 'smooth' });
     },
-    
+
     getScrollState: function (carouselRef) {
         const scrollLeft = carouselRef.scrollLeft;
-        const maxScroll = carouselRef.scrollWidth - carouselRef.clientWidth;
         const canScrollLeft = scrollLeft > 0;
         const cardWidth = 280;
         const currentDot = Math.floor(scrollLeft / (cardWidth * 4));
-        
+
         return {
             scrollLeft: scrollLeft,
             canScrollLeft: canScrollLeft,
@@ -257,9 +256,9 @@ window.projectsInterop = {
 window.testimonialsInterop = {
     animate: function (headerRef) {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
+
         gsap.registerPlugin(ScrollTrigger);
-        
+
         gsap.fromTo(headerRef,
             { y: 30, opacity: 0 },
             {
@@ -281,9 +280,9 @@ window.testimonialsInterop = {
 window.contactInterop = {
     animate: function (headerRef, infoRef, formRef) {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
-        
+
         gsap.registerPlugin(ScrollTrigger);
-        
+
         gsap.fromTo(headerRef,
             { y: 30, opacity: 0 },
             {
@@ -298,7 +297,7 @@ window.contactInterop = {
                 }
             }
         );
-        
+
         const infoCards = infoRef.querySelectorAll('.info-card, .map-placeholder');
         gsap.fromTo(infoCards,
             { y: 30, opacity: 0 },
@@ -315,7 +314,7 @@ window.contactInterop = {
                 }
             }
         );
-        
+
         gsap.fromTo(formRef,
             { x: -30, opacity: 0 },
             {
@@ -332,7 +331,7 @@ window.contactInterop = {
             }
         );
     },
-    
+
     showToast: function (title, message) {
         // Simple toast notification
         const toast = document.createElement('div');
@@ -351,7 +350,7 @@ window.contactInterop = {
         `;
         toast.innerHTML = `<strong>${title}</strong><br>${message}`;
         document.body.appendChild(toast);
-        
+
         setTimeout(() => {
             toast.style.animation = 'slideUp 0.3s ease-out';
             setTimeout(() => toast.remove(), 300);
@@ -372,3 +371,110 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
+// Shared page motion and media bootstrap
+window.uiRuntime = {
+    _revealObserver: null,
+    _watchersStarted: false,
+
+    initRevealAnimations: function () {
+        const items = document.querySelectorAll('.reveal');
+        if (!items.length) {
+            return;
+        }
+
+        if (!('IntersectionObserver' in window)) {
+            items.forEach((el) => el.classList.add('in-view'));
+            return;
+        }
+
+        if (!this._revealObserver) {
+            this._revealObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.12,
+                rootMargin: '0px 0px -8% 0px'
+            });
+        }
+
+        items.forEach((el) => {
+            if (el.classList.contains('in-view') || el.dataset.revealObserved === '1') {
+                return;
+            }
+            el.dataset.revealObserved = '1';
+            this._revealObserver.observe(el);
+        });
+    },
+
+    revealFallback: function () {
+        const viewportLimit = window.innerHeight * 1.2;
+        document.querySelectorAll('.reveal:not(.in-view)').forEach((el) => {
+            const top = el.getBoundingClientRect().top;
+            if (top <= viewportLimit) {
+                el.classList.add('in-view');
+            }
+        });
+    },
+
+    ensureAutoplayVideos: function () {
+        const videos = document.querySelectorAll('#chi-siamo video, video[data-autoplay="true"]');
+        videos.forEach((video) => {
+            if (video.dataset.autoplayBound !== '1') {
+                video.dataset.autoplayBound = '1';
+                video.addEventListener('canplay', () => {
+                    video.muted = true;
+                    video.defaultMuted = true;
+                    const canPlayPromise = video.play();
+                    if (canPlayPromise && typeof canPlayPromise.catch === 'function') {
+                        canPlayPromise.catch(() => {});
+                    }
+                });
+            }
+
+            video.preload = 'auto';
+            video.muted = true;
+            video.defaultMuted = true;
+            video.playsInline = true;
+            video.autoplay = true;
+            const playPromise = video.play();
+            if (playPromise && typeof playPromise.catch === 'function') {
+                playPromise.catch(() => {
+                    // Ignore autoplay rejections; user interaction can resume playback.
+                });
+            }
+        });
+    },
+
+    startRuntimeWatchers: function () {
+        if (this._watchersStarted) {
+            return;
+        }
+        this._watchersStarted = true;
+
+        const run = () => {
+            this.initRevealAnimations();
+            this.ensureAutoplayVideos();
+        };
+
+        run();
+        setTimeout(run, 400);
+        setTimeout(run, 1200);
+        setTimeout(run, 2200);
+        setTimeout(() => this.revealFallback(), 2800);
+
+        const root = document.getElementById('app') || document.body;
+        const observer = new MutationObserver(() => run());
+        observer.observe(root, { childList: true, subtree: true });
+
+        window.addEventListener('scroll', () => this.initRevealAnimations(), { passive: true });
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    window.uiRuntime.startRuntimeWatchers();
+});

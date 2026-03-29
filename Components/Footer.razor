@@ -1,60 +1,92 @@
-@using Radzen
-@using Radzen.Blazor
 @using BlazorBFA.ViewModels
 @inject FooterViewModel ViewModel
+@inject ContactViewModel ContactVM
 
-<footer class="footer-new">
-    <div class="footer-container-new">
-        @* Main footer content *@
-        <div class="footer-main">
-            @* Brand column *@
-            <div class="footer-brand">
-                <div class="footer-logo-new">
-                    <RadzenIcon Icon="bolt" Style="font-size:28px; color:var(--primary-light);" />
-                    <span>@ViewModel.CompanyName</span>
+<footer class="bg-secondary text-secondary-foreground pt-16 pb-8 border-t border-secondary-foreground/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            <section class="space-y-4">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-white">
+                        <img src="images/logo-mark.png" alt="BFA Logo" class="w-4 h-4 object-contain" />
+                    </div>
+                    <span class="font-display font-bold text-2xl tracking-tight text-white">@ViewModel.CompanyName</span>
                 </div>
-                <RadzenText Style="color:rgba(255,255,255,0.6); font-size:0.95rem; line-height:1.7; margin-bottom:1.5rem; max-width:300px;">
-                    @ViewModel.CompanyDescription
-                </RadzenText>
-                
-                @* Social icons *@
-                <div class="footer-social">
-                    @foreach (var social in ViewModel.SocialLinks)
-                    {
-                        <a href="@social.Href" target="_blank" class="social-icon">
-                            <RadzenIcon Icon="@social.Icon" Style="font-size:18px;" />
+                <p class="text-secondary-foreground/70 max-w-sm">@ViewModel.CompanyDescription</p>
+            </section>
+
+            <section>
+                <h4 class="font-display font-semibold text-lg mb-4 text-white">Link Rapidi</h4>
+                <ul class="space-y-3 list-none pl-0">
+                    <li><a href="#chi-siamo" class="text-secondary-foreground/70 hover:text-primary transition-colors flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-primary/50 mr-2"></span>Chi Siamo</a></li>
+                    <li><a href="#servizi" class="text-secondary-foreground/70 hover:text-primary transition-colors flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-primary/50 mr-2"></span>Servizi</a></li>
+                    <li><a href="#portfolio" class="text-secondary-foreground/70 hover:text-primary transition-colors flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-primary/50 mr-2"></span>Portfolio</a></li>
+                    <li><a href="#testimonial" class="text-secondary-foreground/70 hover:text-primary transition-colors flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-primary/50 mr-2"></span>Testimonial</a></li>
+                    <li><a href="#contatti" class="text-secondary-foreground/70 hover:text-primary transition-colors flex items-center"><span class="w-1.5 h-1.5 rounded-full bg-primary/50 mr-2"></span>Contatti</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h4 class="font-display font-semibold text-lg mb-4 text-white">Contattaci</h4>
+                <ul class="space-y-4 list-none pl-0">
+                    <li>
+                        <a href="@ContactVM.ContactInfo[0].Href" class="flex items-start group">
+                            <div class="p-2 rounded-lg bg-white/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors mr-3 mt-0.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+                                    <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-secondary-foreground/50 mb-0.5">Telefono</div>
+                                <div class="text-secondary-foreground/90 font-medium">@ContactVM.ContactInfo[0].Value</div>
+                            </div>
                         </a>
-                    }
-                </div>
-            </div>
-            
-            @* Link columns *@
-            @foreach (var group in ViewModel.LinkGroups)
-            {
-                <div class="footer-links-column">
-                    <RadzenText Style="font-weight:600; color:white; font-size:1rem; margin-bottom:1.25rem;">
-                        @group.Title
-                    </RadzenText>
-                    <ul class="footer-links-list">
-                        @foreach (var link in group.Links)
-                        {
-                            <li>
-                                <a href="@link.Href" class="footer-link-new">@link.Text</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-            }
+                    </li>
+                    <li>
+                        <a href="@ContactVM.ContactInfo[1].Href" class="flex items-start group">
+                            <div class="p-2 rounded-lg bg-white/5 text-primary group-hover:bg-primary group-hover:text-white transition-colors mr-3 mt-0.5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+                                    <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                                </svg>
+                            </div>
+                            <div>
+                                <div class="text-sm text-secondary-foreground/50 mb-0.5">Email</div>
+                                <div class="text-secondary-foreground/90 font-medium">@ContactVM.ContactInfo[1].Value</div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="flex items-start">
+                        <div class="p-2 rounded-lg bg-white/5 text-primary mr-3 mt-0.5">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4">
+                                <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="text-sm text-secondary-foreground/50 mb-0.5">Indirizzo</div>
+                            <div class="text-secondary-foreground/90 font-medium">@ContactVM.AddressCity<br />@ContactVM.AddressStreet</div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
         </div>
-        
-        @* Footer bottom *@
-        <div class="footer-bottom">
-            <RadzenText Style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
-                © @ViewModel.CurrentYear @ViewModel.CompanyName. Tutti i diritti riservati.
-            </RadzenText>
-            <RadzenText Style="color:rgba(255,255,255,0.5); font-size:0.875rem;">
-                Realizzato con <span style="color:#ef4444;">❤</span> in Italia
-            </RadzenText>
+
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm text-secondary-foreground/60 text-center md:text-left">© @ViewModel.CurrentYear @ViewModel.CompanyName. Tutti i diritti riservati.</p>
+            <div class="flex gap-4 text-sm text-secondary-foreground/60">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Cookie Policy</a>
+            </div>
         </div>
     </div>
 </footer>
+
+@code {
+    private static string GetBrandText(string brandName)
+    {
+        return brandName.StartsWith("BFA ", StringComparison.OrdinalIgnoreCase)
+            ? brandName[4..]
+            : brandName;
+    }
+}
