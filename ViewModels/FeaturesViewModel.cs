@@ -2,13 +2,13 @@ namespace BlazorBFA.ViewModels;
 
 public class FeaturesViewModel
 {
-    public string BadgeText { get; } = "Perché Sceglierci";
+    public string BadgeText { get; } = "Perch\u00E9 Sceglierci";
     
     public string Title { get; } = "Tecnologia";
     public string TitleHighlight { get; } = "All'avanguardia";
-    public string TitleEnd { get; } = "per la Tua Città";
+    public string TitleEnd { get; } = "per la Tua Citt\u00E0";
     
-    public string Description { get; } = "La nostra piattaforma integra le tecnologie più avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.";
+    public string Description { get; } = "La nostra piattaforma integra le tecnologie pi\u00F9 avanzate per gestire l'energia in modo intelligente, efficiente e sostenibile.";
     
     public string ButtonText { get; } = "Inizia Ora";
     public string ButtonIcon { get; } = "rocket_launch";

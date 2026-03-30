@@ -3,7 +3,7 @@
 @using BlazorBFA.ViewModels
 @inject FeaturesViewModel ViewModel
 
-<section id="features" class="bg-muted/30 pb-24 relative overflow-hidden">
+<section id="features" class="choose-us-section bg-muted/30 pb-24 relative overflow-hidden">
     <div class="w-full h-px bg-border/60 mb-16"></div>
     <div class="absolute right-0 top-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
 
@@ -31,7 +31,7 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div class="relative rounded-2xl overflow-hidden shadow-xl border border-border/60 bg-card reveal reveal-left">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl border border-border/60 bg-card reveal reveal-left choose-us-image-frame">
                 <img src="@ViewModel.ImagePath" alt="@ViewModel.ImageAlt" class="w-full h-full object-cover aspect-[4/3]" />
             </div>
 
@@ -39,13 +39,19 @@
                 @for (var i = 0; i < ViewModel.Features.Count; i++)
                 {
                     var feature = ViewModel.Features[i];
-                    <article class="flex gap-4 rounded-xl border border-border/50 bg-card p-5 hover:border-primary/30 transition-colors reveal" style="--reveal-delay: @(120 + i * 80)ms;">
-                        <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                            <RadzenIcon Icon="@feature.Icon" />
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-display font-semibold text-foreground">@feature.Title</h3>
-                            <p class="text-muted-foreground">@feature.Description</p>
+                    <article class="choose-us-card group rounded-xl border border-border/50 bg-card p-5 reveal" style="--reveal-delay: @(120 + i * 80)ms;">
+                        <div class="choose-us-card-glow" aria-hidden="true"></div>
+                        <div class="choose-us-card-content">
+                            <div class="choose-us-icon-wrap" style="background: @feature.IconBg; color: @feature.IconColor;">
+                                <RadzenIcon Icon="@feature.Icon" class="choose-us-icon" />
+                            </div>
+                            <div class="choose-us-copy">
+                                <h3 class="text-lg font-display font-semibold text-foreground">@feature.Title</h3>
+                                <p class="text-muted-foreground">@feature.Description</p>
+                            </div>
+                            <div class="choose-us-arrow" aria-hidden="true">
+                                <RadzenIcon Icon="arrow_outward" />
+                            </div>
                         </div>
                     </article>
                 }
