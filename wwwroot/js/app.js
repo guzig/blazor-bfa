@@ -207,6 +207,51 @@ window.serviceCardInterop = {
     }
 };
 
+// Portfolio Marquee — auto-scroll with manual arrow control
+window.portfolioMarquee = {
+    _raf: null,
+    _outer: null,
+    _halfWidth: 0,
+    _speed: 0.6, // px per frame (~60fps → ~56s per loop)
+
+    init: function () {
+        const outer = document.querySelector('.projects-marquee-outer');
+        if (!outer) return;
+        this._outer = outer;
+
+        // Wait one extra frame so layout is complete
+        requestAnimationFrame(() => {
+            const track = outer.querySelector('.projects-marquee-track');
+            if (!track) return;
+            this._halfWidth = track.scrollWidth / 2;
+            this._tick();
+        });
+    },
+
+    _tick: function () {
+        const self = window.portfolioMarquee;
+        if (!self._outer) return;
+        if (!self._outer.matches(':hover')) {
+            self._outer.scrollLeft += self._speed;
+            if (self._outer.scrollLeft >= self._halfWidth) {
+                self._outer.scrollLeft = 0;
+            }
+        }
+        self._raf = requestAnimationFrame(self._tick);
+    },
+
+    scroll: function (direction) {
+        if (!this._outer) return;
+        const amount = (224 + 16) * 3;
+        this._outer.scrollBy({ left: direction === 'left' ? -amount : amount, behavior: 'smooth' });
+    },
+
+    dispose: function () {
+        if (this._raf) cancelAnimationFrame(this._raf);
+        this._outer = null;
+    }
+};
+
 // Projects Interop
 window.projectsInterop = {
     animate: function (headerRef, carouselRef) {
@@ -246,25 +291,10 @@ window.projectsInterop = {
     },
 
     scroll: function (carouselRef, direction) {
-        // Try the element reference first, then fall back to getElementById.
-        // In Blazor WASM, ElementReference arrives as {__internalId: ...} which
-        // is a truthy object but does NOT have scrollBy — hence the explicit check.
-        let el = null;
-        try {
-            if (carouselRef && typeof carouselRef.scrollBy === 'function') {
-                el = carouselRef;
-            }
-        } catch (e) {}
-
-        if (!el) {
-            el = document.getElementById('projects-rail');
-        }
-
+        const el = document.getElementById('projects-rail');
         if (!el) return;
-
-        const cardWidth = 256 + 16; // w-56 = 224px rendered ~256px + gap-4 (16px)
-        const scrollAmount = cardWidth * 2;
-        el.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+        const amount = (224 + 16) * 3;
+        el.scrollBy({ left: direction === 'left' ? -amount : amount, behavior: 'smooth' });
     },
 
     scrollToDot: function (carouselRef, dotIndex) {

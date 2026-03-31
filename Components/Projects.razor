@@ -3,12 +3,13 @@
 @using BlazorBFA.ViewModels
 @inject ProjectsViewModel ViewModel
 @inject IJSRuntime JS
+@implements IDisposable
 
 <section id="portfolio" class="section-screen pt-16 pb-0 bg-background relative flex flex-col">
     <div class="absolute left-0 bottom-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl -z-10"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col lg:flex-row gap-8 lg:items-end mb-8 reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="flex flex-col lg:flex-row gap-8 lg:items-end mb-10 reveal">
             <div class="lg:w-1/2">
                 <div class="inline-flex items-center gap-2 mb-4">
                     <span class="h-px w-8 bg-primary"></span>
@@ -16,60 +17,50 @@
                 </div>
                 <h2 class="text-4xl md:text-5xl font-display font-bold text-foreground">Amministrazioni Comunali <span class="text-gradient">Progetti</span></h2>
             </div>
-
             <div class="lg:w-1/2 lg:text-right text-muted-foreground text-lg pb-2">
                 Affianchiamo con successo decine di comuni nella gestione delle utenze e del bilancio energetico.
             </div>
         </div>
+    </div>
 
-        <div class="relative">
-            <button type="button" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 z-10 w-10 h-10 rounded-full bg-background border border-border shadow-md flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all" @onclick='() => ScrollRail("left")' aria-label="Scroll projects left">
-                <RadzenIcon Icon="chevron_left" class="w-5 h-5" />
-            </button>
-
-            <div id="projects-rail" class="flex gap-4 overflow-x-auto scroll-smooth pb-2 px-4" style="scrollbar-width: none;" @ref="railRef">
-                @for (var index = 0; index < ViewModel.Projects.Count; index++)
+    <div class="projects-marquee-outer">
+        <div class="projects-marquee-track">
+            @for (var pass = 0; pass < 2; pass++)
+            {
+                foreach (var project in ViewModel.Projects)
                 {
-                    var project = ViewModel.Projects[index];
-                    <article class="flex-shrink-0 w-56 flex items-center p-4 rounded-xl border border-border/60 bg-card hover:bg-accent/30 hover:border-primary/30 transition-colors group cursor-default reveal" style="--reveal-delay: @(index * 35)ms;">
-                        <div class="w-10 h-10 rounded-full bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors flex items-center justify-center font-bold text-sm mr-3">@GetInitials(project.Name)</div>
+                    <article class="projects-marquee-card">
+                        <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm mr-3 shrink-0">@GetInitials(project.Name)</div>
                         <div class="min-w-0">
                             <h3 class="text-sm font-semibold text-foreground leading-tight truncate">@project.Name (@project.Province)</h3>
-                            <p class="text-xs text-muted-foreground mt-1">Dal @project.Year</p>
+                            <p class="text-xs text-muted-foreground mt-0.5">Dal @project.Year</p>
                         </div>
                     </article>
                 }
-            </div>
-
-            <button type="button" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 z-10 w-10 h-10 rounded-full bg-background border border-border shadow-md flex items-center justify-center text-foreground hover:bg-primary hover:text-white hover:border-primary transition-all" @onclick='() => ScrollRail("right")' aria-label="Scroll projects right">
-                <RadzenIcon Icon="chevron_right" class="w-5 h-5" />
-            </button>
+            }
         </div>
     </div>
+
     <ScrollIndicator TargetSection="testimonial" Text="Scorri" Variant="dark" />
 </section>
 
 @code {
-    private ElementReference railRef;
-
-    private async Task ScrollRail(string direction)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        await JS.InvokeVoidAsync("projectsInterop.scroll", railRef, direction);
+        if (firstRender)
+            await JS.InvokeVoidAsync("portfolioMarquee.init");
+    }
+
+    public async void Dispose()
+    {
+        try { await JS.InvokeVoidAsync("portfolioMarquee.dispose"); } catch { }
     }
 
     private static string GetInitials(string name)
     {
         var parts = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        if (parts.Length == 0)
-        {
-            return "BF";
-        }
-
-        if (parts.Length == 1)
-        {
-            return parts[0].Substring(0, Math.Min(2, parts[0].Length)).ToUpperInvariant();
-        }
-
+        if (parts.Length == 0) return "BF";
+        if (parts.Length == 1) return parts[0].Substring(0, Math.Min(2, parts[0].Length)).ToUpperInvariant();
         return string.Concat(parts[0][0], parts[^1][0]).ToUpperInvariant();
     }
 }

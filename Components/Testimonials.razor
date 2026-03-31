@@ -3,7 +3,7 @@
 @using BlazorBFA.ViewModels
 @inject TestimonialsViewModel ViewModel
 
-<section id="testimonial" class="section-screen pt-16 pb-0 bg-secondary text-secondary-foreground relative overflow-hidden flex flex-col">
+<section id="testimonial" class="section-screen pt-16 pb-0 bg-secondary text-secondary-foreground relative flex flex-col">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -21,13 +21,13 @@
                 <RadzenIcon Icon="chevron_left" class="w-5 h-5" />
             </button>
 
-            <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden">
+            <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden @_slideClass">
                 @for (var offset = -1; offset <= 1; offset++)
                 {
                     var model = GetRelative(offset);
                     var isActive = offset == 0;
 
-                    <article class="bg-white/5 border rounded-2xl p-8 backdrop-blur-sm relative transition-all reveal @(isActive ? $"border-primary/60 scale-100 opacity-100 {_slideClass}" : "border-white/10 opacity-55 scale-95")" style="--reveal-delay: @((offset + 1) * 80)ms;">
+                    <article class="bg-white/5 border rounded-2xl p-8 backdrop-blur-sm relative transition-all reveal @(isActive ? "border-primary/60 scale-100 opacity-100" : "border-white/10 opacity-55 scale-95")" style="--reveal-delay: @((offset + 1) * 80)ms;">
                         <RadzenIcon Icon="format_quote" class="absolute top-6 right-6 w-10 h-10 text-white/10" />
 
                         <div class="flex mb-4" aria-label="@($"{model.Rating} su 5")">
@@ -82,10 +82,10 @@
                 {
                     if (!_userInteracted)
                     {
+                        currentIndex = (currentIndex + 1) % ViewModel.Testimonials.Count;
                         _slideClass = "slide-from-right";
                         StateHasChanged();
-                        await Task.Delay(50);
-                        currentIndex = (currentIndex + 1) % ViewModel.Testimonials.Count;
+                        await Task.Delay(530);
                         _slideClass = "";
                         StateHasChanged();
                     }
@@ -103,33 +103,37 @@
     private async Task Previous()
     {
         _userInteracted = true;
+        currentIndex = (currentIndex - 1 + ViewModel.Testimonials.Count) % ViewModel.Testimonials.Count;
         _slideClass = "slide-from-left";
         StateHasChanged();
-        await Task.Delay(50);
-        currentIndex = (currentIndex - 1 + ViewModel.Testimonials.Count) % ViewModel.Testimonials.Count;
+        await Task.Delay(530);
         _slideClass = "";
+        StateHasChanged();
         ResumeAutoPlay();
     }
 
     private async Task Next()
     {
         _userInteracted = true;
+        currentIndex = (currentIndex + 1) % ViewModel.Testimonials.Count;
         _slideClass = "slide-from-right";
         StateHasChanged();
-        await Task.Delay(50);
-        currentIndex = (currentIndex + 1) % ViewModel.Testimonials.Count;
+        await Task.Delay(530);
         _slideClass = "";
+        StateHasChanged();
         ResumeAutoPlay();
     }
 
     private async Task GoTo(int index)
     {
         _userInteracted = true;
-        _slideClass = index > currentIndex ? "slide-from-right" : "slide-from-left";
-        StateHasChanged();
-        await Task.Delay(50);
+        var dir = index > currentIndex ? "slide-from-right" : "slide-from-left";
         currentIndex = index;
+        _slideClass = dir;
+        StateHasChanged();
+        await Task.Delay(530);
         _slideClass = "";
+        StateHasChanged();
         ResumeAutoPlay();
     }
 

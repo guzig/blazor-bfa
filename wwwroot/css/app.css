@@ -184,7 +184,7 @@ section[id] {
 
 .section-screen {
     height: 100dvh;
-    overflow: hidden;
+    overflow: clip;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -193,6 +193,7 @@ section[id] {
 
 .hero-section {
     height: 100dvh;
+    overflow: clip;
     scroll-snap-align: start;
     background: linear-gradient(120deg, rgba(8, 27, 46, 0.96) 0%, rgba(16, 47, 74, 0.78) 52%, rgba(21, 68, 100, 0.34) 100%);
 }
@@ -434,35 +435,76 @@ section[id] {
     }
 }
 
-/* Testimonials carousel slide animations */
+/* Portfolio infinite marquee — JS-driven scroll */
+.projects-marquee-outer {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: visible;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    padding: 0.5rem 0;
+}
+
+.projects-marquee-outer::-webkit-scrollbar {
+    display: none;
+}
+
+.projects-marquee-track {
+    display: flex;
+    gap: 1rem;
+    width: max-content;
+    padding: 0 4rem;
+}
+
+.projects-marquee-card {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    width: 14rem;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: var(--card, #fff);
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+    cursor: default;
+}
+
+.projects-marquee-card:hover {
+    border-color: rgba(0, 112, 160, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 112, 160, 0.08);
+}
+
+/* Testimonials carousel slide animations — applied to the whole 3-card track */
 @keyframes slideFromRight {
     from {
-        transform: translateX(40px);
-        opacity: 0;
+        transform: translateX(80px) scale(0.97);
+        opacity: 0.2;
     }
     to {
-        transform: translateX(0);
+        transform: translateX(0) scale(1);
         opacity: 1;
     }
 }
 
 @keyframes slideFromLeft {
     from {
-        transform: translateX(-40px);
-        opacity: 0;
+        transform: translateX(-80px) scale(0.97);
+        opacity: 0.2;
     }
     to {
-        transform: translateX(0);
+        transform: translateX(0) scale(1);
         opacity: 1;
     }
 }
 
 .slide-from-right {
-    animation: slideFromRight 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: slideFromRight 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .slide-from-left {
-    animation: slideFromLeft 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    animation: slideFromLeft 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
