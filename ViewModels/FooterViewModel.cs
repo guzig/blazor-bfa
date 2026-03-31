@@ -6,7 +6,7 @@ public class FooterViewModel
     
     public string CompanyName { get; } = "BFA Consulting";
     
-    public string CompanyDescription { get; } = "Trasformiamo la gestione energetica in ecosistemi intelligenti, efficienti e sostenibili. La tecnologia al servizio del risparmio.";
+    public string CompanyDescription { get; } = "Semplifichiamo la gestione delle forniture energetiche massimizzando il risparmio. Partner di fiducia per le pubbliche amministrazioni dal 2015.";
     
     public List<FooterLinkGroup> LinkGroups { get; } =
     [

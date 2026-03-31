@@ -14,7 +14,7 @@ body {
 main.snap-main {
     height: 100%;
     overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
 }
 
@@ -195,7 +195,6 @@ section[id] {
     height: 100dvh;
     overflow: clip;
     scroll-snap-align: start;
-    background: linear-gradient(120deg, rgba(8, 27, 46, 0.96) 0%, rgba(16, 47, 74, 0.78) 52%, rgba(21, 68, 100, 0.34) 100%);
 }
 
 /* Scroll indicator: absolute bottom of every section */
@@ -370,12 +369,14 @@ section[id] {
     color: rgba(0, 112, 160, 0.75);
 }
 
-/* Hero CSS background-image to avoid flash */
+/* Footer: no snap, natural height — reachable via proximity scroll */
+footer {
+    scroll-snap-align: none;
+}
+
+/* Hero background fallback color */
 .hero-bg {
-    background-image: url('../images/hero-bg.png');
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-color: #0f1729;
 }
 
 /* KPI stats in Features section */
