@@ -6,11 +6,11 @@ public class NavbarViewModel
     
     public List<NavLinkItem> NavLinks { get; } =
     [
+        new("Home", "#hero"),
         new("Chi Siamo", "#chi-siamo"),
         new("Servizi", "#servizi"),
         new("Portfolio", "#portfolio"),
-        new("Testimonial", "#testimonial"),
-        new("Contatti", "#contatti")
+        new("Testimonial", "#testimonial")
     ];
     
     public string CtaButtonText { get; } = "Preventivo";
