@@ -1,38 +1,65 @@
 @using BlazorBFA.ViewModels
+@using Radzen.Blazor
 @inject AboutViewModel ViewModel
 
-<section id="chi-siamo" class="py-24 bg-background overflow-hidden relative">
+<section id="chi-siamo" class="section-screen bg-background relative flex flex-col pt-16">
     <div class="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -z-10"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-6 reveal reveal-left">
-                <div class="inline-flex items-center gap-2">
-                    <span class="h-px w-8 bg-primary"></span>
-                    <h3 class="text-primary font-semibold tracking-wider uppercase text-sm">@ViewModel.SectionLabel</h3>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-display font-bold text-foreground leading-tight">@ViewModel.Title</h2>
-                <div class="space-y-4 text-lg text-muted-foreground leading-relaxed">
-                    <p>@ViewModel.Description</p>
-                </div>
+        <div class="mb-6 text-center max-w-4xl mx-auto reveal">
+            <div class="inline-flex items-center gap-2 mb-4 justify-center w-full">
+                <span class="h-px w-8 bg-primary"></span>
+                <h3 class="text-primary font-semibold tracking-wider uppercase text-sm">@ViewModel.SectionLabel</h3>
+                <span class="h-px w-8 bg-primary"></span>
             </div>
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-foreground leading-tight">@ViewModel.Title</h2>
+            <div class="space-y-4 text-lg text-muted-foreground leading-relaxed mt-6">
+                <p>@ViewModel.Description</p>
+            </div>
+        </div>
 
-            <div class="relative reveal reveal-right" style="--reveal-delay: 120ms;">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 aspect-[4/3]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
+            <div class="space-y-3 reveal reveal-left">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 aspect-[16/9]">
                     <video src="@ViewModel.VideoPath" autoplay loop muted playsinline data-autoplay="true" class="w-full h-full object-cover"></video>
                     <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent"></div>
                 </div>
-                <div class="absolute -bottom-8 -left-8 md:-left-12 right-8 bg-card rounded-2xl shadow-xl border border-border/50 p-6 md:p-8 backdrop-blur-xl">
-                    <div class="grid grid-cols-3 gap-4 divide-x divide-border">
-                        @foreach (var stat in ViewModel.Stats)
-                        {
-                            <div class="text-center px-2">
-                                <div class="text-3xl md:text-4xl font-display font-bold text-primary mb-1">@stat.Value%</div>
-                                <div class="text-sm md:text-base font-semibold text-foreground">@stat.Label</div>
+
+                <div class="about-pill-grid">
+                    @foreach (var highlight in ViewModel.Highlights)
+                    {
+                        <article class="about-pill-card reveal" style="--reveal-delay: 120ms;">
+                            <div class="about-pill-icon" style="background: linear-gradient(135deg, @highlight.GradientStart 0%, @highlight.GradientEnd 100%);">
+                                <RadzenIcon Icon="@highlight.Icon" />
                             </div>
+                            <div>
+                                <h3 class="text-base font-semibold text-foreground">@highlight.Title</h3>
+                                <p class="text-sm text-muted-foreground">@highlight.Description</p>
+                            </div>
+                        </article>
+                    }
+                </div>
+            </div>
+
+            <div class="reveal reveal-right" style="--reveal-delay: 120ms;">
+                <div class="about-success-panel">
+                    <div class="about-success-header">
+                        <h3 class="text-2xl md:text-3xl font-display font-semibold text-foreground">Indicatori di successo</h3>
+                        <p class="text-sm text-muted-foreground">Dati dimostrativi: sostituibili con i valori reali quando vuoi.</p>
+                    </div>
+
+                    <div class="about-success-grid">
+                        @foreach (var indicator in ViewModel.SuccessIndicators)
+                        {
+                            <article class="about-success-card reveal" style="--reveal-delay: 180ms;">
+                                <div class="about-success-value">@indicator.Value</div>
+                                <div class="about-success-label">@indicator.Label</div>
+                                <div class="about-success-detail">@indicator.Detail</div>
+                            </article>
                         }
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <ScrollIndicator TargetSection="servizi" Text="Scorri" Variant="dark" />
 </section>

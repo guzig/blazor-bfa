@@ -12,12 +12,21 @@ public class AboutViewModel
     public string CtaText { get; } = "Scopri i nostri servizi";
     public string CtaHref { get; } = "#services";
 
-    public List<StatItem> Stats { get; } =
+    public List<AboutHighlight> Highlights { get; } =
     [
-        new("Controllo", 100),
-        new("Gestione", 100),
-        new("Risparmio", 100)
+        new("insights", "Analisi Predittiva", "Monitoriamo costi e consumi per prevenire inefficienze.", "#0070a0", "#00a8e8"),
+        new("account_tree", "Governance Operativa", "Processi chiari tra uffici tecnici, finanziari e amministrativi.", "#00a8e8", "#00d4aa")
+    ];
+
+    public List<SuccessIndicator> SuccessIndicators { get; } =
+    [
+        new("52+", "Comuni assistiti", "Reti territoriali attive"),
+        new("2.4M", "Euro ottimizzati", "Valore annuo stimato"),
+        new("1.250+", "Fatture analizzate", "Controllo tecnico-contabile"),
+        new("98.7%", "Accuratezza processi", "Qualita operativa continuativa")
     ];
 }
 
 public record StatItem(string Label, double Value);
+public record AboutHighlight(string Icon, string Title, string Description, string GradientStart, string GradientEnd);
+public record SuccessIndicator(string Value, string Label, string Detail);

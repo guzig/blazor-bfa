@@ -13,7 +13,7 @@ public class FeaturesViewModel
     public string ButtonText { get; } = "Inizia Ora";
     public string ButtonIcon { get; } = "rocket_launch";
     
-    public string ImagePath { get; } = "images/smart-data.jpg";
+    public string ImagePath { get; } = "images/energy-consulting.jpg";
     public string ImageAlt { get; } = "Tecnologia avanzata";
     
     public List<FeatureItem> Features { get; } =
@@ -58,6 +58,14 @@ public class FeaturesViewModel
         new("schedule", "Real-time", "var(--primary-light)", "badge-bottom-left"),
         new("trending_up", "+45% Efficienza", "var(--accent-color)", "badge-right")
     ];
+
+    public List<KpiStat> KpiStats { get; } =
+    [
+        new("52+", "Comuni assistiti", "Reti territoriali attive"),
+        new("2.4M €", "Risparmi generati", "Valore annuo ottimizzato"),
+        new("1.250+", "Fatture analizzate", "Controllo tecnico-contabile"),
+        new("98.7%", "Accuratezza processi", "Qualità operativa continuativa")
+    ];
 }
 
 public class FeatureItem
@@ -70,3 +78,4 @@ public class FeatureItem
 }
 
 public record FloatingBadge(string Icon, string Text, string IconColor, string PositionClass);
+public record KpiStat(string Value, string Label, string Detail);

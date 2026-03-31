@@ -1,9 +1,21 @@
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    margin: 0;
 }
 
-body {
-    margin: 0;
+#app,
+.page {
+    height: 100%;
+    overflow: hidden;
+}
+
+main.snap-main {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
 }
 
 .reveal {
@@ -37,7 +49,7 @@ body {
 }
 
 section[id] {
-    scroll-margin-top: 104px;
+    scroll-margin-top: 0;
 }
 
 #blazor-error-ui {
@@ -167,5 +179,295 @@ section[id] {
 
     .choose-us-arrow {
         display: none;
+    }
+}
+
+.section-screen {
+    height: 100dvh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    scroll-snap-align: start;
+}
+
+.hero-section {
+    height: 100dvh;
+    scroll-snap-align: start;
+    background: linear-gradient(120deg, rgba(8, 27, 46, 0.96) 0%, rgba(16, 47, 74, 0.78) 52%, rgba(21, 68, 100, 0.34) 100%);
+}
+
+/* Scroll indicator: absolute bottom of every section */
+.scroll-indicator-footer {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.scroll-indicator-container {
+    pointer-events: all;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 220ms ease;
+}
+
+.scroll-indicator-container:hover {
+    opacity: 1;
+}
+
+.scroll-mouse {
+    width: 1.5rem;
+    height: 2.45rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.56);
+    display: inline-flex;
+    justify-content: center;
+    padding-top: 0.34rem;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(6px);
+}
+
+.scroll-wheel {
+    width: 0.2rem;
+    height: 0.56rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.88);
+    animation: wheel-pulse 1.35s ease-in-out infinite;
+}
+
+.scroll-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.73rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+@keyframes wheel-pulse {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    70% {
+        opacity: 0.24;
+        transform: translateY(0.68rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.about-pill-grid {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.about-pill-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.8rem;
+    border: 1px solid rgba(15, 47, 75, 0.1);
+    border-radius: 0.95rem;
+    background: linear-gradient(140deg, rgba(255, 255, 255, 0.95) 0%, rgba(246, 251, 255, 0.96) 100%);
+    padding: 0.9rem 1rem;
+}
+
+.about-pill-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.7rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.about-success-panel {
+    border-radius: 1.2rem;
+    border: 1px solid rgba(10, 35, 58, 0.12);
+    background: linear-gradient(150deg, rgba(255, 255, 255, 0.98) 0%, rgba(242, 250, 255, 0.96) 100%);
+    padding: 1.3rem;
+    box-shadow: 0 20px 48px rgba(9, 40, 62, 0.09);
+}
+
+.about-success-header {
+    margin-bottom: 1rem;
+}
+
+.about-success-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.about-success-card {
+    border-radius: 0.95rem;
+    border: 1px solid rgba(5, 38, 69, 0.1);
+    background: #fff;
+    padding: 1rem;
+    box-shadow: 0 8px 24px rgba(7, 33, 56, 0.08);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.about-success-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0, 112, 160, 0.36);
+    box-shadow: 0 16px 34px rgba(7, 33, 56, 0.12);
+}
+
+.about-success-value {
+    font-family: var(--font-display, "Outfit", sans-serif);
+    font-size: clamp(1.5rem, 4vw, 2.1rem);
+    font-weight: 700;
+    color: #0070a0;
+    line-height: 1.05;
+}
+
+.about-success-label {
+    margin-top: 0.32rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #0e2436;
+}
+
+.about-success-detail {
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    color: #55697d;
+}
+
+@media (max-width: 768px) {
+    .about-success-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Dark variant for scroll indicator on light backgrounds */
+.scroll-indicator-dark .scroll-mouse {
+    border-color: rgba(0, 112, 160, 0.45);
+    background: rgba(0, 112, 160, 0.06);
+}
+
+.scroll-indicator-dark .scroll-wheel {
+    background: rgba(0, 112, 160, 0.9);
+}
+
+.scroll-indicator-dark .scroll-text {
+    color: rgba(0, 112, 160, 0.75);
+}
+
+/* Hero CSS background-image to avoid flash */
+.hero-bg {
+    background-image: url('../images/hero-bg.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+/* KPI stats in Features section */
+.features-kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+}
+
+@media (min-width: 768px) {
+    .features-kpi-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.features-kpi-card {
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 112, 160, 0.15);
+    background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(235,248,255,0.95) 100%);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0, 112, 160, 0.08);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.features-kpi-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(0, 112, 160, 0.35);
+    box-shadow: 0 12px 28px rgba(0, 112, 160, 0.14);
+}
+
+.features-kpi-value {
+    font-family: var(--font-display, "Outfit", sans-serif);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 800;
+    color: #0070a0;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+}
+
+.features-kpi-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #0e2436;
+    margin-bottom: 0.15rem;
+}
+
+.features-kpi-detail {
+    font-size: 0.73rem;
+    color: #6b8396;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-wheel {
+        animation: none;
+    }
+}
+
+/* Testimonials carousel slide animations */
+@keyframes slideFromRight {
+    from {
+        transform: translateX(40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-40px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-from-right {
+    animation: slideFromRight 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.slide-from-left {
+    animation: slideFromLeft 350ms cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .slide-from-right,
+    .slide-from-left {
+        animation: none;
     }
 }

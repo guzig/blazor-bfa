@@ -1,15 +1,19 @@
 @inject IJSRuntime JS
 
-<div class="scroll-indicator-container" @onclick="ScrollToNext">
-    <div class="scroll-mouse">
-        <div class="scroll-wheel"></div>
+<div class="scroll-indicator-footer">
+    <div class="scroll-indicator-container @(Variant == "dark" ? "scroll-indicator-dark" : "")" @onclick="ScrollToNext">
+        <div class="scroll-mouse">
+            <div class="scroll-wheel"></div>
+        </div>
+        <span class="scroll-text">@Text</span>
     </div>
-    <span class="scroll-text">@Text</span>
 </div>
 
 @code {
     [Parameter] public string TargetSection { get; set; } = "";
     [Parameter] public string Text { get; set; } = "Scorri";
+    /// <summary>"light" (default, white) for dark sections; "dark" for light/white sections.</summary>
+    [Parameter] public string Variant { get; set; } = "light";
 
     private async Task ScrollToNext()
     {

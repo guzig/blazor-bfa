@@ -5,7 +5,12 @@
 // Scroll to section with smooth animation
 window.scrollToSection = function (sectionId) {
     const element = document.getElementById(sectionId);
-    if (element) {
+    if (!element) return;
+    // Use the snap-main scroll container if present, else fallback to scrollIntoView
+    const container = document.querySelector('main.snap-main');
+    if (container) {
+        container.scrollTo({ top: element.offsetTop, behavior: 'smooth' });
+    } else {
         element.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 };
@@ -20,6 +25,17 @@ window.scrollInterop = {
     }
 };
 
+// Configure GSAP ScrollTrigger to use main.snap-main as scroller
+document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        gsap.registerPlugin(ScrollTrigger);
+        const snapMain = document.querySelector('main.snap-main');
+        if (snapMain) {
+            ScrollTrigger.defaults({ scroller: snapMain });
+        }
+    }
+});
+
 // Navbar Interop
 window.navbarInterop = {
     dotNetRef: null,
@@ -27,20 +43,28 @@ window.navbarInterop = {
     initialize: function (dotNetRef) {
         this.dotNetRef = dotNetRef;
 
+        const getScrollTop = () => {
+            const container = document.querySelector('main.snap-main');
+            return container ? container.scrollTop : window.scrollY;
+        };
+
         const handleScroll = () => {
-            const isScrolled = window.scrollY > 50;
+            const isScrolled = getScrollTop() > 50;
             dotNetRef.invokeMethodAsync('SetScrolled', isScrolled);
         };
 
-        window.addEventListener('scroll', handleScroll, { passive: true });
+        const container = document.querySelector('main.snap-main');
+        const target = container || window;
+        target.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
 
         this.handleScroll = handleScroll;
+        this.scrollTarget = target;
     },
 
     dispose: function () {
-        if (this.handleScroll) {
-            window.removeEventListener('scroll', this.handleScroll);
+        if (this.handleScroll && this.scrollTarget) {
+            this.scrollTarget.removeEventListener('scroll', this.handleScroll);
         }
         this.dotNetRef = null;
     }
@@ -222,14 +246,25 @@ window.projectsInterop = {
     },
 
     scroll: function (carouselRef, direction) {
-        const cardWidth = 280;
-        const scrollAmount = cardWidth * 2;
+        // Try the element reference first, then fall back to getElementById.
+        // In Blazor WASM, ElementReference arrives as {__internalId: ...} which
+        // is a truthy object but does NOT have scrollBy — hence the explicit check.
+        let el = null;
+        try {
+            if (carouselRef && typeof carouselRef.scrollBy === 'function') {
+                el = carouselRef;
+            }
+        } catch (e) {}
 
-        if (direction === 'left') {
-            carouselRef.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-        } else {
-            carouselRef.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        if (!el) {
+            el = document.getElementById('projects-rail');
         }
+
+        if (!el) return;
+
+        const cardWidth = 256 + 16; // w-56 = 224px rendered ~256px + gap-4 (16px)
+        const scrollAmount = cardWidth * 2;
+        el.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
     },
 
     scrollToDot: function (carouselRef, dotIndex) {

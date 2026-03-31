@@ -4,11 +4,11 @@
 @inject ProjectsViewModel ViewModel
 @inject IJSRuntime JS
 
-<section id="portfolio" class="py-24 bg-background relative overflow-hidden">
+<section id="portfolio" class="section-screen pt-16 pb-0 bg-background relative flex flex-col">
     <div class="absolute left-0 bottom-0 translate-y-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-3xl -z-10"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col lg:flex-row gap-12 lg:items-end mb-12 reveal">
+        <div class="flex flex-col lg:flex-row gap-8 lg:items-end mb-8 reveal">
             <div class="lg:w-1/2">
                 <div class="inline-flex items-center gap-2 mb-4">
                     <span class="h-px w-8 bg-primary"></span>
@@ -27,7 +27,7 @@
                 <RadzenIcon Icon="chevron_left" class="w-5 h-5" />
             </button>
 
-            <div class="flex gap-4 overflow-x-auto scroll-smooth pb-2 px-4" style="scrollbar-width: none;" @ref="railRef">
+            <div id="projects-rail" class="flex gap-4 overflow-x-auto scroll-smooth pb-2 px-4" style="scrollbar-width: none;" @ref="railRef">
                 @for (var index = 0; index < ViewModel.Projects.Count; index++)
                 {
                     var project = ViewModel.Projects[index];
@@ -46,6 +46,7 @@
             </button>
         </div>
     </div>
+    <ScrollIndicator TargetSection="testimonial" Text="Scorri" Variant="dark" />
 </section>
 
 @code {
