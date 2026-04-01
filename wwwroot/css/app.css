@@ -35,17 +35,17 @@ main.snap-main {
 
 .reveal {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(48px);
     transition: opacity 0.55s ease, transform 0.55s ease;
     transition-delay: var(--reveal-delay, 0ms);
 }
 
 .reveal.reveal-left {
-    transform: translateX(-28px);
+    transform: translateX(-180px);
 }
 
 .reveal.reveal-right {
-    transform: translateX(28px);
+    transform: translateX(180px);
 }
 
 .reveal.in-view {
