@@ -1,25 +1,41 @@
 @using BlazorBFA.ViewModels
 @inject ServicesViewModel ViewModel
 
-<section id="servizi" class="section-screen relative pt-16 pb-0 bg-muted/30 flex flex-col">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-8 reveal">
+<section id="servizi" class="section-screen relative pt-24 bg-muted/30 flex flex-col overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="text-center max-w-3xl mx-auto mb-10 reveal">
             <div class="inline-flex items-center gap-2 mb-4 justify-center w-full">
                 <span class="h-px w-8 bg-primary"></span>
                 <h3 class="text-primary font-semibold tracking-wider uppercase text-sm">@ViewModel.SectionLabel</h3>
                 <span class="h-px w-8 bg-primary"></span>
             </div>
-            <h2 class="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">@ViewModel.Title <span class="text-gradient">@ViewModel.TitleHighlight</span></h2>
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+                @ViewModel.Title <span class="text-gradient">@ViewModel.TitleHighlight</span>
+            </h2>
+            <p class="text-lg text-muted-foreground">@ViewModel.Description</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
             @for (var i = 0; i < ViewModel.Services.Count; i++)
             {
-                <div class="reveal" style="--reveal-delay: @(i * 70)ms;">
-                    <ServiceCard Service="@ViewModel.Services[i]" Index="@(i + 1)" />
+                var svc = ViewModel.Services[i];
+                var idx = i;
+                var isLast = i == ViewModel.Services.Count - 1;
+                <div class="@(isLast ? "md:col-span-2" : "") reveal" style="--reveal-delay: @(i * 70)ms;">
+                    <ServiceCard Service="@svc"
+                                 IsOpen="@(_openIndex == idx)"
+                                 OnToggle="@(() => ToggleCard(idx))" />
                 </div>
             }
         </div>
     </div>
+
     <ScrollIndicator TargetSection="features" Text="Scorri" Variant="dark" />
 </section>
+
+@code {
+    private int? _openIndex = null;
+
+    private void ToggleCard(int idx) =>
+        _openIndex = _openIndex == idx ? null : idx;
+}

@@ -2,94 +2,96 @@ namespace BlazorBFA.ViewModels;
 
 public class ServicesViewModel
 {
-    public string SectionLabel { get; } = "I nostri servizi";
+    public string SectionLabel { get; } = "I Nostri Servizi";
     public string Title { get; } = "Quali servizi";
     public string TitleHighlight { get; } = "Offriamo";
-    
+    public string Description { get; } = "Un pacchetto completo per la gestione energetica degli enti pubblici, sollevandovi da ogni onere amministrativo.";
+
     public List<ServiceModel> Services { get; } =
     [
         new()
         {
-            Title = "Controllo fatture (Bill Audit)",
-            Description = "Controllo correttezza contabile con certificazione di conformità alla normativa ARERA.",
-            Icon = "file-check",
-            Color = "#0070a0",
-            Image = "images/smart-data.jpg",
-            Features =
+            Number = "01",
+            Icon = "fact_check",
+            Title = "Controllo correttezza fatture",
+            Summary = "Verifica contabile con certificazione di conformitÃ  alla normativa ARERA.",
+            Accent = "blue",
+            GradientFrom = "#3b82f6",
+            GradientTo = "#22d3ee",
+            Details =
             [
                 "Acquisizione digitale completa della fattura",
-                "Certificazione di conformità addebiti con normativa ARERA",
+                "Certificazione di conformitÃ  addebiti con normativa ARERA",
                 "Gestione reclami per recupero errori di fatturazione"
             ]
         },
         new()
         {
-            Title = "Gestione Energia",
-            Description = "Gestione completa delle forniture energetiche per ottimizzare costi e consumi.",
-            Icon = "settings",
-            Color = "#2c90c9",
-            Image = "images/smart-energy.jpg",
-            Features =
+            Number = "02",
+            Icon = "electric_bolt",
+            Title = "Gestione forniture energia elettrica e gas",
+            Summary = "Catasto elettrico on-line con monitoraggio consumi e dashboard interattiva.",
+            Accent = "emerald",
+            GradientFrom = "#10b981",
+            GradientTo = "hsl(160 84% 39%)",
+            Details =
             [
-                "Monitoraggio consumi in tempo reale",
-                "Reportistica personalizzata",
-                "Consulenza strategica energetica"
+                "Catasto forniture elettriche e gas on-line",
+                "Ricognizione POD georiferiti su Google Maps",
+                "Attivazione nuove forniture e adeguamento contratti",
+                "Monitoraggio consumi con invio allarmi automatici",
+                "Dashboard interattiva per statistiche e spese"
             ]
         },
         new()
         {
-            Title = "PEG Energetico",
-            Description = "Piano di Efficientamento Energetico per ridurre i consumi e le emissioni.",
-            Icon = "zap",
-            Color = "#10b981",
-            Image = "images/smart-mobility.jpg",
-            Features =
+            Number = "03",
+            Icon = "account_balance",
+            Title = "Gestione liquidazione fatture",
+            Summary = "Liquidazione periodica per fornitore e centro di costo con controllo on-line.",
+            Accent = "indigo",
+            GradientFrom = "#6366f1",
+            GradientTo = "#3b82f6",
+            Details =
             [
-                "Analisi energetica dettagliata",
-                "Proposte di intervento mirate",
-                "Monitoraggio risultati ottenuti"
+                "Previsione fabbisogno di spesa per centro di costo",
+                "Determina e distinta di liquidazione",
+                "Gestione dei pagamenti e aggiornamento PEG",
+                "Rendicontazione e controllo on-line della spesa"
             ]
         },
         new()
         {
-            Title = "Contenzioso",
-            Description = "Supporto nella gestione delle controversie con i fornitori di energia.",
-            Icon = "scale",
-            Color = "#f59e0b",
-            Image = "images/smart-security.jpg",
-            Features =
+            Number = "04",
+            Icon = "gavel",
+            Title = "Gestione contenzioso pregresso",
+            Summary = "Analisi e gestione completa delle richieste di pagamento per fatturazioni pregresse.",
+            Accent = "violet",
+            GradientFrom = "#8b5cf6",
+            GradientTo = "#a855f7",
+            Details =
             [
-                "Analisi fatture contestate",
-                "Negoziazione con fornitori",
-                "Recupero crediti energia"
+                "Ricognizione e liquidazione insoluto pregresso",
+                "Gestione richieste di pagamento e cessioni di credito",
+                "Supporto in tutte le fasi del contenzioso",
+                "Consulenza legale specializzata"
             ]
         },
         new()
         {
-            Title = "Risparmio Energetico",
-            Description = "Strategie mirate per ridurre i costi energetici senza compromessi.",
-            Icon = "trending-down",
-            Color = "#8b5cf6",
-            Image = "images/smart-waste.jpg",
-            Features =
+            Number = "05",
+            Icon = "savings",
+            Title = "Risparmio sulla spesa energetica",
+            Summary = "Massimizza il risparmio riducendo inefficienze e risorse umane dedicate.",
+            Accent = "teal",
+            GradientFrom = "hsl(160 84% 39%)",
+            GradientTo = "#2dd4bf",
+            Details =
             [
-                "Analisi mercato energetico",
-                "Negoziazione tariffe vantaggiose",
-                "Ottimizzazione contratti fornitura"
-            ]
-        },
-        new()
-        {
-            Title = "Consulenza Sostenibilità",
-            Description = "Accompagniamo le aziende verso un futuro più sostenibile e green.",
-            Icon = "eco",
-            Color = "#059669",
-            Image = "images/smart-health.jpg",
-            Features =
-            [
-                "Certificazioni ambientali",
-                "Energie rinnovabili",
-                "Carbon footprint reduction"
+                "Controllo dei consumi e della spesa",
+                "Recupero errori di fatturazione",
+                "Riduzione perdite e inefficienze",
+                "Riduzione risorse umane interne dedicate"
             ]
         }
     ];
@@ -97,10 +99,12 @@ public class ServicesViewModel
 
 public class ServiceModel
 {
-    public string Title { get; set; } = string.Empty;
-    public string Description { get; set; } = string.Empty;
+    public string Number { get; set; } = string.Empty;
     public string Icon { get; set; } = string.Empty;
-    public string Color { get; set; } = string.Empty;
-    public string Image { get; set; } = string.Empty;
-    public List<string> Features { get; set; } = [];
+    public string Title { get; set; } = string.Empty;
+    public string Summary { get; set; } = string.Empty;
+    public string Accent { get; set; } = string.Empty;
+    public string GradientFrom { get; set; } = string.Empty;
+    public string GradientTo { get; set; } = string.Empty;
+    public List<string> Details { get; set; } = [];
 }

@@ -11,17 +11,31 @@
                 <h3 class="text-primary font-semibold tracking-wider uppercase text-sm">@ViewModel.SectionLabel</h3>
                 <span class="h-px w-8 bg-primary"></span>
             </div>
-            <h2 class="text-4xl md:text-5xl font-display font-bold text-foreground leading-tight">@ViewModel.Title</h2>
+            <h2 class="text-4xl md:text-5xl font-display font-bold text-foreground leading-tight">@ViewModel.Title <span class="text-gradient">@ViewModel.TitleHighlight</span></h2>
             <div class="space-y-4 text-lg text-muted-foreground leading-relaxed mt-6">
                 <p>@ViewModel.Description</p>
             </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-center">
-            <div class="space-y-3 reveal reveal-left">
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 aspect-[16/9]">
-                    <video src="@ViewModel.VideoPath" autoplay loop muted playsinline data-autoplay="true" class="w-full h-full object-cover"></video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent"></div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            <!-- Left: success panel + pill cards -->
+            <div class="flex flex-col gap-3 reveal reveal-left" style="--reveal-delay: 120ms;">
+                <div class="about-success-panel">
+                    <div class="about-success-header">
+                        <h3 class="text-2xl md:text-3xl font-display font-semibold text-foreground">Indicatori di successo</h3>
+                        <p class="text-sm text-muted-foreground">Dati dimostrativi: sostituibili con i valori reali quando vuoi.</p>
+                    </div>
+
+                    <div class="about-success-grid">
+                        @foreach (var indicator in ViewModel.SuccessIndicators)
+                        {
+                            <article class="about-success-card reveal" style="--reveal-delay: 180ms;">
+                                <div class="about-success-value">@indicator.Value</div>
+                                <div class="about-success-label">@indicator.Label</div>
+                                <div class="about-success-detail">@indicator.Detail</div>
+                            </article>
+                        }
+                    </div>
                 </div>
 
                 <div class="about-pill-grid">
@@ -40,23 +54,11 @@
                 </div>
             </div>
 
+            <!-- Right: video spanning full height of left column -->
             <div class="reveal reveal-right" style="--reveal-delay: 120ms;">
-                <div class="about-success-panel">
-                    <div class="about-success-header">
-                        <h3 class="text-2xl md:text-3xl font-display font-semibold text-foreground">Indicatori di successo</h3>
-                        <p class="text-sm text-muted-foreground">Dati dimostrativi: sostituibili con i valori reali quando vuoi.</p>
-                    </div>
-
-                    <div class="about-success-grid">
-                        @foreach (var indicator in ViewModel.SuccessIndicators)
-                        {
-                            <article class="about-success-card reveal" style="--reveal-delay: 180ms;">
-                                <div class="about-success-value">@indicator.Value</div>
-                                <div class="about-success-label">@indicator.Label</div>
-                                <div class="about-success-detail">@indicator.Detail</div>
-                            </article>
-                        }
-                    </div>
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 h-full min-h-[260px]">
+                    <video src="@ViewModel.VideoPath" autoplay loop muted playsinline data-autoplay="true" class="w-full h-full object-cover"></video>
+                    <div class="absolute inset-0 bg-gradient-to-t from-secondary/80 to-transparent"></div>
                 </div>
             </div>
         </div>

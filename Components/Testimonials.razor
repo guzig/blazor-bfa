@@ -3,11 +3,13 @@
 @using BlazorBFA.ViewModels
 @inject TestimonialsViewModel ViewModel
 
-<section id="testimonial" class="section-screen pt-16 pb-0 bg-secondary text-secondary-foreground relative flex flex-col">
+<section id="testimonial" class="section-screen pt-16 bg-secondary text-secondary-foreground relative flex flex-col justify-between pb-20">
     <div class="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center max-w-3xl mx-auto mb-8 reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col gap-10 w-full">
+
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto reveal">
             <div class="inline-flex items-center gap-2 mb-4 justify-center w-full">
                 <span class="h-px w-8 bg-primary"></span>
                 <h3 class="text-primary font-semibold tracking-wider uppercase text-sm">Testimonial</h3>
@@ -16,9 +18,10 @@
             <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Cosa <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-300">dicono di noi</span></h2>
         </div>
 
+        <!-- Cards row -->
         <div class="flex items-center gap-4">
-            <button type="button" class="shrink-0 w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all" @onclick="Previous" aria-label="Previous testimonial">
-                <RadzenIcon Icon="chevron_left" class="w-5 h-5" />
+            <button type="button" class="shrink-0 w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all" @onclick="Previous" aria-label="Previous">
+                <RadzenIcon Icon="chevron_left" style="font-size:1.4rem;" />
             </button>
 
             <div class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6 overflow-hidden @_slideClass">
@@ -27,41 +30,58 @@
                     var model = GetRelative(offset);
                     var isActive = offset == 0;
 
-                    <article class="bg-white/5 border rounded-2xl p-8 backdrop-blur-sm relative transition-all reveal @(isActive ? "border-primary/60 scale-100 opacity-100" : "border-white/10 opacity-55 scale-95")" style="--reveal-delay: @((offset + 1) * 80)ms;">
-                        <RadzenIcon Icon="format_quote" class="absolute top-6 right-6 w-10 h-10 text-white/10" />
+                    <article class="bg-white/5 rounded-2xl p-8 backdrop-blur-sm relative transition-all duration-300 @(isActive ? "scale-100 opacity-100" : "scale-95 opacity-50")"
+                             style="border: @(isActive ? "1px solid hsl(var(--primary) / 0.55)" : "1px solid rgba(255,255,255,0.15)");">
 
-                        <div class="flex mb-4" aria-label="@($"{model.Rating} su 5")">
-                            @for (var index = 0; index < 5; index++)
+                        <svg style="position:absolute;top:1.25rem;right:1.25rem;width:2.2rem;height:2.2rem;color:rgba(255,255,255,0.12);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 2v7c0 1.25.75 2 2 2h1c1 0 1 .63 1 1.5A1.5 1.5 0 0 1 5 17c-1 0-1 .08-1 1.25V21"/>
+                            <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2h-4c-1.25 0-2 .75-2 2v7c0 1.25.75 2 2 2h1c1 0 1 .63 1 1.5A1.5 1.5 0 0 1 17 17c-1 0-1 .08-1 1.25V21"/>
+                        </svg>
+
+                        <!-- Stars -->
+                        <div class="flex gap-1 mb-6">
+                            @for (var i = 0; i < 5; i++)
                             {
-                                <RadzenIcon Icon="star" class="@(index < model.Rating ? "text-yellow-300" : "text-white/30")" />
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                                     style="@(i < model.Rating ? "fill:hsl(var(--primary));stroke:hsl(var(--primary));" : "fill:none;stroke:rgba(255,255,255,0.3);")">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
                             }
                         </div>
 
-                        <blockquote class="text-white/85 leading-relaxed mb-6 min-h-[130px]">"@model.Content"</blockquote>
+                        <!-- Quote text -->
+                        <blockquote class="leading-relaxed mb-6 min-h-[120px] italic" style="font-size:0.9rem;color:rgba(255,255,255,0.82);">@model.Content</blockquote>
 
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-full bg-primary/20 text-primary flex items-center justify-center font-bold text-sm">@GetInitials(model.Name)</div>
-                            <div>
-                                <h3 class="font-semibold text-white">@model.Name</h3>
-                                <p class="text-sm text-white/65">@model.Role</p>
-                            </div>
+                        <!-- Author -->
+                        <div>
+                            <h3 class="font-bold text-white text-base">@model.Name</h3>
+                            <p class="text-sm mt-0.5" style="color:hsl(var(--primary));">@model.Role</p>
                         </div>
                     </article>
                 }
             </div>
 
-            <button type="button" class="shrink-0 w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all" @onclick="Next" aria-label="Next testimonial">
-                <RadzenIcon Icon="chevron_right" class="w-5 h-5" />
+            <button type="button" class="shrink-0 w-11 h-11 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-primary hover:border-primary transition-all" @onclick="Next" aria-label="Next">
+                <RadzenIcon Icon="chevron_right" style="font-size:1.4rem;" />
             </button>
         </div>
 
-        <div class="flex justify-center mt-8 gap-2">
+        <!-- Dots -->
+        <div class="flex justify-center gap-2.5 mt-10">
             @for (var index = 0; index < ViewModel.Testimonials.Count; index++)
             {
-                <button type="button" class="w-2.5 h-2.5 rounded-full transition-colors @(index == currentIndex ? "bg-primary" : "bg-white/30 hover:bg-white/50")" @onclick="async () => await GoTo(index)" aria-label="@($"Go to testimonial {index + 1}")"></button>
+                var idx = index;
+                <button type="button"
+                        class="h-2.5 rounded-full transition-all duration-300 @(index == currentIndex ? "bg-primary w-8" : "w-2.5")"
+                        style="@(index == currentIndex ? "" : "background-color:rgba(255,255,255,0.38);")"
+                        @onclick="async () => await GoTo(idx)"
+                        aria-label="@($"Testimonianza {idx + 1}")">
+                </button>
             }
         </div>
+
     </div>
+
     <ScrollIndicator TargetSection="contatti" Text="Scorri" />
 </section>
 
@@ -75,30 +95,24 @@
 
     protected override void OnAfterRender(bool firstRender)
     {
-        if (firstRender)
-        {
-            _autoTimer = new System.Threading.Timer(async _ =>
-                await InvokeAsync(async () =>
-                {
-                    if (!_userInteracted)
-                    {
-                        currentIndex = (currentIndex + 1) % ViewModel.Testimonials.Count;
-                        _slideClass = "slide-from-right";
-                        StateHasChanged();
-                        await Task.Delay(530);
-                        _slideClass = "";
-                        StateHasChanged();
-                    }
-                }),
-                null,
-                TimeSpan.FromSeconds(5),
-                TimeSpan.FromSeconds(5));
-        }
+        if (!firstRender) return;
+        _autoTimer = new System.Threading.Timer(async _ =>
+            await InvokeAsync(async () =>
+            {
+                if (_userInteracted) return;
+                currentIndex = (currentIndex + 1) % ViewModel.Testimonials.Count;
+                _slideClass = "slide-from-right";
+                StateHasChanged();
+                await Task.Delay(530);
+                _slideClass = "";
+                StateHasChanged();
+            }),
+            null,
+            TimeSpan.FromSeconds(5),
+            TimeSpan.FromSeconds(5));
     }
 
     public void Dispose() => _autoTimer?.Dispose();
-
-    private TestimonialModel CurrentTestimonial => ViewModel.Testimonials[currentIndex];
 
     private async Task Previous()
     {
@@ -137,27 +151,13 @@
         ResumeAutoPlay();
     }
 
-    private void ResumeAutoPlay()
-    {
-        // Resume after 8 seconds of inactivity
+    private void ResumeAutoPlay() =>
         Task.Delay(8000).ContinueWith(_ => InvokeAsync(() => { _userInteracted = false; }));
-    }
 
     private TestimonialModel GetRelative(int offset)
     {
         var count = ViewModel.Testimonials.Count;
         var index = (currentIndex + offset + count) % count;
         return ViewModel.Testimonials[index];
-    }
-
-    private static string GetInitials(string name)
-    {
-        var parts = name.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-        return parts.Length switch
-        {
-            0 => "BF",
-            1 => parts[0].Substring(0, Math.Min(2, parts[0].Length)).ToUpperInvariant(),
-            _ => string.Concat(parts[0][0], parts[^1][0]).ToUpperInvariant()
-        };
     }
 }

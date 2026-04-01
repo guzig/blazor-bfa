@@ -116,6 +116,18 @@ section[id] {
     justify-content: center;
     z-index: 20;
     pointer-events: none;
+    opacity: 1;
+    transition: opacity 300ms ease;
+}
+
+/* Hide during scroll; visible at rest */
+.is-scrolling .scroll-indicator-footer {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scroll-indicator-footer {
+    pointer-events: all;
 }
 
 .scroll-indicator-container {
@@ -137,11 +149,11 @@ section[id] {
     width: 1.5rem;
     height: 2.45rem;
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.56);
+    border: 1px solid color-mix(in oklab, hsl(var(--primary)) 50%, transparent);
     display: inline-flex;
     justify-content: center;
     padding-top: 0.34rem;
-    background: rgba(255, 255, 255, 0.06);
+    background: color-mix(in oklab, hsl(var(--primary)) 8%, transparent);
     backdrop-filter: blur(6px);
 }
 
@@ -149,12 +161,12 @@ section[id] {
     width: 0.2rem;
     height: 0.56rem;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.88);
+    background: hsl(var(--primary));
     animation: wheel-pulse 1.35s ease-in-out infinite;
 }
 
 .scroll-text {
-    color: rgba(255, 255, 255, 0.9);
+    color: hsl(var(--primary));
     font-size: 0.73rem;
     font-weight: 600;
     letter-spacing: 0.14em;

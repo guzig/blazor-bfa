@@ -11,7 +11,7 @@ public class FeaturesViewModel
 
     public string CtaLabel { get; } = "Pronti a iniziare?";
     public string CtaTitle { get; } = "Il risparmio parte da una semplice chiamata.";
-    public string CtaButton { get; } = "Preventivo gratuito \u2192";
+    public string CtaButton { get; } = "Richiedi una demo \u2192";
 
     public List<FeaturesStat> Stats { get; } =
     [

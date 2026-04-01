@@ -10,7 +10,7 @@ public class NavbarViewModel
         new("Chi Siamo", "#chi-siamo"),
         new("Servizi", "#servizi"),
         new("Portfolio", "#portfolio"),
-        new("Testimonial", "#testimonial")
+        new("Cosa dicono di noi", "#testimonial")
     ];
     
     public string CtaButtonText { get; } = "Preventivo";

@@ -1,6 +1,7 @@
 @using Radzen.Blazor
 @using BlazorBFA.ViewModels
 @inject NavbarViewModel ViewModel
+@inject IJSRuntime JS
 
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="hidden md:block w-full bg-secondary text-secondary-foreground transition-all duration-300 py-2 opacity-100">
@@ -19,7 +20,7 @@
         </div>
     </div>
 
-    <div class="w-full transition-all duration-300 bg-background/95 backdrop-blur-sm py-4 lg:py-5">
+    <div class="w-full transition-all duration-300 bg-muted border-b border-border/60 shadow-sm py-4 lg:py-5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center">
                 <a href="#" class="flex items-center gap-3 group" @onclick="CloseMobileMenu">
@@ -34,7 +35,7 @@
                     {
                         <a href="@link.Href" class="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full">@link.Name</a>
                     }
-                    <a href="#contatti" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium border border-primary-border min-h-9 py-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 rounded-full px-6 transition-all hover:scale-105">Preventivo Gratuito</a>
+                    <a href="#contatti" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium min-h-9 py-2 bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25 rounded-full px-6 transition-all hover:scale-105" @onclick="ScrollToContatti" @onclick:preventDefault>Richiedi una demo</a>
                 </nav>
 
                 <button class="md:hidden p-2 text-foreground" type="button" @onclick="ToggleMobileMenu" aria-label="Toggle menu">
@@ -46,13 +47,13 @@
 
     @if (isMobileMenuOpen)
     {
-        <div class="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-lg">
+        <div class="md:hidden border-t border-border/60 bg-muted">
             <div class="max-w-7xl mx-auto px-4 py-3 grid gap-1">
                 @foreach (var link in ViewModel.NavLinks)
                 {
                     <a href="@link.Href" class="px-3 py-2 rounded-lg text-foreground/90 hover:bg-muted" @onclick="CloseMobileMenu">@link.Name</a>
                 }
-                <a href="#contatti" class="mt-2 inline-flex items-center justify-center h-11 px-4 rounded-full bg-primary text-primary-foreground font-medium" @onclick="CloseMobileMenu">Preventivo Gratuito</a>
+                <a href="#contatti" class="mt-2 inline-flex items-center justify-center h-11 px-4 rounded-full bg-primary text-primary-foreground font-medium" @onclick="ScrollToContatti" @onclick:preventDefault>Richiedi una demo</a>
             </div>
         </div>
     }
@@ -63,6 +64,12 @@
 
     private void ToggleMobileMenu() => isMobileMenuOpen = !isMobileMenuOpen;
     private void CloseMobileMenu() => isMobileMenuOpen = false;
+
+    private async Task ScrollToContatti()
+    {
+        CloseMobileMenu();
+        await JS.InvokeVoidAsync("scrollToSection", "contatti");
+    }
 
     private static string GetBrandText(string brandName)
     {

@@ -515,6 +515,21 @@ window.uiRuntime = {
         });
     },
 
+    initSnapObserver: function () {
+        const container = document.querySelector('main.snap-main');
+        if (!container || this._snapObserverStarted) return;
+        this._snapObserverStarted = true;
+
+        let scrollTimer = null;
+        container.addEventListener('scroll', () => {
+            container.classList.add('is-scrolling');
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(() => {
+                container.classList.remove('is-scrolling');
+            }, 600);
+        }, { passive: true });
+    },
+
     startRuntimeWatchers: function () {
         if (this._watchersStarted) {
             return;
@@ -524,6 +539,7 @@ window.uiRuntime = {
         const run = () => {
             this.initRevealAnimations();
             this.ensureAutoplayVideos();
+            this.initSnapObserver();
         };
 
         run();
