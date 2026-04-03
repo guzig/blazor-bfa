@@ -1,6 +1,6 @@
 namespace BlazorBFA.Components;
 
-public partial class Contact
+public partial class ContactComponentView
 {
     private FormData formData = new();
     private string? successMessage;

@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace BlazorBFA.Components;
 
-public partial class Projects
+public partial class ProjectsComponentView
 {
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

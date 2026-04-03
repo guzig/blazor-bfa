@@ -2,7 +2,7 @@ using BlazorBFA.ViewModels;
 
 namespace BlazorBFA.Components;
 
-public partial class Testimonials : IDisposable
+public partial class TestimonialsComponentView : IDisposable
 {
     private int currentIndex;
     private System.Threading.Timer? _autoTimer;

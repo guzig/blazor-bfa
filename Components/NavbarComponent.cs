@@ -1,6 +1,8 @@
+using Microsoft.JSInterop;
+
 namespace BlazorBFA.Components;
 
-public partial class Navbar
+public partial class NavbarComponentView
 {
     private bool isMobileMenuOpen;
 

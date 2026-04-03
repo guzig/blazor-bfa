@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace BlazorBFA.Components;
 
-public partial class ScrollIndicator
+public partial class ScrollIndicatorComponentView
 {
     [Inject] private IJSRuntime JS { get; set; } = default!;
 

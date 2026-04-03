@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 
 namespace BlazorBFA.Components;
 
-public partial class StatCircle
+public partial class StatCircleComponentView
 {
     [Parameter] public int Percentage { get; set; }
     [Parameter] public string Label { get; set; } = "";

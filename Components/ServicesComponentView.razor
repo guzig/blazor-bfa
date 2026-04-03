@@ -22,7 +22,7 @@
                 var idx = i;
                 var isLast = i == ViewModel.Services.Count - 1;
                 <div class="@(isLast ? "md:col-span-2" : "") reveal" style="--reveal-delay: @(i * 70)ms;">
-                    <ServiceCard Service="@svc"
+                    <ServiceCardComponentView Service="@svc"
                                  IsOpen="@(_openIndex == idx)"
                                  OnToggle="@(() => ToggleCard(idx))" />
                 </div>
@@ -30,5 +30,5 @@
         </div>
     </div>
 
-    <ScrollIndicator TargetSection="features" Text="Scorri" Variant="dark" />
+    <ScrollIndicatorComponentView TargetSection="features" Text="Scorri" Variant="dark" />
 </section>

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorBFA.Components;
 
-public partial class ServiceCard
+public partial class ServiceCardComponentView
 {
     [Parameter] public ServiceModel Service { get; set; } = new();
     [Parameter] public bool IsOpen { get; set; }

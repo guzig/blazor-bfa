@@ -1,6 +1,6 @@
 namespace BlazorBFA.Components;
 
-public partial class Services
+public partial class ServicesComponentView
 {
     private int? _openIndex = null;
 

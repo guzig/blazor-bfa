@@ -1,6 +1,6 @@
 namespace BlazorBFA.Components;
 
-public partial class Footer
+public partial class FooterComponentView
 {
     private static string GetBrandText(string brandName)
     {
