@@ -1,151 +1,49 @@
-@using Radzen
-@using Radzen.Blazor
 @using BlazorBFA.ViewModels
 @inject HeroViewModel ViewModel
-@inject NavigationManager Navigation
 @inject IJSRuntime JS
 
-<section id="home" class="hero-section">
-@* Video background *@
-<div class="hero-video-background">
-    <video autoplay muted loop playsinline class="hero-bg-video">
+<section id="home" class="lp-hero">
+    <video class="lp-hero__video" autoplay muted loop playsinline>
         <source src="videos/hero-video.mp4?v=3" type="video/mp4" />
     </video>
-</div>
-<div class="hero-overlay"></div>
-    
-    @* Three horizontal rows: top, middle, bottom *@
-    <div class="hero-rows-container">
-        @* Top row - empty *@
-        <div class="hero-row-top"></div>
-        
-        @* Middle row - content *@
-        <div class="hero-row-middle">
-            <div class="hero-content">
-            <div class="hero-label-container">
-                <span class="hero-label-line"></span>
-                <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label hero-label">@ViewModel.Label</RadzenText>
-            </div>
-            <h1 class="hero-title">@ViewModel.Title <span class="hero-title-highlight">@ViewModel.TitleHighlight</span></h1>
-                <RadzenText TextStyle="TextStyle.Body1" Class="hero-subtitle">@ViewModel.Subtitle</RadzenText>
-                <RadzenStack Orientation="Orientation.Horizontal" Gap="16px" Wrap="FlexWrap.Wrap" Class="hero-buttons" JustifyContent="JustifyContent.Start">
-                    <RadzenButton Text="@ViewModel.PrimaryButtonText" Icon="arrow_forward" Class="hero-btn-primary" Click="ScrollToServices" />
-                    <RadzenButton Text="@ViewModel.SecondaryButtonText" Icon="phone" Class="hero-btn-secondary" Click="ScrollToContact" />
-                </RadzenStack>
-            </div>
+    <div class="lp-hero__overlay"></div>
+
+    <div class="lp-container lp-hero__body">
+        <div class="lp-hero__tag">@ViewModel.Label</div>
+        <h1 class="lp-hero__title">
+            @ViewModel.Title<br/>
+            <span class="lp-hero__accent">@ViewModel.TitleHighlight</span>
+        </h1>
+        <p class="lp-hero__sub">@ViewModel.Subtitle</p>
+        <div class="lp-hero__ctas">
+            <a href="#services" class="lp-btn lp-btn--primary">@ViewModel.PrimaryButtonText</a>
+            <a href="#contact" class="lp-btn lp-btn--ghost">@ViewModel.SecondaryButtonText</a>
         </div>
-        
-        @* Bottom row - empty *@
-        <div class="hero-row-bottom"></div>
     </div>
-    
-    @* Scroll indicator *@
-    <div class="hero-scroll-indicator" @onclick="ScrollToAbout" style="cursor:pointer;">
+
+    <div class="lp-hero__scroll-indicator" @onclick="ScrollDown">
         <div class="scroll-mouse">
             <div class="scroll-wheel"></div>
         </div>
-        <span class="scroll-text">@ViewModel.ScrollText</span>
+        <span class="scroll-text"><strong>Chi Siamo</strong></span>
+    </div>
+
+    <div class="lp-hero__stats">
+        <div class="lp-container lp-hero__stats-row">
+            <div class="lp-hero__stat"><strong>50+</strong><span>Comuni Serviti</span></div>
+            <div class="lp-hero__stat-sep"></div>
+            <div class="lp-hero__stat"><strong>2M €</strong><span>Risparmi Generati</span></div>
+            <div class="lp-hero__stat-sep"></div>
+            <div class="lp-hero__stat"><strong>1000+</strong><span>Fatture Controllate</span></div>
+            <div class="lp-hero__stat-sep"></div>
+            <div class="lp-hero__stat"><strong>99%</strong><span>Efficienza Energetica</span></div>
+        </div>
     </div>
 </section>
 
-<style>
-.hero-label-container {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 1rem;
-}
-
-.hero-label-line {
-    width: 40px;
-    height: 3px;
-    background: #00a8e8;
-    border-radius: 2px;
-}
-
-.hero-label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    color: #00a8e8 !important;
-    text-transform: uppercase;
-    margin: 0 !important;
-}
-    
-.hero-subtitle {
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
-    line-height: 1.7;
-    max-width: 600px;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-    font-weight: 400;
-}
-    
-    .hero-btn-primary {
-        background: linear-gradient(135deg, #0070a0 0%, #00a8e8 100%);
-        border: none;
-        border-radius: 9999px;
-        padding: 14px 28px;
-        font-weight: 600;
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    
-    .hero-btn-secondary {
-        background: linear-gradient(135deg, #0070a0 0%, #00a8e8 100%);
-        border: none;
-        color: white;
-        border-radius: 9999px;
-        padding: 14px 28px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-    }
-    
-    @@media (max-width: 480px) {
-        .hero-label {
-            font-size: 0.75rem !important;
-        }
-        
-        .hero-subtitle {
-            font-size: 0.95rem !important;
-            margin-bottom: 1.5rem !important;
-            line-height: 1.6 !important;
-        }
-        
-        .hero-btn-primary,
-        .hero-btn-secondary {
-            padding: 12px 20px !important;
-            font-size: 0.875rem !important;
-        }
-        
-        .hero-buttons {
-            flex-direction: column !important;
-            width: 100%;
-            gap: 12px !important;
-        }
-        
-        .hero-buttons .rz-button {
-            width: 100% !important;
-            justify-content: center;
-        }
-    }
-    
-    @@media (min-width: 481px) and (max-width: 768px) {
-        .hero-subtitle {
-            font-size: 1.1rem !important;
-        }
-        
-        .hero-buttons {
-            justify-content: center !important;
-        }
-    }
-</style>
-
 @code {
-    private void ScrollToServices() => Navigation.NavigateTo("#services", forceLoad: false);
-    private void ScrollToContact() => Navigation.NavigateTo("#contact", forceLoad: false);
-    private async Task ScrollToAbout() => await JS.InvokeVoidAsync("scrollToSection", "about");
+    private async Task ScrollDown()
+    {
+        await JS.InvokeVoidAsync("scrollToSection", "about");
+    }
 }

@@ -5,20 +5,21 @@ public class ServicesViewModel
     public string SectionLabel { get; } = "I nostri servizi";
     public string Title { get; } = "Quali servizi";
     public string TitleHighlight { get; } = "Offriamo";
-    
+
     public List<ServiceModel> Services { get; } =
     [
         new()
         {
             Title = "Controllo fatture (Bill Audit)",
-            Description = "Controllo correttezza contabile con certificazione di conformità alla normativa ARERA.",
+            Description = "Controllo correttezza contabile con certificazione di conformit\u00e0 alla normativa ARERA.",
             Icon = "file-check",
             Color = "#0070a0",
+            BgColor = "#eff6ff",
             Image = "images/smart-data.jpg",
             Features =
             [
                 "Acquisizione digitale completa della fattura",
-                "Certificazione di conformità addebiti con normativa ARERA",
+                "Certificazione di conformit\u00e0 addebiti con normativa ARERA",
                 "Gestione reclami per recupero errori di fatturazione"
             ]
         },
@@ -28,6 +29,7 @@ public class ServicesViewModel
             Description = "Gestione completa delle forniture energetiche per ottimizzare costi e consumi.",
             Icon = "settings",
             Color = "#2c90c9",
+            BgColor = "#fefce8",
             Image = "images/smart-energy.jpg",
             Features =
             [
@@ -42,6 +44,7 @@ public class ServicesViewModel
             Description = "Piano di Efficientamento Energetico per ridurre i consumi e le emissioni.",
             Icon = "zap",
             Color = "#10b981",
+            BgColor = "#f0fdf4",
             Image = "images/smart-mobility.jpg",
             Features =
             [
@@ -56,6 +59,7 @@ public class ServicesViewModel
             Description = "Supporto nella gestione delle controversie con i fornitori di energia.",
             Icon = "scale",
             Color = "#f59e0b",
+            BgColor = "#fffbeb",
             Image = "images/smart-security.jpg",
             Features =
             [
@@ -70,6 +74,7 @@ public class ServicesViewModel
             Description = "Strategie mirate per ridurre i costi energetici senza compromessi.",
             Icon = "trending-down",
             Color = "#8b5cf6",
+            BgColor = "#faf5ff",
             Image = "images/smart-waste.jpg",
             Features =
             [
@@ -80,10 +85,11 @@ public class ServicesViewModel
         },
         new()
         {
-            Title = "Consulenza Sostenibilità",
-            Description = "Accompagniamo le aziende verso un futuro più sostenibile e green.",
+            Title = "Consulenza Sostenibilit\u00e0",
+            Description = "Accompagniamo le aziende verso un futuro pi\u00f9 sostenibile e green.",
             Icon = "eco",
             Color = "#059669",
+            BgColor = "#ecfdf5",
             Image = "images/smart-health.jpg",
             Features =
             [
@@ -101,6 +107,7 @@ public class ServiceModel
     public string Description { get; set; } = string.Empty;
     public string Icon { get; set; } = string.Empty;
     public string Color { get; set; } = string.Empty;
+    public string BgColor { get; set; } = "#f8fafc";
     public string Image { get; set; } = string.Empty;
     public List<string> Features { get; set; } = [];
 }

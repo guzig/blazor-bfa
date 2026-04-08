@@ -3,34 +3,36 @@
 @using BlazorBFA.ViewModels
 @inject ProjectsViewModel ViewModel
 
-<section id="projects" class="full-page-section" style="background:var(--bg-projects);">
-<div style="text-align:center; margin-bottom:2.5rem;">
-    <RadzenText TextStyle="TextStyle.Subtitle1" Class="section-label" Style="color:var(--primary-color);">Il nostro Portfolio</RadzenText>
-    <RadzenText TextStyle="TextStyle.H3" Style="font-family:'Fraunces',Georgia,serif; font-weight:600; color:var(--text-dark);">Amministrazioni Comunali <span style="color:var(--accent-color);">Progetti</span></RadzenText>
-</div>
-
-<div class="carousel-container">
-    <div class="carousel-track">
-        @for (int i = 0; i < 2; i++)
-        {
-            @foreach (var project in ViewModel.Projects)
-            {
-                <div class="carousel-card">
-                    <RadzenCard Style="text-align:center; padding:1.5rem; min-width:260px; height:100%; border:1px solid #e2e8f0; border-radius:0.75rem; box-shadow:0 4px 15px rgb(0 0 0 / 0.08); background:white;">
-                        <RadzenStack Orientation="Orientation.Vertical" Gap="12px" AlignItems="AlignItems.Center">
-                            <div style="width:56px; height:56px; border-radius:0.75rem; background:linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%); color:white; display:flex; align-items:center; justify-content:center;">
-                                <RadzenIcon Icon="location_city" Style="font-size:28px;" />
-                            </div>
-                            <RadzenText TextStyle="TextStyle.H6" Style="font-weight:600; color:var(--text-dark);">@project.Name</RadzenText>
-                            <RadzenText Style="color:var(--text-muted); font-size:0.9rem;">(@project.Province)</RadzenText>
-                            <RadzenBadge Text=@($"Dal {project.Year}") Class="badge-accent" />
-                        </RadzenStack>
-                    </RadzenCard>
-                </div>
-            }
-        }
+<section id="projects" class="lp-section lp-section--alt">
+    <div class="lp-container">
+        <div class="lp-section-header">
+            <span class="lp-label">Il nostro Portfolio</span>
+            <RadzenText TextStyle="TextStyle.H3" Class="lp-heading">
+                Amministrazioni Comunali <span class="lp-accent">Servite</span>
+            </RadzenText>
+        </div>
     </div>
-</div>
-
-<ScrollIndicator TargetSection="testimonials" Text="Testimonial" />
+    <div style="width:100%; margin-top:2.5rem;">
+    <div class="lp-projects-carousel">
+        <div class="lp-projects-track">
+            @for (int pass = 0; pass < 2; pass++)
+            {
+                @foreach (var project in ViewModel.Projects)
+                {
+                    <div class="lp-project-card">
+                        <div class="lp-project-card__icon">
+                            <RadzenIcon Icon="location_city" Style="font-size:26px;" />
+                        </div>
+                        <h4>@project.Name</h4>
+                        <span>(@project.Province)</span>
+                        <div>
+                            <RadzenBadge Text="@($"Dal {project.Year}")" class="lp-project-card__badge" Style="background:#eff6ff; color:#0070a0; border:1px solid #bfdbfe;" />
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    </div>
+    <ScrollIndicator TargetSection="testimonials" NextLabel="Testimonial" />
 </section>
