@@ -560,3 +560,55 @@ window.uiRuntime = {
 document.addEventListener('DOMContentLoaded', () => {
     window.uiRuntime.startRuntimeWatchers();
 });
+
+// Portfolio Marquee Interop
+window.portfolioMarquee = {
+    rafId: null,
+    track: null,
+    offset: 0,
+    speed: 0.5, // pixels per frame (~30px/s @60fps)
+    paused: false,
+
+    init: function () {
+        this.dispose();
+        this.track = document.querySelector('.projects-marquee-track');
+        if (!this.track) return;
+
+        const outer = this.track.parentElement;
+        if (outer) {
+            outer.addEventListener('mouseenter', this._onEnter = () => { this.paused = true; });
+            outer.addEventListener('mouseleave', this._onLeave = () => { this.paused = false; });
+        }
+
+        this.offset = 0;
+        const step = () => {
+            if (!this.track) return;
+            if (!this.paused) {
+                this.offset -= this.speed;
+                // Track contains the items duplicated twice; reset when half is scrolled.
+                const halfWidth = this.track.scrollWidth / 2;
+                if (Math.abs(this.offset) >= halfWidth) {
+                    this.offset = 0;
+                }
+                this.track.style.transform = `translate3d(${this.offset}px, 0, 0)`;
+            }
+            this.rafId = requestAnimationFrame(step);
+        };
+        this.rafId = requestAnimationFrame(step);
+    },
+
+    dispose: function () {
+        if (this.rafId) {
+            cancelAnimationFrame(this.rafId);
+            this.rafId = null;
+        }
+        if (this.track && this.track.parentElement) {
+            const outer = this.track.parentElement;
+            if (this._onEnter) outer.removeEventListener('mouseenter', this._onEnter);
+            if (this._onLeave) outer.removeEventListener('mouseleave', this._onLeave);
+        }
+        this.track = null;
+        this.offset = 0;
+        this.paused = false;
+    }
+};
